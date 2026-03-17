@@ -52,7 +52,7 @@ A scalable and secure **Telemedicine Platform** designed to enable remote health
 
 ### Frontend
 
-* React.js / Blazor / Angular
+* React.js 
 
 ### Database
 
