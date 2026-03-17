@@ -1,0 +1,68 @@
+.Container{
+    margin: 65px 0px 0px 230px;
+    
+}
+
+
+
+/* MeetingPreview.module.css */
+.MeetingPreview {
+  padding: 2rem;
+  background: #fffcfc;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  max-width: 800px;
+  margin: 1.5rem auto;
+  margin-top: 220px;
+}
+
+.tableStyle {
+  width: auto;
+  min-width: 600px;
+  margin: 0 auto;
+  border-spacing: 0;
+  overflow: hidden;
+  border-collapse: collapse;
+  border: 2px solid #475569; /* Thicker outer boundary */
+  background-color: #1e293b;
+  /* 
+  margin-bottom: 2rem;
+   */
+}
+
+.headerCellStyle {
+  background-color: #0f172a;
+  padding: 1rem;
+  font-weight: 600;
+  color: #cbd5e1;
+  text-align: center;
+  border-bottom: 1px solid #eef0f2;
+  border: 1px solid #475569; /* Defines the grid lines */
+  padding: 16px 24px;
+  white-space: nowrap;
+}
+
+.cellStyle {
+  padding: 1.5rem;
+  color: #374151;
+  background-color: #ffffff;
+  border-top: 1px solid #eef0f2;
+  border: 1px solid #475569;
+  white-space: nowrap   ;
+}
+
+.StartMeetingBtn {
+  background-color: #2563eb;
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 6px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s ease;
+  white-space: nowrap;
+}
+
+.StartMeetingBtn:hover {
+  background-color: #1d4ed8;
+}

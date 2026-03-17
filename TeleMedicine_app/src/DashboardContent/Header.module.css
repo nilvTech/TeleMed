@@ -1,0 +1,82 @@
+.header {
+  height: 65px;
+  background: #FFFFFF   ;
+  border-bottom: 1px solid #e5e5e5;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 0 30px;
+
+  position: fixed;
+  top: 0;
+  left: 230px;   /* sidebar width */
+  right: 0;
+  z-index: 100;
+}
+
+/* SEARCH */
+
+.searchContainer {
+  width: 420px;
+}
+
+.searchInput {
+  width: 100%;
+  padding: 10px 15px;
+
+  border-radius: 8px;
+  border: 1px solid #dcdcdc;
+
+  font-size: 14px;
+  background: #f7f9fc;
+
+  transition: all 0.2s ease;
+}
+
+.searchInput:focus {
+  outline: none;
+  border-color: #2a78b8;
+  background: rgb(230, 230, 230);
+}
+
+/* RIGHT SIDE */
+
+.headerRight {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+/* NOTIFICATION ICON */
+
+.notificationIcon {
+  font-size: 25px;
+  cursor: pointer;
+  color: #383737;
+  transition: 0.2s;
+} 
+
+.notificationIcon:hover {
+  color: #0088f7;
+}
+
+/* PROFILE */
+
+.profileArea{
+  display: flex;
+  padding: auto;  
+  transition: all 0.2ms;
+}
+.profileArea:hover{
+  color: #0088f7;
+}
+.profile {
+  font-weight: 600;
+  font-size: 16px;
+  margin: 3px 23.5px 0px 5px;
+}
+.profileLogo{
+ font-size: 30px;
+}
