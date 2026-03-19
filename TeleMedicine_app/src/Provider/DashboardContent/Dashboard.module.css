@@ -1,0 +1,310 @@
+.mainContent {
+  overflow-y: auto;
+  gap: 30px;
+  flex: 1;
+}
+
+.WelcomeBanner{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-right: 50px;
+}
+.BookAppointmentIcon{
+  margin:0px 5px 3px 0px
+}
+.WelcomeBanner button{  
+  padding: 5px 15px;
+  background: linear-gradient(180deg, #2F6F95, #1F4E6B, #40677e); 
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  height: fit-content;  
+}
+
+.WelcomeMSG{
+  margin-top: 22px;
+  margin-left: 35px;
+}
+.username{
+  color: rgb(112, 112, 112);
+}
+.WelcomeMSG p{
+ color: rgb(112, 112, 112);
+}
+
+/* Card */
+.formContainer1 {
+  background: #f2f2f2;
+  padding: 20px;
+  border-radius: 6px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+  width: 40%;
+  height: 300px;
+
+  display: flex;
+  flex-direction: column;
+
+
+  margin: 20px 0px 20px 70px;
+}
+.formContainer1 h5{
+  font-size: 18px;
+}
+
+
+/* Card */
+.formContainer2 {
+  background: #f2f2f2;
+  padding: 20px;
+  border-radius: 6px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+  width: 40%;
+
+  display: flex;
+  flex-direction: column;
+
+
+  margin: 20px 0px 20px 70px;
+
+  font-size: 20px;
+
+  overflow-y: auto;
+}
+.formContainer2UserData{
+  display: flex;
+  margin-top: 15px;
+  margin-left: 20px;
+}
+
+.formContainer2heading p{
+   color: rgb(112, 112, 112);
+   font-size: 12px;
+}
+.formContainer2heading h5{
+   font-size: 18px;
+}
+
+.formContainer2content{
+  background-color:rgb(255, 253, 253); 
+  width: 95%;
+  margin-left: 15px;
+  border-radius: 8px;
+}
+.formContainer2content h4{
+  font-size: 10px;
+ 
+  margin-left: 45px;
+}
+.formContainer2content h4 span:first-of-type {
+  font-size: 8px;
+  margin: 10px;
+  background-color: rgb(218, 10, 10);
+  padding: 3px;
+  border-radius: 5px;
+  color: rgb(241, 236, 236); 
+}
+.formContainer2content p{
+ margin-top: 5px;
+ font-size: 10px;
+ color: gray;
+}
+.formContainer2contentUpdates p {
+  display: flex;
+  justify-content: space-between;
+  width: 90%;
+  margin: 0px;
+}
+.formContainer2contentUpdates p span:first-child{
+  margin-left: 30px;
+  margin-top: 2px;
+}
+.formContainer2contentUpdates p button{
+  border: none;
+  cursor: pointer;
+  background: none;
+  outline: none;
+  margin-bottom: 5px;
+}
+
+.ReplyIconContainer2{
+  margin: 6px;
+}
+
+/* Scrollable list */
+.providerListContainer {
+  margin-top: 10px;
+  overflow-y: auto;
+  flex: 1;
+}
+
+/* Each appointment row */
+.providerList {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  background-color:rgb(255, 253, 253); 
+  padding: 12px;
+  border-radius: 8px;
+  margin-top: 10px;
+}
+
+/* Doctor info */
+.providerInfo h5 {
+  margin: 0;
+}
+
+.providerInfo h6 {
+  font-size: 11px;
+  color: gray;
+}
+
+/* Appointment info */
+.appointmentInfo h5:first-child {
+  display: flex;
+  flex-direction: column;
+  font-size: 12px;
+  color: rgb(6, 6, 6);
+}
+.appointmentInfo h5 {
+  display: flex;
+  flex-direction: column;
+  font-size: 12px;
+  color: gray;
+}
+
+/* Button */
+.joinButton {
+  padding: 6px 14px;
+  border: none;
+  border-radius: 6px;
+  background: #2a78b8;
+  color: white;
+  cursor: pointer;
+}
+
+/* Scrollbar */
+.providerListContainer::-webkit-scrollbar {
+  width: 5px;
+}
+
+.providerListContainer::-webkit-scrollbar-thumb {
+  background: #cfcfcf;
+  border-radius: 10px;
+}
+
+
+.grid{
+  display: flex;
+  flex-direction: column;
+}
+
+.grid2{
+  display: flex;
+  grid-template-columns: 1fr 1fr;
+  gap: 55px;
+}
+.grid3{
+  display: flex;
+  grid-template-columns: 1fr 1fr;
+  gap: 55px;
+}
+.statsContainter{
+  background: #e8e8e8;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  overflow: hidden;
+
+  width: 90%;
+  margin-top: 20px;
+  margin-left: 50px;
+  margin: 20px 50px 10px 70px;
+  
+}
+
+.statsTable{
+  width: 100%;
+  border-collapse: collapse;
+}
+.statCard{
+  padding: 14px;
+  width: 50%;
+  border-bottom: 1px solid #b2b1b1;
+  border-right: 1px solid #b2b1b1;
+  vertical-align: top;
+}
+.statCard:last-child{
+  border-right: none;
+}
+tr:last-child .statCard{
+  border-bottom: none;
+}
+.statCard span{
+  display: inline-block;
+background-color:rgb(255, 253, 253); 
+  color: #666;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 4px 8px;
+  border-radius: 4px;
+  margin-bottom: 12px;
+  text-transform: capitalize;
+}
+
+.statCard p {
+  font-size: 32px;
+  font-weight: 500;
+  color: #333;
+  margin: 0;
+}
+
+.PendingConsultation{
+  background: #f2f2f2;
+  padding: 20px;
+  border-radius: 6px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+  margin: 20px 0px 20px 70px;
+  font-size: 20px;
+  overflow-y: auto;
+}
+.PendingConsultation span{
+  font-weight: 500;
+}
+.PendingConsultation ul{
+  color: #e34800;
+  margin: 10px 0px 0px 0px;
+  list-style-type:circle;
+}
+
+.PatientAlerts{
+  background: #f2f2f2;
+  padding: 20px;
+  border-radius: 6px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+  margin: 20px 0px 20px 70px;
+  font-size: 20px;
+  overflow-y: auto;
+}
+.PatientAlerts span{
+  font-weight: 500;
+}
+.PatientAlerts ul span{
+  color: #0000ff;
+  margin: 10px 0px 0px 0px;
+}
+.PatientAlerts ul {
+  list-style-type:none;
+}

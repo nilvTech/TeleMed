@@ -1,0 +1,25 @@
+.BookAppointmentBTN{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100%;
+}
+.BookAppointmentBTN button{
+    padding: 8px 16px;
+    min-width: 160px;
+    height: 40px;
+  background: linear-gradient(180deg, #2F6F95, #1F4E6B, #40677e); 
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.BookAppointmentIcon{
+    margin: 0px;
+    font-size: 1.1rem;
+}
