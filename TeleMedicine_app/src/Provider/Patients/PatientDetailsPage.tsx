@@ -3,6 +3,7 @@ import { PatientData, vitals, medications, problems } from "./PatientData";
 import { MdAccountCircle } from "react-icons/md";
 import { useParams } from "react-router-dom";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 function PatientDetailsPage() {
   return (
     <div>
@@ -53,6 +54,13 @@ export function PatientInfoCard() {
 
 export function Buttons() {
   const [activeTab, setActiveTab] = useState("Summary");
+  const navigate = useNavigate();
+  const handleTabClick = (tab:string)=>{
+    setActiveTab(tab);
+    if(tab !== "Summary"){
+      navigate(`/Patients/${tab.toLowerCase()}`);
+    }
+  }
   return (
     <div className={styles.container2}>
       {["Summary", "Vitals", "Medications", "Labs", "Documents", "Orders"].map(
@@ -60,7 +68,7 @@ export function Buttons() {
           <button
             key={tab}
             className={activeTab === tab ? styles.active : ""}
-            onClick={() => setActiveTab(tab)}
+            onClick={() => handleTabClick(tab)}
           >
             {tab}
           </button>

@@ -13,6 +13,12 @@ import AdminLayout from "./Layout/AdminLayout";
 import AdminDashboard from "./Admin/Dashboard";
 import PatientLayout from "./Layout/PatientLayout";
 import PatientDashboard from "./Patient/Dashboard";
+import Documents from "./Provider/Patients/PatientDetailsTab/Documents";
+import Vitals from "./Provider/Patients/PatientDetailsTab/Vitals";
+import Medications from "./Provider/Patients/PatientDetailsTab/Medications";
+import Labs from "./Provider/Patients/PatientDetailsTab/Labs";
+import Orders from "./Provider/Patients/PatientDetailsTab/Orders";
+import DocumentList from "./Provider/Patients/PatientDetailsTab/DocumentList";
 //import MainContent from "./DashboardContent/Maincontent";
 //import { Dashboard } from "@mui/icons-material";
 
@@ -38,6 +44,12 @@ function App() {
             <Route path="/VideoCall" element={<VideoCallPreview />} />
             <Route path="/Patients" element={<PatientsPage />} />
             <Route path="/Patients/:id" element={<PatientDetailsPage />} />
+            <Route path="/Patients/documents" element={<Documents />} />
+            <Route path="/Patients/Vitals" element={<Vitals />} />
+            <Route path="/Patients/Medications" element={<Medications />} />
+            <Route path="/Patients/Labs" element={<Labs />} />
+            <Route path="/Patients/Orders" element={<Orders />} />
+            <Route path="/document-list" element={<DocumentList />} />
           </Route>
         </Routes>
       </BrowserRouter>

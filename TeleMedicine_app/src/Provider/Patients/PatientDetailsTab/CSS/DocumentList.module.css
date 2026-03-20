@@ -1,0 +1,69 @@
+.tableWrapper {
+  margin: 100px 0 0 150px;
+  width: 85%;
+}
+
+.table {
+  width: 90%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+thead {
+  background: #d7e6f4;
+  text-align: left;
+}
+
+th, td {
+  padding: 12px;
+  border-bottom: 2px solid #e5e7eb;
+}
+
+tr:hover {
+  background: #f4f4f4;
+}
+
+/* Actions */
+.actionCell {
+  position: relative;
+}
+
+.menuBtn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+/* Dropdown */
+.dropdown {
+  position: absolute;
+  right: 0;
+  top: 30px;
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 6px;
+  width: 120px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  z-index: 10;
+}
+
+.dropdown div {
+  padding: 10px;
+  cursor: pointer;
+}
+
+.dropdown div:hover {
+  background: #f3f4f6;
+}
+
+.delete {
+  color: #dc2626;
+}
+
+/* Empty state */
+.empty {
+  text-align: center;
+  padding: 20px;
+  color: #6b7280;
+}
