@@ -35,3 +35,76 @@
   gap: 10px;
   margin-top: 20px;
 }
+
+/* Container for the inputs */
+.inputs {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 20px 0;
+}
+
+/* Standard text inputs */
+.textField {
+  padding: 12px 16px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  font-size: 14px;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  outline: none;
+}
+
+.textField:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
+}
+
+/* File Upload styling */
+.fileInputWrapper {
+  margin-top: 8px;
+}
+
+.fileInput {
+  font-size: 13px;
+  color: #666;
+}
+
+/* Footer and Buttons */
+.footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 24px;
+  padding-top: 16px;
+  border-top: 1px solid #eee;
+}
+
+.saveBtn, .cancelBtn {
+  padding: 10px 24px;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.saveBtn {
+  background-color: #007bff;
+  color: white;
+  border: none;
+}
+
+.saveBtn:hover {
+  background-color: #0056b3;
+}
+
+.cancelBtn {
+  background-color: transparent;
+  color: #666;
+  border: 1px solid #ccc;
+}
+
+.cancelBtn:hover {
+  background-color: #f5f5f5;
+  color: #333;
+}

@@ -3,9 +3,9 @@ import styles from "./CSS/DocumentModel.module.css";
 
 type props = {
   onClose: () => void;
-  setDocuments:React.Dispatch<React.SetStateAction<any[]>>;
+  setDocuments: React.Dispatch<React.SetStateAction<any[]>>;
 };
-function DocumentFormModal({ onClose,setDocuments }: props) {
+function DocumentFormModal({ onClose, setDocuments }: props) {
   const [title, setTitle] = useState("");
   const [speciality, setSpeciality] = useState("");
   const [provider, setProvider] = useState("");
@@ -38,7 +38,7 @@ function DocumentFormModal({ onClose,setDocuments }: props) {
     }
     if (!file) {
       alert("Please Upload file");
-      return; 
+      return;
     }
 
     try {
@@ -55,7 +55,7 @@ function DocumentFormModal({ onClose,setDocuments }: props) {
         localStorage.getItem("documents") || "[]",
       );
 
-      const updatedDocs = [...existingDocs,newDoc];
+      const updatedDocs = [...existingDocs, newDoc];
 
       localStorage.setItem(
         "documents",
@@ -80,30 +80,35 @@ function DocumentFormModal({ onClose,setDocuments }: props) {
           </span>
         </div>
 
-        {/* Inputs */}
-        <input
-          type="text"
-          placeholder="Document Title"
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-        />
+        <div className={styles.inputs}>
+          {/* Inputs */}
+          <input
+            type="text"
+            placeholder="Document Title"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+            className={styles.textField}
+          />
 
-        <input
-          type="text"
-          placeholder="Speciality"
-          value={speciality}
-          onChange={(e) => setSpeciality(e.target.value)}
-        />
+          <input
+            type="text"
+            placeholder="Speciality"
+            value={speciality}
+            onChange={(e) => setSpeciality(e.target.value)}
+            className={styles.textField}
+          />
 
-        <input
-          type="text"
-          placeholder="Provider"
-          value={provider}
-          onChange={(e) => setProvider(e.target.value)}
-        />
+          <input
+            type="text"
+            placeholder="Provider"
+            value={provider}
+            onChange={(e) => setProvider(e.target.value)}
+            className={styles.textField}
+          />
 
-        {/* File Upload */}
-        <input type="file" onChange={HandleFileChange} />
+          {/* File Upload */}
+          <input type="file" onChange={HandleFileChange}  className={styles.textField}/>
+        </div>
 
         {/* Footer Buttons */}
         <div className={styles.footer}>
