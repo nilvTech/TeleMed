@@ -10,7 +10,7 @@ function Documents() {
   useEffect(()=>{
     const data = JSON.parse(localStorage.getItem("documents") || "[]");
     setDocuments(data);
-  })
+  },[])
   return (
     <div>
       <div className={styles.page}>

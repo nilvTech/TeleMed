@@ -16,7 +16,7 @@ function DocumentList({documents,setDocuments}:Props) {
   useEffect(() => {
     const data = JSON.parse(localStorage.getItem("documents") || "[]");
     setDocuments(data);
-  }, []);
+  },[]);
 
   const handleView = (fileData: string) => {
     const newTab = window.open();
