@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState,useRef } from "react";
 import styles from "./CSS/DocumentList.module.css";
 
 
@@ -10,12 +10,28 @@ type Props ={
 function DocumentList({documents,setDocuments}:Props) {
  // const [documents, setDocuments] = useState<any[]>([]);
   const [openMenu, setOpenMenu] = useState<number | null>(null);
-
+  const menuRef = useRef<HTMLDivElement | null> (null);
 
 
   useEffect(() => {
     const data = JSON.parse(localStorage.getItem("documents") || "[]");
     setDocuments(data);
+
+    // Close the Action menu on screen anywhere click 
+    const HandleClickOutside = (event:MouseEvent) => {
+      if( 
+        menuRef.current &&
+        !menuRef.current.contains(event.target as Node)
+      ){
+        setOpenMenu(null);
+      }
+    };
+
+    document.addEventListener("mousedown",HandleClickOutside);
+
+    return ()=>{
+      document.removeEventListener("mousedown",HandleClickOutside);
+    };
   },[]);
 
   const handleView = (fileData: string) => {
@@ -48,20 +64,20 @@ function DocumentList({documents,setDocuments}:Props) {
   };
 
   return (
-    <div className={styles.tableWrapper}>
+    <div className={styles.tableWrapper} ref={menuRef} >
       <table className={styles.table}>
         <thead>
           <tr>
             <th>No</th>
             <th>Title</th>
             <th>Speciality</th>
-            <th>Orders</th>
+            <th>Patient</th>
             <th>FileType</th>
             <th>Actions</th>
           </tr>
         </thead>
 
-        <tbody>
+        <tbody >
           {documents.map((doc, index) => (
             <tr key={doc.id}>
               <td>{index + 1}</td>
@@ -71,10 +87,14 @@ function DocumentList({documents,setDocuments}:Props) {
               <td>{getFileType(doc.fileName)}</td>
 
               <td className={styles.actionCell}>
-                <button
+                <div>
+                  <button
                   className={styles.menuBtn}
-                  onClick={() =>
-                    setOpenMenu(openMenu === doc.id ? null : doc.id)
+                  onClick={(e) =>
+                  {
+                    e.stopPropagation();
+                    setOpenMenu(openMenu === doc.id ? null : doc.id);
+                  }
                   }
                 >
                   ⋮ 
@@ -98,6 +118,7 @@ function DocumentList({documents,setDocuments}:Props) {
                     </div>
                   </div>
                 )}
+                </div>
               </td>
             </tr>
           ))}

@@ -19,6 +19,7 @@ import Medications from "./Provider/Patients/PatientDetailsTab/Medications";
 import Labs from "./Provider/Patients/PatientDetailsTab/Labs";
 import Orders from "./Provider/Patients/PatientDetailsTab/Orders";
 import DocumentList from "./Provider/Patients/PatientDetailsTab/DocumentList";
+import Payments from "./Provider/Patients/PatientDetailsTab/Payment/Payments";
 //import MainContent from "./DashboardContent/Maincontent";
 //import { Dashboard } from "@mui/icons-material";
 
@@ -49,7 +50,8 @@ function App() {
             <Route path="/Patients/Medications" element={<Medications />} />
             <Route path="/Patients/Labs" element={<Labs />} />
             <Route path="/Patients/Orders" element={<Orders />} />
-            <Route path="/document-list" element={<DocumentList />} />
+            <Route path="/document-list" element={<DocumentList/>} />
+            <Route path="/Patients/payments" element={<Payments />} />
           </Route>
         </Routes>
       </BrowserRouter>

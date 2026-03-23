@@ -63,7 +63,7 @@ export function Buttons() {
   }
   return (
     <div className={styles.container2}>
-      {["Summary", "Vitals", "Medications", "Labs", "Documents", "Orders"].map(
+      {["Summary", "Vitals", "Medications", "Labs", "Documents", "Orders","Payments"].map(
         (tab) => (
           <button
             key={tab}

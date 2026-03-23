@@ -1,73 +1,47 @@
-.PatientsList {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 40px;
-  justify-content: center;
-  white-space: nowrap;
-}
-
-.Heading {
-  font-size: 1.4rem;
-  color: #256084; /* Matching your theme color */
-  position: fixed;
-  top: 65px; /* below header */
-  left: 230px; /* after sidebar */
-  width: calc(100% - 230px);
-  background: rgb(16, 15, 15);
-  z-index: 10;
-}
-.Heading h2{
-  align-items: center;
-  margin-left: 530px;
-}
-
 .table {
-  /* This controls the row width - adjust percentage or px as needed */
-  width: 100%;
-  max-width: 400px;
+  width: 95%;
+  /* Remove max-width: 400px if you want it to span the dashboard */
   border-collapse: collapse;
   background: white;
   border-radius: 8px;
   overflow: hidden;
   box-shadow: 0px 12px 12px rgba(0, 0, 0, 0.18);
-  margin-top: 50px; 
+  margin-top: 50px;
+  margin: 30px 0px 0px 35px;
+  display: flex;
+  flex-direction: column; /* Allows the header and body to stack as blocks */
 }
 
-.TableHeading tr {
-  background-color: #c8e0f8;
+.Heading{
+  margin: 90px 0px 0px 50px;
+}
+.TableHeading, .TableBody {
+  display: block; /* Required for scrolling */
 }
 
-.TableHeading td {
-  
-  padding: 22px 30px;
-  font-weight: 600;
-  color: #475569;
-  font-size: 0.85rem;
-  text-transform: uppercase;
-  border-bottom: 2px solid #e2e8f0;
+.TableHeading tr, .TableBody tr {
+  display: table; /* Maintains the table-row look */
+  width: 100%;
+  table-layout: fixed; /* Ensures columns align between head and body */
 }
 
-.TableBody tr {
-  border-bottom: 1px solid #f1f5f9;
-  transition: 0.2s;
-  cursor: pointer;
+.TableBody {
+  max-height: 450px; /* Adjust this height to fit your screen */
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
-.TableBody tr:hover {
-  background-color: #4ef89a;
-  /* Slight indent effect on hover */
-  transform: translatey(2px);
+/* Add a custom scrollbar for a cleaner look */
+.TableBody::-webkit-scrollbar {
+  width: 6px;
+}
+.TableBody::-webkit-scrollbar-thumb {
+  background-color: #cbd5e1;
+  border-radius: 10px;
 }
 
-.TableBody td {
-  padding: 20px 30px;
-  color: #334155;
-  font-size: 0.95rem;
-}
-
-/* Make the Age column narrower than the Name column */
-.table td:last-child {
-  width: 80px;
-  text-align: center;
+.TableHeading td, .TableBody td {
+  padding: 15px 20px; /* Slightly reduced padding for better fit */
+  text-align: left;
+  word-break: break-word;
 }

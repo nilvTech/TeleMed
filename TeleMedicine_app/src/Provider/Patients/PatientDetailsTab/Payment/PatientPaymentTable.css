@@ -1,0 +1,55 @@
+.table-container {
+  width: 90%;
+  margin: 40px auto;
+  font-family: Arial, Helvetica, sans-serif;
+  margin-top: 100px;
+}
+
+.title {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #2f80ed;
+}
+
+.patient-table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #ffffff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.patient-table th,
+.patient-table td {
+  padding: 12px 15px;
+  text-align: center;
+  border-bottom: 1px solid #ddd;
+}
+
+.patient-table th {
+  background-color: #2f80ed;
+  color: white;
+  font-weight: bold;
+}
+
+.patient-table tr:hover {
+  background-color: #f5f5f5;
+}
+
+.pay-btn {
+  background-color: #27ae60;
+  color: white;
+  padding: 8px 14px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: 0.3s;
+}
+
+.pay-btn:hover {
+  background-color: #219150;
+}
+
+.pay-btn:active {
+  transform: scale(0.95);
+}

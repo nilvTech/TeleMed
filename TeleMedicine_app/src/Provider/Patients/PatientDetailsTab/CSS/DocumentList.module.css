@@ -33,6 +33,13 @@ tr:hover {
   border: none;
   cursor: pointer;
   font-size: 18px;
+  transition: color 0.2s ease;
+}
+.menuBtn:focus{
+  outline: none;
+}
+.menuBtn:hover{
+    background-color: #e4e4e4;
 }
 
 /* Dropdown */

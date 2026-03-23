@@ -1,6 +1,6 @@
 //import type React from "react";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 //import Dashboard from "../DashboardContent/Dashboard";
 import { useNavigate } from "react-router-dom";
 interface LoginProps {
@@ -19,17 +19,27 @@ function Login({ setLogin }: LoginProps) {
     password: "",
     role: "",
   });
+  const roleRef = useRef<HTMLSelectElement | null>(null);
+  const usernameRef = useRef<HTMLInputElement | null>(null);
+  const passwordRef = useRef<HTMLInputElement | null>(null);
 
   const handleLogin = () => {
     if (!form.role) {
       setRoleError("Please select a role!");
+      roleRef.current?.focus();
       return;
     }
-     if (!form.username && !form.password) {
+    if (!form.username) {
       setUsernameError("Please enter a username!");
-      setPasswordError("Please enter a password!");
+      usernameRef.current?.focus();
       return;
     }
+    if (!form.password) {
+      setPasswordError("Please enter a password!");
+      passwordRef.current?.focus();
+      return;
+    }
+
     setRoleError("");
     if (form.role === "Patient") {
       NavToDashboard("/Patient/Dasboard");
@@ -39,6 +49,7 @@ function Login({ setLogin }: LoginProps) {
       NavToDashboard("/Admin/Dasboard");
     }
   };
+
   return (
     <>
       <div className="form">
@@ -51,7 +62,8 @@ function Login({ setLogin }: LoginProps) {
             setForm({ ...form, role: e.target.value });
             setRoleError("");
           }}
-          className={`role ${RoleError?"error-border":""}`}
+          className={`role ${RoleError ? "error-border" : ""}`}
+          ref={roleRef}
         >
           <option value="" disabled hidden>
             Select Role
@@ -68,20 +80,22 @@ function Login({ setLogin }: LoginProps) {
           value={form.username}
           onChange={(e) => {
             setForm({ ...form, username: e.target.value });
-            setUsernameError("")
+            setUsernameError("");
           }}
-           className={` ${UsernameError?"error-border":""}`}
+          className={` ${UsernameError ? "error-border" : ""}`}
+          ref={usernameRef}
         />
-         {UsernameError && <p className="error-text">{UsernameError}</p>}
+        {UsernameError && <p className="error-text">{UsernameError}</p>}
         <input
           type="password"
           placeholder="Password"
           value={form.password}
           onChange={(e) => {
             setForm({ ...form, password: e.target.value });
-            setPasswordError("")
+            setPasswordError("");
           }}
-          className={`role ${PasswordError?"error-border":""}`}
+          className={`role ${PasswordError ? "error-border" : ""}`}
+          ref={passwordRef}
         />
         {PasswordError && <p className="error-text">{PasswordError}</p>}
 
