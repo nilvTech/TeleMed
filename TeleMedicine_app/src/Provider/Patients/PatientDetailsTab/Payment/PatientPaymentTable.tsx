@@ -101,7 +101,7 @@ const PatientPaymentTable: React.FC = () => {
       key: "rzp_test_SUfgFLw5Q7PAIs",
       amount: amount * 100,
       currency: "INR",
-      name: "Telemedicine App",
+      name: "TeleMed",
       description: `Consultation fees for ${patientName}`,
       handleer: function (response: RazorpayResponse) {
         console.log("Payment Success:", response);

@@ -1,4 +1,5 @@
 import styles from "./PatientList.module.css";
+import { IoMdAdd } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
 import { PatientData } from "./PatientData";
 function PatientList() {
@@ -8,6 +9,7 @@ function PatientList() {
     <>
       <div className={styles.Heading}>
         <h2>Patient List</h2>
+        <button onClick={()=>{Navigate(`/Patients/Form`)}}><IoMdAdd className={styles.addButton} />Add Patient</button>
       </div>
       <div className={styles.PatientsList}>
         <table className={styles.table}>
@@ -25,8 +27,8 @@ function PatientList() {
           </thead>
           <tbody className={styles.TableBody}>
             {PatientData.map((p) => (
-              <tr key={p.id} onClick={() => Navigate(`/Patients/${p.id}`)}>
-                <td>{p.name}</td>
+              <tr key={p.id}>
+                <td onClick={() => Navigate(`/Patients/${p.id}`)}>{p.name}</td>
                 <td>{p.MRN}</td>
                 <td>{p.age}</td>
                 <td>{p.gender}</td>

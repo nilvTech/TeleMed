@@ -12,19 +12,46 @@
   flex-direction: column; /* Allows the header and body to stack as blocks */
 }
 
-.Heading{
+.Heading {
   margin: 90px 0px 0px 50px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-right: 50px;
 }
-.TableHeading, .TableBody {
+.addButton{
+  margin: 0px 3px 3px 0px;
+}
+.Heading button {
+  padding: 5px 15px;
+  background: linear-gradient(180deg, #2f6f95, #1f4e6b, #40677e);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  height: fit-content;
+}
+.TableHeading,
+.TableBody {
   display: block; /* Required for scrolling */
 }
 
-.TableHeading tr, .TableBody tr {
+.TableHeading tr,
+.TableBody tr {
   display: table; /* Maintains the table-row look */
   width: 100%;
   table-layout: fixed; /* Ensures columns align between head and body */
+  white-space: nowrap;
 }
-
+.TableBody td:first-child {
+  text-decoration: underline;
+  cursor: pointer;
+}
+.TableBody td:first-child:hover {
+  color: blueviolet;
+}
 .TableBody {
   max-height: 450px; /* Adjust this height to fit your screen */
   overflow-y: auto;
@@ -40,7 +67,8 @@
   border-radius: 10px;
 }
 
-.TableHeading td, .TableBody td {
+.TableHeading td,
+.TableBody td {
   padding: 15px 20px; /* Slightly reduced padding for better fit */
   text-align: left;
   word-break: break-word;

@@ -26,7 +26,7 @@ export const RazorpayPayment = () => {
 
       currency: "INR",
 
-      name: "Telemedicine App",
+      name: "TeleMed",
 
       description: "Doctor Consultation Fee",
 
