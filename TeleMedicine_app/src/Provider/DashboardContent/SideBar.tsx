@@ -26,7 +26,7 @@ function SideBar() {
           <Link to="/Dashboard"><MdDashboard className={styles.SectionIcon}/>Dashboard</Link>
           <Link to="/Appointment"><MdCalendarToday className={styles.SectionIcon} />Appointment</Link>
           <Link to="/Patients"><MdPeopleAlt className={styles.SectionIcon}/>Patients</Link>
-          <Link to="/Messages"><MdChat className={styles.SectionIcon}/>Messages</Link>
+          <Link to="/Message"><MdChat className={styles.SectionIcon}/>Messages</Link>
           <Link to="/Billing"><MdReceiptLong className={styles.SectionIcon}/>Billing</Link>
 
           {/* Sub Sections */}

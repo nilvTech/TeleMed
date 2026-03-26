@@ -1,0 +1,38 @@
+.container {
+  max-width: 60%;
+
+  padding: 10px 14px;
+
+  border-radius: 12px;
+
+  display: flex;
+  flex-direction: column;
+
+  font-size: 14px;
+}
+
+.me {
+  align-self: flex-end;
+
+  background-color: #1976d2;
+
+  color: white;
+}
+
+.other {
+  align-self: flex-start;
+
+  background-color: white;
+
+  border: 1px solid #e0e0e0;
+}
+
+.time {
+  font-size: 11px;
+
+  margin-top: 4px;
+
+  opacity: 0.7;
+
+  align-self: flex-end;
+}

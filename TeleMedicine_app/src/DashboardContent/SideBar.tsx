@@ -30,7 +30,7 @@ function SideBar() {
           <Link to="/Appointment"><MdCalendarToday className={styles.SectionIcon} />Appointment</Link>
           <Link to="/Patients"><MdPeopleAlt className={styles.SectionIcon}/>Patients</Link>
           <Link to="/Patients/:id"><MdVideoCall className={styles.SectionIcon} />Encounters / Video Visits</Link>
-          <Link to="#"><MdChat className={styles.SectionIcon}/>Messages</Link>
+          <Link to=""><MdChat className={styles.SectionIcon}/>Messages</Link>
 
           {/* Sub Sections */}
           <div className={styles.menuGroup}>

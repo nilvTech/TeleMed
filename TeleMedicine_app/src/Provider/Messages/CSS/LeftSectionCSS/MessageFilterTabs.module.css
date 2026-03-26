@@ -1,0 +1,27 @@
+.container {
+  display: flex;
+  border-bottom: 1px solid #e0e0e0;
+  background-color: #fafafa;
+ 
+}
+
+.tab {
+  padding: 10px 14px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-size: 14px;
+  color: #555;
+   margin: 2px;
+}
+
+.tab:hover {
+  background-color: #f1f1f1;
+}
+
+.active {
+  outline: none;
+  background-color: #1976d2;
+  color: white;
+  font-weight: 500;
+}

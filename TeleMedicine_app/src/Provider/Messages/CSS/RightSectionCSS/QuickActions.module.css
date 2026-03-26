@@ -1,0 +1,31 @@
+.container {
+  padding: 16px;
+}
+
+.title {
+  font-weight: 600;
+
+  margin-bottom: 10px;
+}
+
+.button {
+  width: 100%;
+
+  padding: 10px;
+
+  margin-bottom: 8px;
+
+  border: none;
+
+  border-radius: 6px;
+
+  background-color: #1976d2;
+
+  color: white;
+
+  cursor: pointer;
+}
+
+.button:hover {
+  background-color: #125ea8;
+}

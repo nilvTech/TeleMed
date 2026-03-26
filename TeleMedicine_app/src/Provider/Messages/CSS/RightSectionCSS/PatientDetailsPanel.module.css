@@ -1,0 +1,26 @@
+.panel {
+  height: 91vh;
+
+  background: white;
+
+  border-left: 1px solid #e5e7eb;
+
+  overflow: hidden;
+
+  transition: all 0.3s ease;
+
+  overflow-y: auto;
+}
+
+.open {
+  width: 320px;
+
+  opacity: 1;
+}
+
+
+.closed {
+  width: 0;
+
+  opacity: 0;
+}

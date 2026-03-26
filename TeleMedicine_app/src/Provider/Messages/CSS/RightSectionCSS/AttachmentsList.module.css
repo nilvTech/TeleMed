@@ -1,0 +1,83 @@
+.card {
+  margin: 16px;
+
+  padding: 16px;
+
+  background-color: #ffffff;
+
+  border-radius: 10px;
+
+  border: 1px solid #e5e7eb;
+
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.title {
+  font-weight: 600;
+
+  font-size: 15px;
+
+  margin-bottom: 12px;
+}
+
+.list {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 10px;
+}
+
+.fileRow {
+  display: flex;
+
+  align-items: center;
+
+  gap: 12px;
+
+  padding: 10px;
+
+  border-radius: 8px;
+
+  cursor: pointer;
+
+  transition: background 0.2s ease;
+}
+
+.fileRow:hover {
+  background-color: #f3f6fb;
+}
+
+.icon {
+  width: 36px;
+
+  height: 36px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  border-radius: 8px;
+
+  background-color: #eef2ff;
+}
+
+.fileInfo {
+  display: flex;
+
+  flex-direction: column;
+}
+
+.fileName {
+  font-size: 14px;
+
+  font-weight: 500;
+}
+
+.meta {
+  font-size: 12px;
+
+  color: #6b7280;
+}

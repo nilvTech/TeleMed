@@ -1,0 +1,44 @@
+.container {
+  padding: 20px;
+
+  border-bottom: 1px solid #e0e0e0;
+
+  text-align: center;
+}
+
+.avatar {
+  width: 70px;
+  height: 70px;
+
+  border-radius: 50%;
+
+  background-color: #dcdcdc;
+
+  margin: 0 auto 10px;
+}
+
+.name {
+  font-weight: 600;
+
+  font-size: 16px;
+}
+
+.meta {
+  font-size: 13px;
+
+  color: #666;
+
+  margin-bottom: 12px;
+}
+
+.details {
+  font-size: 14px;
+
+  text-align: left;
+
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 6px;
+}

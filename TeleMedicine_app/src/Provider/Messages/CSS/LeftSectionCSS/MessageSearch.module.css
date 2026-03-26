@@ -1,0 +1,17 @@
+.container {
+  padding: 12px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.input {
+  width: 100%;
+  padding: 8px 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+}
+
+.input:focus {
+  outline: none;
+  border-color: #1976d2;
+}
