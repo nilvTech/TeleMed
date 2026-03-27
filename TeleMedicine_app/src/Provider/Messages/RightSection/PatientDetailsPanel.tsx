@@ -3,11 +3,10 @@ import styles from "../CSS/RightSectionCSS/PatientDetailsPanel.module.css";
 import QuickActions from "./QuickActions";
 import PatientInformationCard from "./PatientInformationCard";
 
-interface Props{
-    isOpen:boolean;
-}
-const PatientDetailsPanel = ({isOpen}:Props)=>{
+import { useMessageStore } from "../Store/MessageStore";
 
+const PatientDetailsPanel = ()=>{
+    const isOpen = useMessageStore((state) => state.isDetailsOpen);
     return(
         <div 
         className={`${styles.panel} ${isOpen? styles.open : styles.closed}`}

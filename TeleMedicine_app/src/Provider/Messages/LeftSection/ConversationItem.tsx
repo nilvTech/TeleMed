@@ -1,22 +1,24 @@
 import type { Conversation } from "../types/ConversationListMessage";
 import styles from "../CSS/LeftSectionCSS/ConversationItem.module.css";
+import { useMessageStore } from "../Store/MessageStore";
 interface Props {
   conversation: Conversation;
-  onSelect: (id: number) => void;
-  selectedId: number | null;
 }
 
-const ConversationItem: React.FC<Props> = ({
-  conversation,
-  onSelect,
-  selectedId,
-}) => {
-  const isSelected = selectedId === conversation.id;
+const ConversationItem: React.FC<Props> = ({ conversation }) => {
+  const selectedConversationId = useMessageStore(
+    (state) => state.selectedConversationId,
+  );
+  const selectConversation = useMessageStore(
+    (state) => state.selectConversation,
+  );
+  const isSelected = selectedConversationId === conversation.id;
 
   return (
     <div
-      onClick={() => onSelect(conversation.id)}
-      className={`${styles.container} ${isSelected ? styles.selected : ""}`}>
+      onClick={() => selectConversation(conversation.id)}
+      className={`${styles.container} ${isSelected ? styles.selected : ""}`}
+    >
       <div className={styles.avatar}></div>
       <div className={styles.content}>
         <div className={styles.name}>{conversation.participantName}</div>
@@ -27,9 +29,7 @@ const ConversationItem: React.FC<Props> = ({
       </div>
 
       {conversation.unreadCount > 0 && (
-            <span className={styles.unread}>
-            {conversation.unreadCount}
-            </span>
+        <span className={styles.unread}>{conversation.unreadCount}</span>
       )}
     </div>
   );

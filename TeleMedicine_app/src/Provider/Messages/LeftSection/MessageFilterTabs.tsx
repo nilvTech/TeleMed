@@ -1,19 +1,19 @@
 import styles from "../CSS/LeftSectionCSS/MessageFilterTabs.module.css";
-interface Props {
-  active: string;
-  setActive: (value: string) => void;
-}
+import { useMessageStore } from "../Store/MessageStore";
 
 const tabs = ["All", "Unread", "Patients", "Providers", "Admin"];
 
-const MesssageFilterTabs: React.FC<Props> = ({ active, setActive }) => {
+const MesssageFilterTabs: React.FC = () => {
+  const activeTab = useMessageStore((state) => state.activeTab);
+  const setActiveTab = useMessageStore((state) => state.setActiveTab);
+
   return (
     <div className={styles.container}>
       {tabs.map((tab) => (
         <button
           key={tab}
-          onClick={() => setActive(tab)}
-          className={`${styles.tab} ${active === tab ? styles.active : ""}`}
+          onClick={() => setActiveTab(tab)}
+          className={`${styles.tab} ${activeTab === tab ? styles.active : ""}`}
         >
           {tab}
         </button>

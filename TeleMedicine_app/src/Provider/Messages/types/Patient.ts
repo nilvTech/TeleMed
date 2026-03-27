@@ -7,4 +7,12 @@ export interface Patient{
     dob:string;
     phone:string;
     avatar?:string;
+
+    attachments: Attachment[];
+}
+export interface Attachment {
+  id: number;
+  fileName: string;
+  type: "pdf" | "image" | "doc";
+  size: string;
 }

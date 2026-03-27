@@ -1,7 +1,13 @@
 .container {
   display: flex;
 
-  height: 100vh;
+  height: 91vh;
+
+  background: linear-gradient(
+    180deg,
+    #f8fafc 0%,
+    #f1f5f9 100%
+  );
 }
 
 .messageSection {

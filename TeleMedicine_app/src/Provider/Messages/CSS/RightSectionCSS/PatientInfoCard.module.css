@@ -1,9 +1,23 @@
 .container {
-  padding: 20px;
+  padding: 16px;
 
   border-bottom: 1px solid #e0e0e0;
 
   text-align: center;
+
+  background: white;
+
+  border-radius: 8px;
+
+  border: 1px solid #e5e7eb;
+
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02 );
+
+  transition: all 0.2s ease;
+
+}
+.container:hover {
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
 }
 
 .avatar {

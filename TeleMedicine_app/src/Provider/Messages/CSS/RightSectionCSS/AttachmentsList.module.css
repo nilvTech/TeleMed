@@ -61,7 +61,22 @@
 
   border-radius: 8px;
 
-  background-color: #eef2ff;
+  background-color: #eef1fa;
+
+    width: 36px;
+  height: 36px;
+
+  border-radius: 8px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: linear-gradient(
+    135deg,
+    #e0e7ff,
+    #c7d2fe
+  );
 }
 
 .fileInfo {

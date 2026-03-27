@@ -1,38 +1,38 @@
 import styles from "../CSS/RightSectionCSS/AttachmentsList.module.css";
-
+import { useMessageStore } from "../Store/MessageStore";
 import {
   FileText,
   Image,
   File,
 } from "lucide-react";
 
-interface Attachment {
-  id: number;
-  fileName: string;
-  type: "pdf" | "image" | "doc";
-  size: string;
-}
+// interface Attachment {
+//   id: number;
+//   fileName: string;
+//   type: "pdf" | "image" | "doc";
+//   size: string;
+// }
 
-const files: Attachment[] = [
-  {
-    id: 1,
-    fileName: "Lab_Report.pdf",
-    type: "pdf",
-    size: "2.4 MB",
-  },
-  {
-    id: 2,
-    fileName: "Chest_Xray.png",
-    type: "image",
-    size: "5.1 MB",
-  },
-  {
-    id: 3,
-    fileName: "Prescription.pdf",
-    type: "pdf",
-    size: "1.2 MB",
-  },
-];
+// const files: Attachment[] = [
+//   {
+//     id: 1,
+//     fileName: "Lab_Report.pdf",
+//     type: "pdf",
+//     size: "2.4 MB",
+//   },
+//   {
+//     id: 2,
+//     fileName: "Chest_Xray.png",
+//     type: "image",
+//     size: "5.1 MB",
+//   },
+//   {
+//     id: 3,
+//     fileName: "Prescription.pdf",
+//     type: "pdf",
+//     size: "1.2 MB",
+//   },
+// ];
 
 const getIcon = (type: string) => {
   switch (type) {
@@ -48,6 +48,10 @@ const getIcon = (type: string) => {
 };
 
 const AttachmentsList = () => {
+  
+  const selectedPatient = useMessageStore((state) => state.selectedPatient);
+  const files = selectedPatient?.attachments || []; 
+
   return (
     <div className={styles.card}>
       <div className={styles.title}>

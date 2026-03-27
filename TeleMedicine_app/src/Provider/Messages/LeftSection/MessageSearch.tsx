@@ -1,16 +1,17 @@
 import styles from "../CSS/LeftSectionCSS/MessageSearch.module.css";
-interface Props {
-  search: string;
-  setSearch: (value: string) => void;
-}
-const MessageSearch: React.FC<Props> = ({ search, setSearch }) => {
+import { useMessageStore } from "../Store/MessageStore";
+
+const MessageSearch: React.FC = () => {
+  const searchTerm = useMessageStore((state) => state.searchTerm);
+  const setSearchTerm = useMessageStore((state) => state.setSearchTerm);
+
   return (
     <div className={styles.container}>
       <input
         type="text"
         placeholder="Search messages"
-        value={search}
-        onChange={(e) => setSearch(e.target.value)}
+        value={searchTerm}
+        onChange={(e) => setSearchTerm(e.target.value)}
         className={styles.input}
       />
     </div>

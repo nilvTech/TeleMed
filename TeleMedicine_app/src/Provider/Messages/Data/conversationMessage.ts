@@ -5,7 +5,7 @@ export const messages: Message[] = [
     conversationId: 1,
     sender: "other",
     text: "Hello Doctor",
-    timestamp: "10:30 Am",
+    timestamp: "10:30Am",
     type: "text",
   },
   {
@@ -13,7 +13,7 @@ export const messages: Message[] = [
     conversationId: 1,
     sender: "other",
     text: "My blood pressure is high",
-    timestamp: "10:31 AM",
+    timestamp: "10:31Am",
     type: "text",
   },
   {
@@ -21,7 +21,8 @@ export const messages: Message[] = [
     conversationId: 1,
     sender: "me",
     text: "Please continue medication",
-    timestamp: "10:32 AM",
+    timestamp: "10:32Am",
     type: "text",
   },
+  
 ];
