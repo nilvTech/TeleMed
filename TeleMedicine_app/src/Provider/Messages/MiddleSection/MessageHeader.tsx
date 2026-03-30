@@ -20,12 +20,13 @@ const MessageHeader = () => {
         </div>
       </div>
       <div 
-      className={styles.actions}
-      onClick={toggleDetailsPanel}
+        className={styles.actions}
+        onClick={toggleDetailsPanel}
       >
         ⋮
       </div>
     </div>
   );
 };
+
 export default MessageHeader;

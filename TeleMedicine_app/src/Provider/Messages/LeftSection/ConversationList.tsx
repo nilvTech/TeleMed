@@ -10,14 +10,17 @@ const ConversationList = () => {
   const activeTab = useMessageStore((state) => state.activeTab);
   const searchTerm = useMessageStore((state) => state.searchTerm);
 
+  const getUndreadCount = useMessageStore((state) => state.getUnreadCount);
 
   const filtered = conversations.filter((c) => {
+    const unreadCount = getUndreadCount(c.id);
+
     const matchSearch = c.participantName
       .toLowerCase()
       .includes(searchTerm.toLowerCase());
 
     if (activeTab === "Unread") {
-      return matchSearch && c.unreadCount > 0;
+      return matchSearch && unreadCount > 0;
     }
 
     if (activeTab === "Patients") {
@@ -39,7 +42,7 @@ const ConversationList = () => {
 
   return (
     <div className={styles.container}>
-      <MessageSearch/>
+      <MessageSearch />
       <MesssageFilterTabs />
 
       <div className={styles.list}>

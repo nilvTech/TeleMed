@@ -1,13 +1,6 @@
 .container {
   display: flex;
-
-  height: 91vh;
-
-  background: linear-gradient(
-    180deg,
-    #f8fafc 0%,
-    #f1f5f9 100%
-  );
+  background: linear-gradient(180deg, #f8fafc 0%, #f1f5f9 100%);
 }
 
 .messageSection {
@@ -18,4 +11,32 @@
   flex-direction: column;
 
   min-width: 0;
+}
+
+.emptyState {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f9fafb;
+}
+
+.emptyContent {
+  text-align: center;
+  padding: 40px;
+  border-radius: 12px;
+  background: #ffffff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.emptyContent h3 {
+  margin-bottom: 8px;
+  font-size: 18px;
+  font-weight: 600;
+  color: #111827;
+}
+
+.emptyContent p {
+  font-size: 14px;
+  color: #6b7280;
 }

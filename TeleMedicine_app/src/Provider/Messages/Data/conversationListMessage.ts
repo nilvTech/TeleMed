@@ -6,7 +6,7 @@ export const conversations: Conversation[] = [
     participantRole: "Patient",
     lastMessage: "Blood Pressure Update",
     lastMessageTime: "2:30 PM",
-    unreadCount: 2,
+    unreadCount: 0,
     status: "online",
   },
   {
@@ -24,17 +24,7 @@ export const conversations: Conversation[] = [
     participantRole: "Provider",
     lastMessage: "Discussing treatment plan",
     lastMessageTime: "Yesterday",
-    unreadCount: 1,
+    unreadCount: 0,
     status: "offline",
   },
-   {
-    id: 4,
-    participantName: "Anirudh",
-    participantRole: "Admin",
-    lastMessage: "Service is going to close! Upgrate it",
-    lastMessageTime: "Today",
-    unreadCount: 1,
-    status: "offline",
-  },
-  
 ];

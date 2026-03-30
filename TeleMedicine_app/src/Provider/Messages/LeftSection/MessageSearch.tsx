@@ -9,7 +9,7 @@ const MessageSearch: React.FC = () => {
     <div className={styles.container}>
       <input
         type="text"
-        placeholder="Search messages"
+        placeholder="Search Conversation..."
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
         className={styles.input}

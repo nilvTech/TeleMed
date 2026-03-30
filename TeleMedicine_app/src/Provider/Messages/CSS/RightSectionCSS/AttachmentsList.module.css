@@ -18,6 +18,7 @@
   font-size: 15px;
 
   margin-bottom: 12px;
+  color: #1e293b;
 }
 
 .list {
@@ -37,15 +38,24 @@
 
   padding: 10px;
 
+  border: 1px solid #f1f5f9;
+
   border-radius: 8px;
 
   cursor: pointer;
 
-  transition: background 0.2s ease;
+  margin-bottom: 8px;
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
 .fileRow:hover {
   background-color: #f3f6fb;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
+  border-color: #dbeafe;
 }
 
 .icon {
@@ -63,7 +73,7 @@
 
   background-color: #eef1fa;
 
-    width: 36px;
+  width: 36px;
   height: 36px;
 
   border-radius: 8px;
@@ -72,11 +82,7 @@
   align-items: center;
   justify-content: center;
 
-  background: linear-gradient(
-    135deg,
-    #e0e7ff,
-    #c7d2fe
-  );
+  background: linear-gradient(135deg, #e0e7ff, #c7d2fe);
 }
 
 .fileInfo {
@@ -89,6 +95,7 @@
   font-size: 14px;
 
   font-weight: 500;
+  color: #334155;
 }
 
 .meta {

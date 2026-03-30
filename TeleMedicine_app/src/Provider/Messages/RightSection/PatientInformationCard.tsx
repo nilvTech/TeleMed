@@ -4,7 +4,12 @@ import { useMessageStore } from "../Store/MessageStore";
 const PatientInformationCard = () => {
   const selectedPatient = useMessageStore((state) => state.selectedPatient);
 
-  if(!selectedPatient) return null;
+  if(!selectedPatient)  return (
+    <div className={styles.container}>
+      Select a conversation
+      to view patient details
+    </div>
+  );;
 
   return (
     <div className={styles.container}>
@@ -17,15 +22,15 @@ const PatientInformationCard = () => {
       </div>
       <div className={styles.details}>
         <div>
-            <strong>MRN:</strong>
+            <strong>MRN - </strong>
             {selectedPatient.mrn}
         </div>
         <div>
-            <strong>DOB:</strong>
+            <strong>DOB - </strong>
             {selectedPatient.dob}
         </div>
         <div>
-            <strong>Phone:</strong>
+            <strong>Phone - </strong>
             {selectedPatient.phone}
         </div>
       </div>

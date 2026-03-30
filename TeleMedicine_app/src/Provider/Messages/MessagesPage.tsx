@@ -4,26 +4,33 @@ import PatientDetailsPanel from "./RightSection/PatientDetailsPanel";
 import MessageHeader from "./MiddleSection/MessageHeader";
 
 import styles from "./MessagesPage.module.css";
-import { useState } from "react";
+import { useMessageStore } from "./Store/MessageStore";
 
 function MessagesPage() {
-  const [isDetailsOpen, setIsDetailsOpen] = useState(false);
-  const toggleDetailsPanel = () => {
-    setIsDetailsOpen((prev) => !prev);
-  };
+  const selectedPatient = useMessageStore((state) => state.selectedPatient);
 
   return (
     <div
-      style={{
-        display: "flex",
-      }}
+      className={styles.container}
     >
       <ConversationList />
-      <div className={styles.messageSection}>
-        <MessageHeader onToggleDetails={toggleDetailsPanel} />
-        <MessageThread />
-      </div>
-      <PatientDetailsPanel isOpen={isDetailsOpen} />
+      {!selectedPatient && (
+        <div className={styles.emptyState}>
+          <div className={styles.emptyContent}>
+            <h3>Select a conversation</h3>
+            <p>Choose a chat from the list to view details</p>
+          </div>
+        </div>
+      )}
+      {selectedPatient && (
+        <>
+          <div className={styles.messageSection}>
+            
+            <MessageThread />
+          </div>
+          <PatientDetailsPanel />
+        </>
+      )}
     </div>
   );
 }

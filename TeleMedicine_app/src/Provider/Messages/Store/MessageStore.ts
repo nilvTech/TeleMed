@@ -28,10 +28,14 @@ interface MessageState {
   activeTab: string;
 
   setActiveTab: (tab: string) => void;
-  
+
   searchTerm: string;
 
   setSearchTerm: (value: string) => void;
+
+  getUnreadCount: (conversationId: number) => number;
+
+  getTotalUndreadCount: ()=>number;
 }
 
 export const useMessageStore = create<MessageState>((set, get) => ({
@@ -41,34 +45,36 @@ export const useMessageStore = create<MessageState>((set, get) => ({
 
   selectedConversationId: 1,
 
-  selectedPatient: patients[0],
+  selectedPatient: null,
 
   isDetailsOpen: false,
 
-  selectConversation: (id) =>{
-    const selectedPatient = patients.find((p) => p.id) || null;
+  selectConversation: (id) => {
+    const selectedPatient = patients.find((p) => p.id == id) || null;
 
-    set({
-      selectedConversationId:id,
-      selectedPatient
-    });
+    set((state) => ({
+      selectedConversationId: id,
+      selectedPatient,
+      // mark messages as read for this conversation
+      messages:state.messages.map((msg) => msg.conversationId == id ? {...msg,isRead:true}:msg),
+    }));
   },
 
   sendMessage: (conversationId, text) =>
-  set((state) => ({
-    messages: [
-      ...state.messages,
-      {
-        id: Date.now(),
-        conversationId: conversationId,
-        text: text,
-        sender: "me",
-        timestamp:
-          new Date().toLocaleTimeString(),
-        type: "text",
-      },
-    ],
-  })),
+    set((state) => ({
+      messages: [
+        ...state.messages,
+        {
+          id: Date.now(),
+          conversationId: conversationId,
+          text: text,
+          sender: "me",
+          timestamp: new Date().toLocaleTimeString(),
+          type: "text",
+          isRead: false,
+        },
+      ],
+    })),
 
   toggleDetailsPanel: () =>
     set((state) => ({
@@ -79,7 +85,29 @@ export const useMessageStore = create<MessageState>((set, get) => ({
 
   setActiveTab: (tab) => set({ activeTab: tab }),
 
-  searchTerm:"",
+  searchTerm: "",
 
-  setSearchTerm: (value) => set({searchTerm:value})
+  setSearchTerm: (value) => set({ searchTerm: value }),
+
+  getUnreadCount: (conversationId: number) => {
+    const messages = get().messages;
+
+    return messages.filter(
+      (msg) =>
+        msg.conversationId === conversationId &&
+        msg.sender === "other" &&
+        !msg.isRead,
+    ).length;
+  },
+
+  getTotalUndreadCount: ()=>{
+    const messages = get().messages;
+
+    return messages.filter(
+      (msg)=>
+        msg.sender === "other" &&
+        !msg.isRead,
+    ).length;
+  },
+  
 }));

@@ -1,31 +1,42 @@
 .container {
   padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 
-.title {
+.title{
   font-weight: 600;
-
-  margin-bottom: 10px;
+  margin-bottom: 15px;
 }
 
 .button {
   width: 100%;
-
-  padding: 10px;
-
-  margin-bottom: 8px;
-
-  border: none;
-
-  border-radius: 6px;
-
-  background-color: #1976d2;
-
-  color: white;
-
+  padding: 12px;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 600;
   cursor: pointer;
+  transition: all 0.2s ease;
+  border: 1px solid #e2e8f0;
+  background: #ffffff;
+  color: #475569;
 }
 
 .button:hover {
-  background-color: #125ea8;
+  background: #f8fafc;
+  border-color: #cbd5e1;
+}
+
+/* Target the last button as the Primary Action */
+.button:last-child {
+  background: #2563eb;
+  color: white;
+  border: none;
+  margin-top: 4px;
+}
+
+.button:last-child:hover {
+  background: #1d4ed8;
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
 }

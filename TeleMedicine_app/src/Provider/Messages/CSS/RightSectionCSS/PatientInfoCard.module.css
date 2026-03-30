@@ -1,58 +1,49 @@
 .container {
-  padding: 16px;
-
-  border-bottom: 1px solid #e0e0e0;
-
-  text-align: center;
-
-  background: white;
-
-  border-radius: 8px;
-
-  border: 1px solid #e5e7eb;
-
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02 );
-
-  transition: all 0.2s ease;
-
-}
-.container:hover {
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+  margin: 16px;
+  padding: 20px;
+  background: #ffffff;
+  border-radius: 16px;
+  border: 1px solid #f1f5f9;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
 }
 
 .avatar {
-  width: 70px;
-  height: 70px;
-
-  border-radius: 50%;
-
-  background-color: #dcdcdc;
-
-  margin: 0 auto 10px;
+  width: 64px;
+  height: 64px;
+  border-radius: 16px; /* Squircle looks more modern than a circle */
+  background: linear-gradient(135deg, #e2e8f0 0%, #cbd5e1 100%);
+  margin-bottom: 16px;
 }
 
 .name {
-  font-weight: 600;
-
-  font-size: 16px;
+  font-weight: 700;
+  font-size: 18px;
+  color: #1e293b;
 }
 
 .meta {
   font-size: 13px;
-
-  color: #666;
-
-  margin-bottom: 12px;
+  color: #64748b;
+  margin-bottom: 16px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
 .details {
-  font-size: 14px;
+  display: grid;
+  gap: 10px;
+  padding-top: 16px;
+  border-top: 1px dashed #e2e8f0;
+}
 
-  text-align: left;
-
+.details div {
+  font-size: 13px;
+  color: #475569;
   display: flex;
+  justify-content: space-between; /* Pushes value to the right */
+}
 
-  flex-direction: column;
-
-  gap: 6px;
+.details strong {
+  color: #94a3b8;
+  font-weight: 500;
 }

@@ -8,4 +8,5 @@ export interface Message{
     timestamp:string;
     type: "text" | "file";
     fileName?:string;
+    isRead:boolean;
 }

@@ -14,6 +14,13 @@ const ConversationItem: React.FC<Props> = ({ conversation }) => {
   );
   const isSelected = selectedConversationId === conversation.id;
 
+  //Unread Count data from store
+  const getUndreadCount = useMessageStore((state) => state.getUnreadCount);
+
+  const unreadCount = getUndreadCount(conversation.id);
+
+
+
   return (
     <div
       onClick={() => selectConversation(conversation.id)}
@@ -28,8 +35,8 @@ const ConversationItem: React.FC<Props> = ({ conversation }) => {
         <div className={styles.time}>{conversation.lastMessageTime}</div>
       </div>
 
-      {conversation.unreadCount > 0 && (
-        <span className={styles.unread}>{conversation.unreadCount}</span>
+      {unreadCount > 0 && (
+        <span className={styles.unread}>{unreadCount}</span>
       )}
     </div>
   );

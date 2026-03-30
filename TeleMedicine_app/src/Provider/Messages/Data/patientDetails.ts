@@ -38,4 +38,24 @@ export const patients: Patient[] = [
       },
     ],
   },
+
+   {
+    id: 3,
+    name: "Dr. Michael Brown",
+    gender: "Male",
+    age: 59,
+    mrn: "MRN6900",
+    dob: "23 Mar 1967",
+    phone: "+1 555-457-8743",
+
+    attachments: [
+      {
+        id: 3,
+        fileName: "Prescription.pdf",
+        type: "pdf",
+        size: "1.9 MB",
+      },
+    ],
+  },
+  
 ];

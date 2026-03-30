@@ -14,11 +14,11 @@
 .me {
   align-self: flex-end;
 
-  background-color: #1976d2;
+  background-color: #1b232b;
 
-  color: white;
+  color: black;
 
-  background: linear-gradient(135deg, #2563eb, #1d4ed8);
+  background: linear-gradient(135deg, #a1baf5, #d0dcff);
 
   padding: 10px 14px;
 
