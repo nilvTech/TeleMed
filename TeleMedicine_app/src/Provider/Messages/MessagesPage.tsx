@@ -1,8 +1,6 @@
 import ConversationList from "./LeftSection/ConversationList";
 import MessageThread from "./MiddleSection/MessageThread";
 import PatientDetailsPanel from "./RightSection/PatientDetailsPanel";
-import MessageHeader from "./MiddleSection/MessageHeader";
-
 import styles from "./MessagesPage.module.css";
 import { useMessageStore } from "./Store/MessageStore";
 

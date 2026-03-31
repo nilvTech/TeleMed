@@ -4,10 +4,7 @@ import styles from "../Provider/DashboardContent/Header.module.css";
 import { MdAccountCircle, MdNotificationsNone } from "react-icons/md";
 
 function Header() {
- // const navigate = useNavigate();
-//   const handleProfileNav = () => {
-//     navigate(`PatientProfile/:`);
-//   };
+
 
   return (
     <header>

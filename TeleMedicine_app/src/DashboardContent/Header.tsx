@@ -1,7 +1,10 @@
 import styles from "./Header.module.css";
 //import { Bell } from "lucide-react";
 import { MdAccountCircle, MdNotificationsNone } from "react-icons/md";
+
 function Header() {
+
+
   return (
     <header>
       <div className={styles.header}>
@@ -13,7 +16,7 @@ function Header() {
             style={{ width: "400px" }}
           />
         </div>
-        <div className={styles.headerRight}>
+        <div className={styles.headerRight} >
           <MdNotificationsNone className={styles.notificationIcon} />
           <div className={styles.profileArea}>
             <MdAccountCircle className={styles.profileLogo} />
