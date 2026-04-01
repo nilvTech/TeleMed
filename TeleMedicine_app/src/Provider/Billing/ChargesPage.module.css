@@ -1,0 +1,199 @@
+/* Container */
+
+.container {
+  padding: 10px;
+  background: #f8fafc;
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Header */
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header h2 {
+  font-size: 22px;
+  font-weight: 600;
+  color: #0f172a;
+}
+
+/* Filters Section */
+
+.filterContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+  background: white;
+  padding: 14px;
+  border-radius: 10px;
+  border: 1px solid #e2e8f0;
+}
+
+/* Search */
+
+.searchInput {
+  padding: 10px 12px;
+  width: 260px;
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+  font-size: 14px;
+  outline: none;
+  transition: 0.2s;
+}
+
+.searchInput:focus {
+  border-color: #2563eb;
+}
+
+/* Dropdown */
+
+.select {
+  padding: 10px 12px;
+  min-width: 160px;
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+  font-size: 14px;
+  outline: none;
+  background: white;
+  cursor: pointer;
+}
+
+/* Buttons */
+
+.filterButton {
+  padding: 10px 16px;
+  background: #2563eb;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.filterButton:hover {
+  background: #1d4ed8;
+}
+
+.clearButton {
+  padding: 10px 16px;
+  background: #e2e8f0;
+  border: none;
+  border-radius: 8px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.clearButton:hover {
+  background: #cbd5f5;
+}
+
+/* Table Container */
+
+.tableContainer {
+  background: white;
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+  overflow: hidden;
+}
+
+/* Scrollable Table */
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+/* Sticky Header */
+
+.table thead {
+  background: #f1f5f9;
+}
+
+.table th {
+  text-align: left;
+  padding: 14px;
+  font-weight: 600;
+  color: #334155;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.table td {
+  padding: 14px;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+/* Row Hover */
+
+.table tbody tr:hover {
+  background: #f8fafc;
+}
+
+/* Status Badge */
+
+.status {
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 500;
+  color: white;
+}
+
+/* Status Colors */
+
+.submitted {
+  background: #3b82f6;
+}
+
+.pending {
+  background: #f59e0b;
+}
+
+.paid {
+  background: #22c55e;
+}
+
+.denied {
+  background: #ef4444;
+}
+
+.draft {
+  background: #64748b;
+}
+
+/* Actions */
+
+.actionButton {
+  padding: 6px 12px;
+  margin-right: 6px;
+  border: none;
+  border-radius: 6px;
+  background: #e2e8f0;
+  cursor: pointer;
+  font-size: 13px;
+  transition: 0.2s;
+}
+
+.actionButton:hover {
+  background: #cbd5f5;
+}
+
+/* Responsive */
+
+@media (max-width: 1200px) {
+  .tableContainer {
+    overflow-x: auto;
+  }
+
+  .table {
+    min-width: 1100px;
+  }
+}

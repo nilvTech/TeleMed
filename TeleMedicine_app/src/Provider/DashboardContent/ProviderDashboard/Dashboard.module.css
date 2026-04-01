@@ -4,35 +4,35 @@
   flex: 1;
 }
 
-.WelcomeBanner{
+.WelcomeBanner {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-right: 50px;
 }
-.BookAppointmentIcon{
-  margin:0px 5px 3px 0px
+.BookAppointmentIcon {
+  margin: 0px 5px 3px 0px;
 }
-.WelcomeBanner button{  
+.WelcomeBanner button {
   padding: 5px 15px;
-  background: linear-gradient(180deg, #2F6F95, #1F4E6B, #40677e); 
+  background: linear-gradient(180deg, #2f6f95, #1f4e6b, #40677e);
   color: white;
   border: none;
   border-radius: 6px;
   cursor: pointer;
   font-weight: 500;
-  height: fit-content;  
+  height: fit-content;
 }
 
-.WelcomeMSG{
+.WelcomeMSG {
   margin-top: 22px;
   margin-left: 35px;
 }
-.username{
+.username {
   color: rgb(112, 112, 112);
 }
-.WelcomeMSG p{
- color: rgb(112, 112, 112);
+.WelcomeMSG p {
+  color: rgb(112, 112, 112);
 }
 
 /* Card */
@@ -48,13 +48,11 @@
   display: flex;
   flex-direction: column;
 
-
   margin: 20px 0px 20px 70px;
 }
-.formContainer1 h5{
+.formContainer1 h5 {
   font-size: 18px;
 }
-
 
 /* Card */
 .formContainer2 {
@@ -68,36 +66,35 @@
   display: flex;
   flex-direction: column;
 
-
   margin: 20px 0px 20px 70px;
 
   font-size: 20px;
 
   overflow-y: auto;
 }
-.formContainer2UserData{
+.formContainer2UserData {
   display: flex;
   margin-top: 15px;
   margin-left: 20px;
 }
 
-.formContainer2heading p{
-   color: rgb(112, 112, 112);
-   font-size: 12px;
+.formContainer2heading p {
+  color: rgb(112, 112, 112);
+  font-size: 12px;
 }
-.formContainer2heading h5{
-   font-size: 18px;
+.formContainer2heading h5 {
+  font-size: 18px;
 }
 
-.formContainer2content{
-  background-color:rgb(255, 253, 253); 
+.formContainer2content {
+  background-color: rgb(255, 253, 253);
   width: 95%;
   margin-left: 15px;
   border-radius: 8px;
 }
-.formContainer2content h4{
+.formContainer2content h4 {
   font-size: 10px;
- 
+
   margin-left: 45px;
 }
 .formContainer2content h4 span:first-of-type {
@@ -106,12 +103,12 @@
   background-color: rgb(218, 10, 10);
   padding: 3px;
   border-radius: 5px;
-  color: rgb(241, 236, 236); 
+  color: rgb(241, 236, 236);
 }
-.formContainer2content p{
- margin-top: 5px;
- font-size: 10px;
- color: gray;
+.formContainer2content p {
+  margin-top: 5px;
+  font-size: 10px;
+  color: gray;
 }
 .formContainer2contentUpdates p {
   display: flex;
@@ -119,11 +116,11 @@
   width: 90%;
   margin: 0px;
 }
-.formContainer2contentUpdates p span:first-child{
+.formContainer2contentUpdates p span:first-child {
   margin-left: 30px;
   margin-top: 2px;
 }
-.formContainer2contentUpdates p button{
+.formContainer2contentUpdates p button {
   border: none;
   cursor: pointer;
   background: none;
@@ -131,7 +128,7 @@
   margin-bottom: 5px;
 }
 
-.ReplyIconContainer2{
+.ReplyIconContainer2 {
   margin: 6px;
 }
 
@@ -148,7 +145,7 @@
   justify-content: space-between;
   align-items: center;
 
-  background-color:rgb(255, 253, 253); 
+  background-color: rgb(255, 253, 253);
   padding: 12px;
   border-radius: 8px;
   margin-top: 10px;
@@ -198,72 +195,124 @@
   border-radius: 10px;
 }
 
-
-.grid{
+.grid {
   display: flex;
   flex-direction: column;
 }
 
-.grid2{
+.grid2 {
   display: flex;
   grid-template-columns: 1fr 1fr;
   gap: 55px;
 }
-.grid3{
+.grid3 {
   display: flex;
   grid-template-columns: 1fr 1fr;
   gap: 55px;
 }
-.statsContainter{
-  background: #e8e8e8;
-  border: 1px solid #e0e0e0;
-  border-radius: 8px;
+
+/* Update your statCard class */
+.statsContainer {
+  padding: 30px;
+  background: #f8fafc;
+}
+
+.bentoGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+}
+
+.statCard {
+  background: white;
+  padding: 16px;
+  border-radius: 16px;
+  border: 1px solid #eef2f6;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.03);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
   overflow: hidden;
-
-  width: 90%;
-  margin-top: 20px;
-  margin-left: 50px;
-  margin: 20px 50px 10px 70px;
-  
 }
 
-.statsTable{
-  width: 100%;
-  border-collapse: collapse;
+.statCard:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 30px -10px rgba(0, 0, 0, 0.08);
 }
-.statCard{
-  padding: 14px;
-  width: 50%;
-  border-bottom: 1px solid #b2b1b1;
-  border-right: 1px solid #b2b1b1;
-  vertical-align: top;
-}
-.statCard:last-child{
-  border-right: none;
-}
-tr:last-child .statCard{
-  border-bottom: none;
-}
-.statCard span{
-  display: inline-block;
-background-color:rgb(255, 253, 253); 
-  color: #666;
-  font-size: 12px;
-  font-weight: 600;
-  padding: 4px 8px;
-  border-radius: 4px;
+
+.cardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
   margin-bottom: 12px;
-  text-transform: capitalize;
+  gap: 8px;
 }
 
-.statCard p {
-  font-size: 32px;
-  font-weight: 500;
-  color: #333;
+.iconBox {
+  padding: 8px;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.statLabel {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #64748b;
+  padding-right: 5px;
+}
+
+.statValue {
+  font-size: 2.5rem;
+  font-weight: 850;
   margin: 0;
+  display: flex;
+  align-items: baseline;
+  letter-spacing: -2px;
+  font-variant-numeric: tabular-nums;
 }
 
-.PendingConsultation{
+/* Color Themes */
+.blue .iconBox {
+  background: #eff6ff;
+  color: #3b82f6;
+}
+.blue .statValue {
+  color: #1e40af;
+}
+
+.green .iconBox {
+  background: #ecfdf5;
+  color: #10b981;
+}
+.green .statValue {
+  color: #065f46;
+}
+
+.orange .iconBox {
+  background: #fffbeb;
+  color: #f59e0b;
+}
+.orange .statValue {
+  color: #92400e;
+}
+
+.purple .iconBox {
+  background: #f5f3ff;
+  color: #8b5cf6;
+}
+.purple .statValue {
+  color: #5b21b6;
+}
+
+.plusSign {
+  font-size: 1.5rem;
+  margin-left: 4px;
+  opacity: 0.6;
+  font-weight: 600;
+}
+
+.PendingConsultation {
   background: #f2f2f2;
   padding: 20px;
   border-radius: 6px;
@@ -276,16 +325,16 @@ background-color:rgb(255, 253, 253);
   font-size: 20px;
   overflow-y: auto;
 }
-.PendingConsultation span{
+.PendingConsultation span {
   font-weight: 500;
 }
-.PendingConsultation ul{
+.PendingConsultation ul {
   color: #e34800;
   margin: 10px 0px 0px 0px;
-  list-style-type:circle;
+  list-style-type: circle;
 }
 
-.PatientAlerts{
+.PatientAlerts {
   background: #f2f2f2;
   padding: 20px;
   border-radius: 6px;
@@ -298,13 +347,13 @@ background-color:rgb(255, 253, 253);
   font-size: 20px;
   overflow-y: auto;
 }
-.PatientAlerts span{
+.PatientAlerts span {
   font-weight: 500;
 }
-.PatientAlerts ul span{
+.PatientAlerts ul span {
   color: #0000ff;
   margin: 10px 0px 0px 0px;
 }
 .PatientAlerts ul {
-  list-style-type:none;
+  list-style-type: none;
 }

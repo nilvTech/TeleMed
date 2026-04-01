@@ -78,6 +78,57 @@
 
 /* Profile Area */
 /* Container must be relative so dropdown is absolute to IT */
+/* Profile Button Container */
+.profileButton {
+  display: flex;
+  align-items: center;   /* THIS ensures vertical alignment */
+
+  gap: 8px;
+
+  cursor: pointer;
+
+  padding: 6px 10px;
+
+  border-radius: 8px;
+
+  transition: background 0.2s ease;
+}
+
+.profileButton:hover {
+  background: #f3f4f6;
+}
+
+/* Profile Icon */
+.profileLogo {
+  font-size: 30px;       /* controls icon size */
+
+  color: #4b5563;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  line-height: 1;        /* prevents vertical shift */
+
+  margin-top: 1px;       /* fine-tune alignment */
+}
+
+/* Provider Name */
+.profile {
+  font-size: 15px;
+
+  font-weight: 500;
+
+  color: #111827;
+
+  display: flex;
+
+  align-items: center;
+
+  line-height: 1;
+}
 .profileArea {
   position: relative;
   display: flex;
@@ -139,7 +190,7 @@
 }
 
 /* Icon specific sizing */
-.profileLogo, .settingLogo, .logoutLogo {
+.menuProfileLogo, .settingLogo, .logoutLogo {
   font-size: 1.1rem;
   opacity: 0.8;
 }
@@ -224,7 +275,7 @@
   opacity: 0.9;
 }
 
-@keyframes  {
+@keyframes scaleUp {
   from { transform: scale(0.95); opacity: 0; }
   to { transform: scale(1); opacity: 1; }
 }

@@ -8,8 +8,8 @@ import VideoCallPreview from "./Provider/VideoCall/VideoCallPreview";
 import PatientsPage from "./Provider/Patients/PatientsPage";
 import PatientDetailsPage from "./Provider/Patients/PatientDetailsPage";
 import ProviderLayout from "./Layout/ProviderLayout";
-import MainContent from "./Provider/DashboardContent/Dashboard";
-import AdminLayout from "./Layout/AdminLayout";
+import MainContent from "./Provider/DashboardContent/ProviderDashboard/Dashboard";
+import AdminLayout from "./Layout/AdminLayout"; 
 import AdminDashboard from "./Admin/Dashboard";
 import PatientLayout from "./Layout/PatientLayout";
 import PatientDashboard from "./Patient/Dashboard";
@@ -22,6 +22,8 @@ import DocumentList from "./Provider/Patients/PatientDetailsTab/DocumentList";
 import Payments from "./Provider/Patients/PatientDetailsTab/Payment/Payments";
 import PatientForm from "./Provider/Patients/PatientForm";
 import MessagesPage from "./Provider/Messages/MessagesPage";
+import BillingDashboard from "./Provider/Billing/BillingDashboard";
+import ChargesPage from "./Provider/Billing/ChargesPage";
 
 //import MainContent from "./DashboardContent/Maincontent";
 //import { Dashboard } from "@mui/icons-material";
@@ -57,6 +59,8 @@ function App() {
             <Route path="/Patients/payments" element={<Payments />} />
             <Route path="/Patients/Form" element={<PatientForm />} />
             <Route path="/Message" element={<MessagesPage/>} />
+            <Route path="/Billing" element={<BillingDashboard/>} />
+            <Route path="/Charges" element={<ChargesPage/>} />
           </Route>
         </Routes>
       </BrowserRouter>

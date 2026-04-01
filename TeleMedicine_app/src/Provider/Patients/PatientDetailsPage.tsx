@@ -16,8 +16,8 @@ function PatientDetailsPage() {
 
       {/* SCROLLABLE SECTION */}
       <div className={styles.scrollableContent}>
-        <Grid1 />
-        <Grid2 />
+        <Grid1/>
+        <Grid2/>
       </div>
     </div>
   );

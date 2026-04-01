@@ -3,6 +3,8 @@ import { GoReply } from "react-icons/go";
 import Avatar from "@mui/material/Avatar";
 import { LuCalendarPlus } from "react-icons/lu";
 import { useNavigate } from "react-router-dom";
+import { Users, CheckCircle, Clock, Calendar } from "lucide-react";
+import CountUp from "../CountUp";
 //import Header from "./Header";
 //import SideBar from "./SideBar";
 
@@ -30,9 +32,9 @@ function MainContent() {
 
 function WelcomeBanner() {
   const NavToAppointment = useNavigate();
-  const HandleOnClick = ()=>{
+  const HandleOnClick = () => {
     NavToAppointment("/Appointment");
-  }
+  };
   return (
     <div className={styles.WelcomeBanner}>
       <div className={styles.WelcomeMSG}>
@@ -52,32 +54,49 @@ function WelcomeBanner() {
 }
 
 function QuickStats() {
+  const stats = [
+    {
+      label: "Patients Today",
+      value: 18,
+      icon: <Users size={24} />,
+      theme: styles.blue,
+    },
+    {
+      label: "Completed",
+      value: 10,
+      icon: <CheckCircle size={24} />,
+      theme: styles.green,
+    },
+    {
+      label: "Pending",
+      value: 4,
+      icon: <Clock size={24} />,
+      theme: styles.orange,
+    },
+    {
+      label: "Total Appointment",
+      value: 22,
+      icon: <Calendar size={24} />,
+      theme: styles.purple,
+    },
+  ];
+
   return (
-    <div className={styles.statsContainter}>
-      <table className={styles.statsTable}>
-        <tbody>
-          <tr>
-            <td className={styles.statCard}>
-              <span>Patients Today</span>
-              <p>18</p>
-            </td>
-            <td className={styles.statCard}>
-              <span>Consultation Completed</span>
-              <p>10</p>
-            </td>
-          </tr>
-          <tr>
-            <td className={styles.statCard}>
-              <span>Pending Consultation</span>
-              <p>4</p>
-            </td>
-            <td className={styles.statCard}>
-              <span>Total Appointments</span>
-              <p>22</p>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+    <div className={styles.statsContainer}>
+      <div className={styles.bentoGrid}>
+        {stats.map((item, idx) => (
+          <div key={idx} className={`${styles.statCard} ${item.theme}`}>
+            <div className={styles.cardHeader}>
+              <div className={styles.iconBox}>{item.icon}</div>
+              <span className={styles.statLabel}>{item.label}</span>
+            </div>
+            <div className={styles.statValue}>
+              <CountUp end={item.value} />
+              <span className={styles.plusSign}>+</span>
+            </div>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
@@ -208,9 +227,15 @@ function Grid3() {
       <div className={styles.PatientAlerts}>
         <span>Patient Alerts</span>
         <ul>
-          <li>⚠ John Smith – <span>High blood pressure reading</span></li>
-          <li>⚠ Maria Garcia – <span>Missed medication</span></li>
-          <li>⚠ Robert Brown – <span>Abnormal lab result</span></li>
+          <li>
+            ⚠ John Smith – <span>High blood pressure reading</span>
+          </li>
+          <li>
+            ⚠ Maria Garcia – <span>Missed medication</span>
+          </li>
+          <li>
+            ⚠ Robert Brown – <span>Abnormal lab result</span>
+          </li>
         </ul>
       </div>
     </>
