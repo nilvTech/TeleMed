@@ -2,7 +2,6 @@ import { useState } from "react";
 import {
   LayoutDashboard,
   CreditCard,
-  FileText,
   Receipt,
   Wallet,
   ShieldCheck,
@@ -12,11 +11,14 @@ import {
 } from "lucide-react";
 import styles from "./BillingDashboard.module.css";
 import ChargesPage from "./ChargesPage";
+import InvoicePage from "./Invoice";
+import PaymentPage from "./Payment";
+import InsurancePage from "./Insurance";
+import ReportsPage from "./Reports";
 
 const tabs = [
   { name: "Dashboard", icon: <LayoutDashboard size={18} /> },
   { name: "Charges", icon: <CreditCard size={18} /> },
-  { name: "Claims", icon: <FileText size={18} /> },
   { name: "Invoices", icon: <Receipt size={18} /> },
   { name: "Payments", icon: <Wallet size={18} /> },
   { name: "Insurance", icon: <ShieldCheck size={18} /> },
@@ -35,7 +37,7 @@ function BillingDashboard() {
             Manage your revenue and claims in real-time.
           </p>
         </div>
-        <button className={styles.primaryBtn}>Generate Report</button>
+        {/* <button className={styles.primaryBtn}>Generate Report</button> */}
       </header>
 
       {/* Modern Tabs */}
@@ -65,10 +67,22 @@ function BillingDashboard() {
 
             <RecentActivityTable />
           </>
-        ) : ""}
+        ) :""}
         {activeTab === "Charges" ? (
           <ChargesPage />
         ) : ""}
+        {
+          activeTab === "Invoices" ? (<InvoicePage/>) : ""
+        }
+        {
+          activeTab === "Payments" ? <PaymentPage/>:""
+        }
+        {
+          activeTab === "Insurance" ? <InsurancePage/>:""
+        }
+        {
+          activeTab === "Reports" ? <ReportsPage  />:""
+        }
       </main>
     </div>
   );
@@ -76,7 +90,7 @@ function BillingDashboard() {
 
 const SummaryCards = () => {
   const cards = [
-    { title: "Total Revenue", value: "$12,450", trend: "+12%", type: "blue" },
+    { title: "Total Revenue", value: "$45,320", trend: "+12%", type: "blue" },
     {
       title: "Pending Claims",
       value: "18",

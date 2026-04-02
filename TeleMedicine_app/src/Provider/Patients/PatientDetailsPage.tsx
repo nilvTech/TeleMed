@@ -1,23 +1,32 @@
 import styles from "./PatientDetailsPage.module.css";
-import { PatientData, vitals, medications, problems } from "./PatientData";
+import { PatientData } from "./PatientData";
 import { MdAccountCircle } from "react-icons/md";
 import { useParams } from "react-router-dom";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+//import { useNavigate } from "react-router-dom";
+import Summary from "./PatientDetailsTab/Summary";
+import Orders from "./PatientDetailsTab/Orders";
+import Documents from "./PatientDetailsTab/Documents";
+import Payments from "./PatientDetailsTab/Payment/Payments";
 function PatientDetailsPage() {
+    const [activeTab, setActiveTab] = useState("Summary");
   return (
     <div>
 
       {/* FIXED SECTION */}
       <div className={styles.fixedTop}>
         <PatientInfoCard />
-        <Buttons />
+        <Buttons activeTab={activeTab} setActiveTab ={setActiveTab} />
+    
       </div>
 
       {/* SCROLLABLE SECTION */}
       <div className={styles.scrollableContent}>
-        <Grid1/>
-        <Grid2/>
+           {activeTab === "Summary" ? <Summary/> :""}
+           {activeTab === "Orders"?<Orders/>:""}
+           {activeTab === "Documents"?<Documents/>:""}
+           {activeTab === "Payments"?<Payments/>:""}
+
       </div>
     </div>
   );
@@ -52,18 +61,15 @@ export function PatientInfoCard() {
   );
 }
 
-export function Buttons() {
-  const [activeTab, setActiveTab] = useState("Summary");
-  const navigate = useNavigate();
+export function Buttons({activeTab,setActiveTab}:any) {
+
+  //const navigate = useNavigate();
   const handleTabClick = (tab:string)=>{
     setActiveTab(tab);
-    if(tab !== "Summary"){
-      navigate(`/Patients/${tab.toLowerCase()}`);
-    }
   }
   return (
     <div className={styles.container2}>
-      {["Summary", "Vitals", "Medications", "Labs", "Documents", "Orders","Payments"].map(
+      {["Summary", "Orders","Documents" ,"Payments"].map(
         (tab) => (
           <button
             key={tab}
@@ -78,59 +84,59 @@ export function Buttons() {
   );
 }
 
-export function Grid1() {
-  return (
-    <div className={styles.wrapper}>
-      {/* LEFT - VITALS */}
-      <div className={styles.card}>
-        <h3>Recent Vitals (from RPM)</h3>
+// export function Grid1() {
+//   return (
+//     <div className={styles.wrapper}>
+//       {/* LEFT - VITALS */}
+//       <div className={styles.card}>
+//         <h3>Recent Vitals (from RPM)</h3>
 
-        {vitals.map((item, index) => (
-          <div key={index} className={styles.vitalRow}>
-            <span>{item.label}</span>
-            <span className={styles.value}>{item.value}</span>
-            <span className={styles.time}>{item.time}</span>
-          </div>
-        ))}
-      </div>
+//         {vitals.map((item, index) => (
+//           <div key={index} className={styles.vitalRow}>
+//             <span>{item.label}</span>
+//             <span className={styles.value}>{item.value}</span>
+//             <span className={styles.time}>{item.time}</span>
+//           </div>
+//         ))}
+//       </div>
 
-      {/* RIGHT - MEDICATIONS */}
-      <div className={styles.card}>
-        <h3>Active Medications</h3>
+//       {/* RIGHT - MEDICATIONS */}
+//       <div className={styles.card}>
+//         <h3>Active Medications</h3>
 
-        {medications.map((med, index) => (
-          <div key={index} className={styles.medRow}>
-            <div className={styles.medLeft}>
-              <span className={styles.icon}>💊</span>
+//         {medications.map((med, index) => (
+//           <div key={index} className={styles.medRow}>
+//             <div className={styles.medLeft}>
+//               <span className={styles.icon}>💊</span>
 
-              <div>
-                <div className={styles.medName}>{med.name}</div>
-                <div className={styles.medDetail}>{med.detail}</div>
-              </div>
-            </div>
+//               <div>
+//                 <div className={styles.medName}>{med.name}</div>
+//                 <div className={styles.medDetail}>{med.detail}</div>
+//               </div>
+//             </div>
 
-            <span className={styles.activeBadge}>Active</span>
-          </div>
-        ))}
-      </div>
-    </div>
-  );
-}
+//             <span className={styles.activeBadge}>Active</span>
+//           </div>
+//         ))}
+//       </div>
+//     </div>
+//   );
+// }
 
-export function Grid2() {
-  return (
-    <div className={styles.wrapper}>
-      <div className={styles.card}>
-        <h3>Problem List</h3>
+// export function Grid2() {
+//   return (
+//     <div className={styles.wrapper}>
+//       <div className={styles.card}>
+//         <h3>Problem List</h3>
 
-        {problems.map((item, index) => (
-          <div key={index} className={styles.problemRow}>
-            <span className={styles.icdCode}>{item.code}</span>
-            <span className={styles.problemName}>{item.name}</span>
-          </div>
-        ))}
-      </div>
-    </div>
-  );
-}
+//         {problems.map((item, index) => (
+//           <div key={index} className={styles.problemRow}>
+//             <span className={styles.icdCode}>{item.code}</span>
+//             <span className={styles.problemName}>{item.name}</span>
+//           </div>
+//         ))}
+//       </div>
+//     </div>
+//   );
+// }
 export default PatientDetailsPage;

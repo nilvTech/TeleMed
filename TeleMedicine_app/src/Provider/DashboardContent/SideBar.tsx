@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import styles from "./Sidebar.module.css";
 import { useState } from "react";
-import { MdDashboard,MdCalendarToday,MdChat,MdPeopleAlt,MdMedicalServices,MdAssignment,MdMedication,MdScience,MdNotes,MdMonitorHeart ,MdInsights ,MdReceiptLong,MdAssessment,MdNotificationsActive,MdAttachFile,MdSettings,MdHelpCenter} from "react-icons/md";
+import { MdDashboard,MdCalendarToday,MdChat,MdPeopleAlt,MdMedicalServices,MdAssignment,MdMedication,MdScience,MdNotes,MdMonitorHeart ,MdInsights ,MdReceiptLong,MdAttachFile,MdSettings,MdHelpCenter} from "react-icons/md";
 import {  } from "react-icons/md";
 import {  } from "react-icons/md";
 import { FiChevronRight } from "react-icons/fi";
@@ -57,8 +57,7 @@ function SideBar() {
             )}
 
           </div>
-          <Link to="/Reports"><MdAssessment className={styles.SectionIcon}/>Reports</Link>
-          <Link to="/Notifications"><MdNotificationsActive className={styles.SectionIcon}/>Notifications</Link>
+          
           <Link to="/Files"><MdAttachFile className={styles.SectionIcon}/>Files</Link>
           <Link to="/Setting"><MdSettings className={styles.SectionIcon}></MdSettings>Setting</Link>
           <Link to="/Support"><MdHelpCenter className={styles.SectionIcon}/>Support</Link>

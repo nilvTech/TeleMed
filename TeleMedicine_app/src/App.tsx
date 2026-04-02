@@ -14,9 +14,6 @@ import AdminDashboard from "./Admin/Dashboard";
 import PatientLayout from "./Layout/PatientLayout";
 import PatientDashboard from "./Patient/Dashboard";
 import Documents from "./Provider/Patients/PatientDetailsTab/Documents";
-import Vitals from "./Provider/Patients/PatientDetailsTab/Vitals";
-import Medications from "./Provider/Patients/PatientDetailsTab/Medications";
-import Labs from "./Provider/Patients/PatientDetailsTab/Labs";
 import Orders from "./Provider/Patients/PatientDetailsTab/Orders";
 import DocumentList from "./Provider/Patients/PatientDetailsTab/DocumentList";
 import Payments from "./Provider/Patients/PatientDetailsTab/Payment/Payments";
@@ -24,6 +21,7 @@ import PatientForm from "./Provider/Patients/PatientForm";
 import MessagesPage from "./Provider/Messages/MessagesPage";
 import BillingDashboard from "./Provider/Billing/BillingDashboard";
 import ChargesPage from "./Provider/Billing/ChargesPage";
+import InvoicePage from "./Provider/Billing/Invoice";
 
 //import MainContent from "./DashboardContent/Maincontent";
 //import { Dashboard } from "@mui/icons-material";
@@ -51,9 +49,6 @@ function App() {
             <Route path="/Patients" element={<PatientsPage />} />
             <Route path="/Patients/:id" element={<PatientDetailsPage />} />
             <Route path="/Patients/documents" element={<Documents />} />
-            <Route path="/Patients/Vitals" element={<Vitals />} />
-            <Route path="/Patients/Medications" element={<Medications />} />
-            <Route path="/Patients/Labs" element={<Labs />} />
             <Route path="/Patients/Orders" element={<Orders />} />
             <Route path="/document-list" element={<DocumentList/>} />
             <Route path="/Patients/payments" element={<Payments />} />
@@ -61,6 +56,7 @@ function App() {
             <Route path="/Message" element={<MessagesPage/>} />
             <Route path="/Billing" element={<BillingDashboard/>} />
             <Route path="/Charges" element={<ChargesPage/>} />
+            <Route path="/Invoice" element={<InvoicePage/>} />
           </Route>
         </Routes>
       </BrowserRouter>
