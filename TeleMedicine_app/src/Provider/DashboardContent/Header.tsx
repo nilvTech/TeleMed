@@ -92,12 +92,12 @@ function Header() {
       <div className={styles.header}>
         {/* Search */}
         <div className={styles.searchcontainer}>
-          <input
+          {/* <input
             type="text"
             placeholder="Search patients, appointments..."
             className={styles.searchInput}
             style={{ width: "400px" }}
-          />
+          /> */}
         </div>
 
         {/* Right Section */}

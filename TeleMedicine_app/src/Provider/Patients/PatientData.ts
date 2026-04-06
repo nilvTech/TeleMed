@@ -13,6 +13,7 @@ export interface PatientList {
     condition:string;
     disease:string;
   }
+  
 export const PatientData : PatientList[] = [
   { "id": 1, "name": "Liam Miller", "MRN": "MRN-8821", "age": 49, "DOB": "1977-05-12", "gender": "Male", "phone": "555-0101", "lastVisit": "2026-01-15", "nextAppointment": "2026-04-10", "status": "Active", "RPM": "Active", "condition": "Hypertension", "disease": "Essential Hypertension" },
   { "id": 2, "name": "Noah Smith", "MRN": "MRN-4490", "age": 59, "DOB": "1966-11-20", "gender": "Male", "phone": "555-0102", "lastVisit": "2025-11-20", "nextAppointment": "2026-03-25", "status": "Follow-up", "RPM": "Inactive", "condition": "T2 Diabetes", "disease": "Type 2 Diabetes Mellitus" },

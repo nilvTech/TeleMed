@@ -1,0 +1,417 @@
+.container {
+  font-family:
+    "Inter",
+    -apple-system,
+    sans-serif;
+  background-color: #f1f5f9;
+
+  color: #1e293b;
+}
+
+/* Sticky Header Area */
+.header {
+  position: sticky;
+  top: 65px;
+  z-index: 100;
+  background: #ffffff;
+  padding: 1.25rem 2rem;
+  border-bottom: 1px solid #e2e8f0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+}
+
+.title {
+  margin: 0 0 1rem 0;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.topRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.patientSelector {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #64748b;
+}
+.patientSelector label {
+  font-weight: 600;
+  font-size: 0.895rem;
+  color: #64748b;
+}
+
+.patientSelector select {
+  padding: 0.5rem 2rem 0.5rem 0.75rem;
+  border-radius: 8px;
+  border: 1px solid #cbd5e1;
+  background-color: #fff;
+  cursor: pointer;
+  color: #1e293b;
+}
+
+.addButton {
+  background-color: #4f46e5;
+  color: white;
+  border: none;
+  padding: 0.6rem 1.25rem;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.addButton:hover {
+  background-color: #4338ca;
+  transform: translateY(-1px);
+}
+
+/* Layout Content */
+.content {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.patientCard {
+  background: #fff;
+  padding: 1.5rem;
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+}
+
+.patientCard strong {
+  display: block;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  color: #94a3b8;
+  margin-bottom: 0.25rem;
+}
+
+/* Cards & Tables */
+.card {
+  background: #fff;
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+}
+
+.card h3 {
+  margin: 0 0 1.25rem 0;
+  font-size: 1.1rem;
+  color: #334155;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+.table th {
+  text-align: left;
+  padding: 0.75rem 1rem;
+  background: #f8fafc;
+  color: #64748b;
+  font-weight: 600;
+  border-bottom: 2px solid #f1f5f9;
+}
+
+.table td {
+  padding: 1rem;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.viewButton {
+  background: #f1f5f9;
+  border: 1px solid #e2e8f0;
+  padding: 0.4rem 0.75rem;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #475569;
+  cursor: pointer;
+}
+
+.viewButton:hover {
+  background: #e2e8f0;
+  color: #0f172a;
+}
+.editButton {
+  background: #dcfce7;
+  color: #166534;
+
+  border: none;
+
+  padding: 6px 12px;
+
+  border-radius: 8px;
+
+  cursor: pointer;
+
+  transition: 0.2s;
+
+  margin-left: 10px;
+}
+
+.editButton:hover {
+  background: #bbf7d0;
+}
+
+/* Disabled */
+
+.disabledButton {
+  background: #e2e8f0;
+  color: #64748b;
+
+  border: none;
+
+  padding: 6px 12px;
+
+  border-radius: 8px;
+
+  cursor: not-allowed;
+
+  opacity: 0.7;
+}
+
+/* SOAP Content Styling */
+.soapSection {
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #f8fafc;
+}
+
+.soapSection:last-child {
+  border-bottom: none;
+}
+
+.soapSection h4 {
+  margin: 0 0 0.5rem 0;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #4f46e5; /* Distinct color for SOAP labels */
+}
+
+.soapSection p {
+  margin: 0;
+  line-height: 1.6;
+  color: #334155;
+  font-size: 0.95rem;
+}
+
+/* Status Badges */
+.completed {
+  background: #dcfce7;
+  color: #166534;
+  padding: 0.25rem 0.5rem;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.draft {
+  background: #fef9c3;
+  color: #854d0e;
+  padding: 0.25rem 0.5rem;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.selectedRow {
+  background-color: #f5f3ff;
+}
+
+/* Base section remains the same, but we remove the default border-bottom 
+   and replace it with a left accent border */
+.soapSection {
+  margin-bottom: 1.5rem;
+  padding: 0.5rem 0 0.5rem 1.25rem; /* Left padding for the border gap */
+  border-left: 4px solid #e2e8f0; /* Default neutral border */
+}
+
+/* Color Modifiers */
+.subjective {
+  border-left-color: #3b82f6;
+} /* Blue */
+.objective {
+  border-left-color: #22c55e;
+} /* Green */
+.assessment {
+  border-left-color: #f59e0b;
+} /* Orange */
+.plan {
+  border-left-color: #a855f7;
+} /* Purple */
+
+.soapSection h4 {
+  margin: 0 0 0.25rem 0;
+  font-size: 0.75rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* Match the text color to the border for the heading */
+.subjective h4 {
+  color: #3b82f6;
+}
+.objective h4 {
+  color: #16a34a;
+}
+.assessment h4 {
+  color: #d97706;
+}
+.plan h4 {
+  color: #9333ea;
+}
+
+/* Overlay */
+
+.modalOverlay {
+  position: fixed;
+
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  background: rgba(0, 0, 0, 0.4);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  z-index: 2000;
+}
+
+/* Modal */
+
+.modal {
+  background: white;
+
+  width: 700px;
+  max-width: 95%;
+
+  padding: 24px;
+
+  border-radius: 14px;
+
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 16px;
+
+  max-height: 85vh;
+
+  overflow-y: auto;
+}
+
+/* Form */
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+
+  gap: 6px;
+}
+
+.formGroup label {
+  font-weight: 600;
+
+  color: #1e293b;
+}
+
+.formGroup textarea {
+  min-height: 90px;
+
+  padding: 10px;
+
+  border-radius: 8px;
+
+  border: 1px solid #cbd5f5;
+
+  resize: vertical;
+
+  font-size: 14px;
+}
+
+/* Actions */
+
+.modalActions {
+  display: flex;
+
+  justify-content: flex-end;
+
+  gap: 10px;
+
+  margin-top: 10px;
+}
+
+/* Buttons */
+
+.cancelButton {
+  background: #e2e8f0;
+  color: #334155;
+
+  border: none;
+
+  padding: 8px 16px;
+
+  border-radius: 8px;
+
+  cursor: pointer;
+}
+
+.saveDraftButton {
+  background: #fde68a;
+  color: #92400e;
+
+  border: none;
+
+  padding: 8px 16px;
+
+  border-radius: 8px;
+
+  cursor: pointer;
+}
+
+.completeButton {
+  background: #22c55e;
+  color: white;
+
+  border: none;
+
+  padding: 8px 16px;
+
+  border-radius: 8px;
+
+  cursor: pointer;
+}
+
+.empty {
+  padding: 2rem;
+  text-align: center;
+  color: #94a3b8;
+  font-style: italic;
+  background: #f8fafc;
+  border-radius: 8px;
+}

@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import styles from "./Sidebar.module.css";
 import { useState } from "react";
-import { MdDashboard,MdCalendarToday,MdChat,MdPeopleAlt,MdMedicalServices,MdAssignment,MdMedication,MdScience,MdNotes,MdMonitorHeart ,MdInsights ,MdReceiptLong,MdAttachFile,MdSettings,MdHelpCenter} from "react-icons/md";
+import { MdDashboard,MdCalendarToday,MdChat,MdPeopleAlt,MdMedicalServices,MdAssignment,MdMedication,MdNotes,MdMonitorHeart ,MdInsights ,MdReceiptLong,MdAttachFile,MdSettings,MdHelpCenter} from "react-icons/md";
 import {  } from "react-icons/md";
 import {  } from "react-icons/md";
 import { FiChevronRight } from "react-icons/fi";
@@ -39,7 +39,7 @@ function SideBar() {
               <div className={styles.subMenu}>
                     <Link to="/Clinical/MedicalRecords"><MdAssignment className={styles.SubSectionIcon} />Medical Records</Link>
                     <Link to="/Clinical/Prescriptions"><MdMedication className={styles.SubSectionIcon} />Prescriptions</Link>
-                    <Link to="/Clinical/LabOrders"><MdScience className={styles.SubSectionIcon} />Lab Orders</Link>
+                    {/* <Link to="/Clinical/LabOrders"><MdScience className={styles.SubSectionIcon} />Lab Orders</Link> */}
                     <Link to="/Clinical/VisitNotes"><MdNotes className={styles.SubSectionIcon} />Visit Notes</Link>
               </div>
             )}
