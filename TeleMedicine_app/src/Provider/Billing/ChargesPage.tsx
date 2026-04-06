@@ -7,6 +7,7 @@ interface Charge {
   provider: string;
   date: string;
   icd: string;
+  cpt:string;
   amount: string;
   insurance: string;
   status: "Submitted" | "Pending" | "Paid";
@@ -19,6 +20,7 @@ const chargesData: Charge[] = [
     provider: "Dr. Michael Chen",
     date: "03/31/2026",
     icd: "F41.1",
+    cpt: "90834",
     amount: "$120",
     insurance: "Blue Cross",
     status: "Submitted",
@@ -29,6 +31,7 @@ const chargesData: Charge[] = [
     provider: "Dr. Sarah Lee",
     date: "03/30/2026",
     icd: "F32.9",
+    cpt: "90837",
     amount: "$150",
     insurance: "Aetna",
     status: "Pending",
@@ -39,16 +42,18 @@ const chargesData: Charge[] = [
     provider: "Dr. John Doe",
     date: "03/29/2026",
     icd: "J06.9",
+    cpt: "99213",
     amount: "$95",
     insurance: "Copay",
     status: "Paid",
   },
-    {
+  {
     id: "CHG-001",
     patient: "John Smith",
     provider: "Dr. Michael Chen",
     date: "03/31/2026",
     icd: "F41.1",
+    cpt: "90834",
     amount: "$120",
     insurance: "Blue Cross",
     status: "Submitted",
@@ -59,6 +64,7 @@ const chargesData: Charge[] = [
     provider: "Dr. Sarah Lee",
     date: "03/30/2026",
     icd: "F32.9",
+    cpt: "90837",
     amount: "$150",
     insurance: "Aetna",
     status: "Pending",
@@ -69,16 +75,18 @@ const chargesData: Charge[] = [
     provider: "Dr. John Doe",
     date: "03/29/2026",
     icd: "J06.9",
+    cpt: "99213",
     amount: "$95",
     insurance: "Copay",
     status: "Paid",
   },
-    {
+  {
     id: "CHG-001",
     patient: "John Smith",
     provider: "Dr. Michael Chen",
     date: "03/31/2026",
     icd: "F41.1",
+    cpt: "90834",
     amount: "$120",
     insurance: "Blue Cross",
     status: "Submitted",
@@ -89,6 +97,7 @@ const chargesData: Charge[] = [
     provider: "Dr. Sarah Lee",
     date: "03/30/2026",
     icd: "F32.9",
+    cpt: "90837",
     amount: "$150",
     insurance: "Aetna",
     status: "Pending",
@@ -99,11 +108,11 @@ const chargesData: Charge[] = [
     provider: "Dr. John Doe",
     date: "03/29/2026",
     icd: "J06.9",
+    cpt: "99213",
     amount: "$95",
     insurance: "Copay",
     status: "Paid",
   },
-  
 ];
 
 function ChargesPage() {
@@ -220,6 +229,7 @@ const ChargesTable = ({ data }: any) => {
             <th>Provider</th>
             <th>Date</th>
             <th>ICD</th>
+            <th>CPT</th>
             <th>Amount</th>
             <th>Insurance</th>
             <th>Status</th>
@@ -234,6 +244,7 @@ const ChargesTable = ({ data }: any) => {
               <td>{charge.provider}</td>
               <td>{charge.date}</td>
               <td>{charge.icd}</td>
+              <td>{charge.cpt}</td>
               <td>{charge.amount}</td>
               <td>{charge.insurance}</td>
 

@@ -1,10 +1,10 @@
 import { useState } from "react";
 import styles from "./InvoicePage.module.css";
-import ViewInvoicePDF from "./ViewInvoicePdf";
-
+// import ViewInvoicePDF from "./ViewInvoicePdf";
+import { handleViewInvoice } from "./ViewInvoicePdf";
 const invoiceData = [
   {
-    id: "INV-001",
+    invoiceNumber: "INV-001",
     patient: "John Smith",
     encounterId: "ENC-1001",
     provider: "Dr. Michael Chen",
@@ -16,7 +16,7 @@ const invoiceData = [
     paymentStatus: "Unpaid",
   },
   {
-    id: "INV-002",
+    invoiceNumber: "INV-002",
     patient: "Mary Brown",
     encounterId: "ENC-1002",
     provider: "Dr. Sarah Lee",
@@ -39,7 +39,7 @@ function InvoicePage() {
     const matchesSearch =
       !search ||
       invoice.patient.toLowerCase().includes(search.toLowerCase()) ||
-      invoice.id.toLowerCase().includes(search.toLowerCase());
+      invoice.invoiceNumber.toLowerCase().includes(search.toLowerCase());
 
     const matchesProvider =
       !provider ||
@@ -148,8 +148,8 @@ function InvoicePage() {
 
           <tbody>
             {filteredInvoices.map((invoice) => (
-              <tr key={invoice.id}>
-                <td>{invoice.id}</td>
+              <tr key={invoice.invoiceNumber}>
+                <td>{invoice.invoiceNumber}</td>
                 <td>{invoice.patient}</td>
                 <td>{invoice.encounterId}</td>
                 <td>{invoice.provider}</td>
@@ -176,11 +176,11 @@ function InvoicePage() {
 
                 <td>
                   <div className={styles.actions}>
-                    <button className={styles.actionButton}>
-                      <ViewInvoicePDF/>
+                    <button className={styles.actionButton} onClick={()=>handleViewInvoice(invoice,"View")}>
+                      View
                     </button>
 
-                    <button className={styles.actionButton}>
+                    <button className={styles.actionButton} onClick={()=>handleViewInvoice(invoice,"Download")}>
                       Download
                     </button>
 

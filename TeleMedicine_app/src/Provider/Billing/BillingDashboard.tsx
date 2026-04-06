@@ -29,7 +29,8 @@ function BillingDashboard() {
   const [activeTab, setActiveTab] = useState("Dashboard");
 
   return (
-    <div className={styles.container}>
+    <>
+      {" "}
       <header className={styles.header}>
         <div>
           <h2 className={styles.title}>Billing Overview</h2>
@@ -38,53 +39,46 @@ function BillingDashboard() {
           </p>
         </div>
         {/* <button className={styles.primaryBtn}>Generate Report</button> */}
+
+        {/* Modern Tabs */}
+        <nav className={styles.tabsContainer}>
+          {tabs.map((tab) => (
+            <button
+              key={tab.name}
+              onClick={() => setActiveTab(tab.name)}
+              className={`${styles.tabButton} ${activeTab === tab.name ? styles.activeTab : ""}`}
+            >
+              {tab.icon}
+              <span>{tab.name}</span>
+            </button>
+          ))}
+        </nav>
       </header>
+      <div className={styles.container}>
+        {/* Main Content Area */}
+        <main className={styles.dashboardContent}>
+          {activeTab === "Dashboard" ? (
+            <>
+              <SummaryCards />
 
-      {/* Modern Tabs */}
-      <nav className={styles.tabsContainer}>
-        {tabs.map((tab) => (
-          <button
-            key={tab.name}
-            onClick={() => setActiveTab(tab.name)}
-            className={`${styles.tabButton} ${activeTab === tab.name ? styles.activeTab : ""}`}
-          >
-            {tab.icon}
-            <span>{tab.name}</span>
-          </button>
-        ))}
-      </nav>
+              <div className={styles.chartRow}>
+                <RevenueChart />
+                <ClaimsStatusChart />
+              </div>
 
-      {/* Main Content Area */}
-      <main className={styles.dashboardContent}>
-        {activeTab === "Dashboard" ? (
-          <>
-            <SummaryCards />
-
-            <div className={styles.chartRow}>
-              <RevenueChart />
-              <ClaimsStatusChart />
-            </div>
-
-            <RecentActivityTable />
-          </>
-        ) :""}
-        {activeTab === "Charges" ? (
-          <ChargesPage />
-        ) : ""}
-        {
-          activeTab === "Invoices" ? (<InvoicePage/>) : ""
-        }
-        {
-          activeTab === "Payments" ? <PaymentPage/>:""
-        }
-        {
-          activeTab === "Insurance" ? <InsurancePage/>:""
-        }
-        {
-          activeTab === "Reports" ? <ReportsPage  />:""
-        }
-      </main>
-    </div>
+              <RecentActivityTable />
+            </>
+          ) : (
+            ""
+          )}
+          {activeTab === "Charges" ? <ChargesPage /> : ""}
+          {activeTab === "Invoices" ? <InvoicePage /> : ""}
+          {activeTab === "Payments" ? <PaymentPage /> : ""}
+          {activeTab === "Insurance" ? <InsurancePage /> : ""}
+          {activeTab === "Reports" ? <ReportsPage /> : ""}
+        </main>
+      </div>
+    </>
   );
 }
 
