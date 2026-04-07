@@ -25,6 +25,9 @@ import InvoicePage from "./Provider/Billing/Invoice";
 import MedicalHistory from "./Provider/Clinical/MedicalRecords";
 import Prescriptions from "./Provider/Clinical/Prescription";
 import VisitNotes from "./Provider/Clinical/VisitNotes";
+import ProgressPage from "./Provider/Monitoring/Progress";
+// import FilesPage from "./Provider/Files/Files";
+import SettingPage from "./Provider/Setting/Setting";
 
 //import MainContent from "./DashboardContent/Maincontent";
 //import { Dashboard } from "@mui/icons-material";
@@ -63,6 +66,9 @@ function App() {
             <Route path="/Clinical/MedicalRecords" element={<MedicalHistory/>} />
             <Route path="/Clinical/Prescriptions" element={<Prescriptions/>} />
             <Route path="/Clinical/VisitNotes" element={<VisitNotes/>} />
+            <Route path="/Monitoring/Progress" element={<ProgressPage/>} />
+            <Route path="/Setting/Profile" element={<SettingPage/>} />
+            {/* <Route path="/Files" element={<FilesPage/>} /> */}
           </Route>
         </Routes>
       </BrowserRouter>

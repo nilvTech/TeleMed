@@ -1,76 +1,131 @@
+:root {
+  --primary-color: #2563eb;
+  --bg-hover: #f8fafc;
+  --text-main: #1e293b;
+  --text-muted: #64748b;
+  --border-color: #e2e8f0;
+  --danger: #ef4444;
+  --shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
 .tableWrapper {
-  margin: 100px 0 0 150px;
-  width: 85%;
+  width: 100%;
+  background: white;
+  border-radius: 12px;
+  border: 1px solid var(--border-color);
+  margin-top: 20px;
+  /* CRITICAL: Changed from auto/hidden to visible so dropdown isn't cut off */
+  overflow: visible; 
 }
 
 .table {
-  width: 90%;
+  width: 100%;
   border-collapse: collapse;
-  font-size: 14px;
-}
-
-thead {
-  background: #d7e6f4;
   text-align: left;
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  /* CRITICAL: Ensure table doesn't clip children */
+  overflow: visible;
 }
 
-th, td {
-  padding: 12px;
-  border-bottom: 2px solid #e5e7eb;
+.table th {
+  padding: 12px 16px;
+  background-color: var(--bg-hover);
+  color: var(--text-muted);
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 11px;
+  border-bottom: 2px solid var(--border-color);
 }
 
-tr:hover {
-  background: #f4f4f4;
+.table td {
+  padding: 16px;
+  border-bottom: 1px solid var(--border-color);
+  color: var(--text-main);
 }
 
-/* Actions */
+.fileBadge {
+  background: #f1f5f9;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-weight: 700;
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+/* Updated Action Logic */
 .actionCell {
-  position: relative;
+  position: relative; 
+  text-align: right;
+  /* Allows the menu to pop out of the cell */
+  overflow: visible !important;
 }
 
 .menuBtn {
-  background: transparent;
-  border: none;
+  background: none;
+  border: 1px solid transparent;
+  padding: 4px 10px;
+  border-radius: 4px;
   cursor: pointer;
-  font-size: 18px;
-  transition: color 0.2s ease;
-}
-.menuBtn:focus{
-  outline: none;
-}
-.menuBtn:hover{
-    background-color: #e4e4e4;
+  font-size: 20px;
+  color: var(--text-muted);
+  transition: all 0.2s;
 }
 
-/* Dropdown */
+.menuBtn:hover {
+  background: var(--bg-hover);
+  color: var(--primary-color);
+}
+
 .dropdown {
   position: absolute;
+  /* Align to the right of the button and sit below it */
   right: 0;
-  top: 30px;
+  top: 40px; 
+  
+  z-index: 1000; /* Ensure it stays above all other rows */
+  min-width: 150px;
   background: white;
-  border: 1px solid #e5e7eb;
-  border-radius: 6px;
-  width: 120px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-  z-index: 10;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  box-shadow: var(--shadow);
+  padding: 5px;
+  animation: fadeIn 0.1s ease-out;
 }
 
 .dropdown div {
-  padding: 10px;
+  padding: 10px 12px;
   cursor: pointer;
+  border-radius: 6px;
+  transition: background 0.2s;
+  font-weight: 500;
+  text-align: left;
+  font-size: 13px;
 }
 
 .dropdown div:hover {
-  background: #f3f4f6;
+  background-color: var(--bg-hover);
+  color: var(--primary-color);
 }
 
-.delete {
-  color: #dc2626;
+.dropdown .delete {
+  color: var(--danger);
+  border-top: 1px solid var(--border-color);
+  margin-top: 4px;
+  border-radius: 0 0 6px 6px;
 }
 
-/* Empty state */
+.dropdown .delete:hover {
+  background-color: #fef2f2;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-5px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
 .empty {
+  padding: 40px;
   text-align: center;
-  padding: 20px;
-  color: #6b7280;
+  color: var(--text-muted);
 }

@@ -56,7 +56,7 @@ export const handleViewInvoice = (
     const url = URL.createObjectURL(pdfBlob);
     window.open(url);
   }
-  if(action ==="Download"){
-    doc.save(`Invoice-${Data.patient}.pdf`)
+  if (action === "Download") {
+    doc.save(`Invoice-${Data.patient}.pdf`);
   }
 };

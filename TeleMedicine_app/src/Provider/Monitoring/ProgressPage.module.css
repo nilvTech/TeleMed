@@ -1,0 +1,257 @@
+.container {
+  padding: 1.5rem 2rem 0.1rem;
+  font-family:
+    "Inter",
+    system-ui,
+    -apple-system,
+    sans-serif;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+/* Patient Selection Bar */ 
+.patientSelection {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid #eee;
+}
+
+.label {
+  font-weight: 600;
+  color: #444;
+  font-size: 0.895rem;
+}
+
+.patientDropdown {
+  padding: 0.6rem 1rem;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  font-size: 1rem;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.patientDropdown:focus {
+  border-color: #007bff;
+}
+
+/* Header */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.header h2 {
+  margin: 0;
+  color: #1a1a1a;
+}
+
+.subtitle {
+  margin: 0.25rem 0 0;
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.addBtn {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 0.75rem 1.25rem;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.addBtn:hover:not(:disabled) {
+  background-color: #0056b3;
+}
+
+.addBtn:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+/* Progress Table (using CSS Grid) */
+.table {
+  border: 1px solid #eee;
+  border-radius: 8px;
+  overflow: visible;
+  margin: 50px;
+  width: 90%;
+}
+.actions {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: flex-start;
+}
+.tableHeader, .row {
+  display: grid;
+  grid-template-columns: 100px 140px 110px 110px 1fr 160px; 
+  gap: 1rem;
+  align-items: center;
+  padding: 1rem;
+}
+.tableHeader {
+  background-color: #f8f9fa;
+  font-weight: 600;
+  color: #555;
+  border-bottom: 2px solid #eee;
+}
+
+.row {
+  border-bottom: 1px solid #eee;
+  font-size: 0.95rem;
+}
+
+.row:last-child {
+  border-bottom: none;
+}
+
+/* Status Badges */
+.status {
+  padding: 0.25rem 0.6rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.Improving {
+  background: #d4edda;
+  color: #155724;
+}
+.Stable {
+  background: #fff3cd;
+  color: #856404;
+}
+.InProgress {
+  background: #cce5ff;
+  color: #004085;
+}
+.Declining {
+  background: #f8d7da;
+  color: #721c24;
+}
+.Achieved {
+  background: #e2e3e5;
+  color: #383d41;
+}
+
+/* Modal Styles */
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 12px;
+  width: 100%;
+  max-width: 500px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.modal input,
+.modal select,
+.modal textarea {
+  padding: 0.75rem;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 1rem;
+}
+
+.modal textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+.modalActions {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+.modal label{
+    font-weight: 600;
+    color:#2a2a2a;
+    font-size: 15px;
+    margin-top: 10px;
+}
+
+.save {
+  background: #28a745;
+  color: white;
+  border: none;
+  padding: 0.75rem;
+  border-radius: 6px;
+  flex: 1;
+  cursor: pointer;
+  font-weight: 600;
+}
+.cancel {
+  background: #eee;
+  color: #333;
+  border: none;
+  padding: 0.75rem;
+  border-radius: 6px;
+  flex: 1;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.empty {
+  padding: 3rem;
+  text-align: center;
+  color: #888;
+  font-style: italic;
+}
+
+.actions{
+    display: flex;
+}
+
+.delete {
+  color: #dc3545;
+  background: none;
+  border: 1px solid #dc3545;
+  padding: 0.4rem 0.6rem;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.delete:hover {
+  background: #dc3545;
+  color: white;
+}
+
+.edit {
+  color: #007bff;
+  background: none;
+  border: 1px solid #007bff;
+  padding: 0.4rem 0.6rem;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.edit:hover {
+  background: #007bff;
+  color: white;
+}

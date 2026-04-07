@@ -10,7 +10,8 @@ function Documents() {
   useEffect(()=>{
     const data = JSON.parse(localStorage.getItem("documents") || "[]");
     setDocuments(data);
-  },[])
+  },[]);
+
   return (
     <div>
       <div className={styles.page}>
@@ -19,8 +20,7 @@ function Documents() {
 
           <button
             className={styles.uploadBtn}
-            onClick={() => setShowModal(true)}
-          >
+            onClick={() => setShowModal(true)}>
             + Upload Document 
           </button>
         </div>

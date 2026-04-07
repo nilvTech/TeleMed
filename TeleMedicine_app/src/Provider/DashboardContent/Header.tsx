@@ -87,6 +87,11 @@ function Header() {
     setShowConfirm(false);
   };
 
+  const handleProfile = ()=>{
+    navigate("/Setting/Profile");
+    setShowMenu(false);
+  }
+
   return (
     <header>
       <div className={styles.header}>
@@ -135,6 +140,7 @@ function Header() {
               >
                 <div
                   className={styles.menuItem}
+                  onClick={handleProfile}
                 >
                   Profile
                   <ImProfile

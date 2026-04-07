@@ -1,0 +1,410 @@
+.pageWrapper {
+  font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  height: 100%;
+}
+
+.container {
+  margin: 0 auto;
+  background: #fff;
+  padding: 40px;
+  border-radius: 16px;
+}
+
+/* Header Styles */
+.profileHeader {
+  display: flex;
+  align-items: center; /* Vertically centers photo, text, and button */
+  gap: 20px;
+  width: 100%; /* Ensures header spans the full container width */
+}
+
+.profilePhoto {
+  font-size: 170px;
+  color: #3b82f6;
+  flex-shrink: 0; /* Prevents the icon from squishing */
+}
+
+.headerText {
+  flex-grow: 1; /* Allows text to take up available space */
+}
+
+.action {
+  /* MAGIC LINE: Pushes this div to the absolute right of the flex container */
+  margin-left: auto;
+}
+
+.editBtn {
+  background: #3b82f6;
+  color: white;
+  border: none;
+  padding: 10px 24px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap; /* Prevents button text from wrapping on small screens */
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 4px rgba(59, 130, 246, 0.2);
+}
+
+.editBtn:hover {
+  background: #2563eb;
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+  transform: translateY(-1px);
+}
+
+.editBtn:active {
+  transform: translateY(0);
+}
+
+/* Mobile Tweak: If the screen is too small, stack them */
+@media (max-width: 500px) {
+  .profileHeader {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .action {
+    margin-left: 0;
+    width: 100%;
+  }
+
+  .editBtn {
+    width: 100%;
+  }
+}
+
+.divider {
+  border: 0;
+  border-top: 1px solid #e2e8f0;
+  margin: 30px 0;
+}
+
+/* Info Display */
+.infoGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 30px;
+}
+
+/* General section styling */
+.section {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+}
+
+/* Specifically target the first section to center the profile */
+.section:first-child {
+  display: flex;
+  align-items: center; /* Horizontal centering */
+  justify-content: center; /* Vertical centering */
+  height: 100%; /* Ensures it fills the grid cell height */
+}
+
+/* Ensure the icon itself is large and clean */
+.profilePhoto {
+  font-size: 120px; /* Increased size for a modern 'hero' look */
+  color: #3b82f6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #eff6ff; /* Soft blue circular background */
+  border-radius: 50%;
+  padding: 20px;
+  width: 160px;
+  height: 160px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.section h3 {
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #94a3b8;
+  margin-bottom: 15px;
+}
+
+.section p {
+  margin: 10px 0;
+  color: #334155;
+}
+
+.section strong {
+  display: inline-block;
+  width: 120px;
+  color: #64748b;
+}
+
+/* Modal Styling */
+.modalBackdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(15, 23, 42, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  backdrop-filter: blur(4px);
+}
+
+.modalContent {
+  background: white;
+  width: 90%;
+  max-width: 700px;
+  max-height: 90vh;
+  border-radius: 12px;
+  padding: 30px;
+  overflow-y: auto;
+  position: relative;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.2);
+}
+
+.modalHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+}
+
+.closeBtn {
+  background: none;
+  border: none;
+  font-size: 2rem;
+  cursor: pointer;
+  color: #94a3b8;
+}
+
+/* Form Layout */
+.formGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.inputGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.inputGroup label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #475569;
+}
+
+.inputGroup input {
+  padding: 10px 12px;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  font-size: 1rem;
+}
+
+.inputGroup input:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.formActions {
+  margin-top: 30px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+}
+
+.cancelBtn {
+  background: #f1f5f9;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.saveBtn {
+  background: #0f172a;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+@media (max-width: 650px) {
+  .infoGrid,
+  .formGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Container to hold the image/placeholder and center it */
+.imagePreviewContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centers the image horizontally in the input group */
+  justify-content: center;
+  margin-top: 10px; /* Space between the label and the image */
+  margin-bottom: 15px; /* Space between the image and the file input button */
+}
+
+/* Styling for the actual preview image */
+.previewImage {
+  width: 120px; /* Standard size for a form avatar */
+  height: 120px;
+  object-fit: cover; /* Crucial: Ensures the image fills the circle without stretching */
+  border-radius: 50%; /* Makes the image a perfect circle */
+  border: 4px solid #ffffff; /* Thick white border creates a clean separation */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Soft shadow for a modern "floating" effect */
+  background-color: #f8fafc; /* Placeholder background color while loading */
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Subtle hover effect for interactivity */
+.previewImage:hover {
+  transform: scale(1.02); /* Slight zoom on hover */
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+}
+
+/* Styling for the placeholder icon when no image is selected */
+.placeholderIcon {
+  font-size: 100px; /* Slightly smaller than the image container */
+  color: #94a3b8; /* Soft slate gray */
+  background-color: #f1f5f9;
+  border-radius: 50%;
+  padding: 10px;
+  width: 120px;
+  height: 120px;
+}
+
+/* Optional: Customizing the file input button itself */
+.inputGroup input[type="file"] {
+  border: none; /* Removes the default border */
+  padding: 0;
+  font-size: 0.9rem;
+  color: #64748b;
+  cursor: pointer;
+}
+
+/* Stylized "Choose File" button part */
+.inputGroup input[type="file"]::-webkit-file-upload-button {
+  background-color: #eff6ff;
+  color: #3b82f6;
+  border: 1px solid #bfdbfe;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-right: 10px;
+  transition: all 0.2s;
+}
+
+.inputGroup input[type="file"]::-webkit-file-upload-button:hover {
+  background-color: #dbeafe;
+}
+
+.inputGroup label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #475569;
+  display: inline-block;
+  margin-bottom: 6px;
+}
+
+/* The "Required" Star Logic */
+.required::after {
+  content: " *";         /* Adds the star after the text */
+  color: #ef4444;        /* Modern Red (Tailwind Red-500) */
+  font-weight: bold;
+  margin-left: 4px;      /* Small gap from the text */
+  font-size: 1.1rem;     /* Slightly larger to stand out */
+}
+
+/* Optional: Subtle red border for the input itself to match */
+.inputGroup input:required {
+  border-left: 3px solid #fecaca; /* Very light red left border */
+}
+
+/* Container for the checkbox and its description */
+.checkboxGroup {
+  width: 20%;
+  margin-top: 20px;
+  padding: 15px;
+  background-color: #f8fafc; /* Light highlight to make it stand out */
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+}
+
+.checkboxContainer {
+  display: flex;
+  align-items: center;
+  position: relative;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #1e293b;
+  user-select: none;
+}
+
+/* Hide the default checkbox */
+.checkboxContainer input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+/* Create a custom checkmark box */
+.checkmark {
+  height: 22px;
+  width: 22px;
+  background-color: #fff;
+  border: 2px solid #cbd5e1;
+  border-radius: 6px;
+  margin-right: 12px;
+  transition: all 0.2s ease;
+  position: relative;
+}
+
+/* On hover, add a subtle border color change */
+.checkboxContainer:hover input ~ .checkmark {
+  border-color: #3b82f6;
+}
+
+/* When checked, add blue background and border */
+.checkboxContainer input:checked ~ .checkmark {
+  background-color: #3b82f6;
+  border-color: #3b82f6;
+}
+
+/* Create the check icon (the white tick) */
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the check icon when checked */
+.checkboxContainer input:checked ~ .checkmark:after {
+  display: block;
+}
+
+/* Style the check icon */
+.checkmark:after {
+  left: 7px;
+  top: 3px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 2.5px 2.5px 0;
+  transform: rotate(45deg);
+}
+
+.helperText {
+  margin: 5px 0 0 34px; /* Aligns perfectly under the label text */
+  font-size: 0.85rem;
+  color: #64748b;
+}
