@@ -23,7 +23,6 @@ function MessagesPage() {
       {selectedPatient && (
         <>
           <div className={styles.messageSection}>
-            
             <MessageThread />
           </div>
           <PatientDetailsPanel />

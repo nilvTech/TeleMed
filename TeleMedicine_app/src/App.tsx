@@ -28,6 +28,7 @@ import VisitNotes from "./Provider/Clinical/VisitNotes";
 import ProgressPage from "./Provider/Monitoring/Progress";
 // import FilesPage from "./Provider/Files/Files";
 import SettingPage from "./Provider/Setting/Setting";
+import SupportPage from "./Provider/Support/SupportPage";
 
 //import MainContent from "./DashboardContent/Maincontent";
 //import { Dashboard } from "@mui/icons-material";
@@ -68,6 +69,7 @@ function App() {
             <Route path="/Clinical/VisitNotes" element={<VisitNotes/>} />
             <Route path="/Monitoring/Progress" element={<ProgressPage/>} />
             <Route path="/Setting/Profile" element={<SettingPage/>} />
+            <Route path="/Support" element={<SupportPage/>} />
             {/* <Route path="/Files" element={<FilesPage/>} /> */}
           </Route>
         </Routes>

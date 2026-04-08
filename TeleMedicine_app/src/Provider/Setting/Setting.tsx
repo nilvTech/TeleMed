@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import styles from "./SettingsPage.module.css";
 import { CgProfile } from "react-icons/cg";
-import Checkbox from "@mui/material/Checkbox";
 
 type details = {
   GroupName: string;
@@ -150,6 +149,27 @@ function SettingPage() {
 
             <form className={styles.editForm}>
               <div className={styles.formGrid}>
+                   <div className={styles.inputGroup}>
+                  <label>Profile Picture</label>
+                  <div className={styles.imagePreviewContainer}>
+                    {preview ? (
+                      <img
+                        src={preview}
+                        alt="Preview"
+                        className={styles.previewImage}
+                      />
+                    ) : (
+                      <CgProfile className={styles.placeholderIcon} />
+                    )}
+                  </div>
+                  <input
+                    type="file"
+                    name="ProfilePicture"
+                    accept="image/*"
+                    onChange={handleFileChange}
+                  />
+                </div>
+                <br />
                 <div className={styles.inputGroup}>
                   <label className={styles.required}>Group Name</label>
                   <input
@@ -195,26 +215,11 @@ function SettingPage() {
                   />
                 </div>
 
-                <div className={styles.inputGroup}>
-                  <label>Profile Picture</label>
-                  <div className={styles.imagePreviewContainer}>
-                    {preview ? (
-                      <img
-                        src={preview}
-                        alt="Preview"
-                        className={styles.previewImage}
-                      />
-                    ) : (
-                      <CgProfile className={styles.placeholderIcon} />
-                    )}
-                  </div>
-                  <input
-                    type="file"
-                    name="ProfilePicture"
-                    accept="image/*"
-                    onChange={handleFileChange}
-                  />
-                </div>
+             
+
+
+
+
 
                 <div className={styles.inputGroup}>
                   <label>Bio</label>

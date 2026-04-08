@@ -52,10 +52,18 @@ export default function Progress() {
   const [showModal, setShowModal] = useState(false);
   const [EditModal, setEditModal] = useState(false);
 
+  const getFormattedDate = () => {
+    const now = new Date(Date.now());
+    const day = String(now.getDate()).padStart(2, "0");
+    const month = String(now.getMonth() + 1).padStart(2, "0");
+    const year = now.getFullYear();
+    return `${year}-${month}-${day}`;
+  };
+
   const [form, setForm] = useState<ProgressItem>({
     id: "",
     patientId: "",
-    date: "",
+    date: getFormattedDate(),
     goal: "",
     status: "In Progress",
     notes: "",
@@ -234,15 +242,6 @@ export default function Progress() {
         <div className={styles.modalOverlay}>
           <div className={styles.modal}>
             <h3>Add Progress</h3>
-
-            <label htmlFor="date">Date</label>
-            <input
-              type="date"
-              name="date"
-              value={form.date}
-              onChange={handleChange}
-            />
-
             <label htmlFor="goal">Goal</label>
             <input
               type="text"
@@ -298,7 +297,7 @@ export default function Progress() {
         <div className={styles.modalOverlay}>
           <div className={styles.modal}>
             <h3>Edit Progress</h3>
-            
+
             <label htmlFor="date">Date</label>
             <input type="date" value={form.date} disabled />
             <label htmlFor="goal">Goal</label>
