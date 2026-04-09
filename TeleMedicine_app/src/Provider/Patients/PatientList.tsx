@@ -1,47 +1,83 @@
-import styles from "./PatientList.module.css";
-import { IoMdAdd } from "react-icons/io";
+import { useState } from "react";
+import { IoMdAdd, IoMdSearch } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
 import { PatientData } from "./PatientData";
+import styles from "./PatientList.module.css";
+
 function PatientList() {
-  const Navigate = useNavigate();
+  const navigate = useNavigate();
+  const [searchTerm, setSearchTerm] = useState("");
+
+  const filteredPatients = PatientData.filter((p) =>
+    p.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    p.MRN.includes(searchTerm)
+  );
 
   return (
-    <>
-      <div className={styles.Heading}>
-        <h2>Patient List</h2>
-        <button onClick={()=>{Navigate(`/Patients/Form`)}}><IoMdAdd className={styles.addButton} />Add Patient</button>
-      </div>
-      <div className={styles.PatientsList}>
+    <div className={styles.container}>
+      <header className={styles.header}>
+        <div>
+          <h1>Patient Directory</h1>
+          <p>Manage and view all registered patients</p>
+        </div>
+        <button 
+          className={styles.addBtn} 
+          onClick={() => navigate("/Patients/Form")}
+        >
+          <IoMdAdd /> Add New Patient
+        </button>
+      </header>
+
+      <section className={styles.controls}>
+        <div className={styles.searchWrapper}>
+          <IoMdSearch className={styles.searchIcon} />
+          <input 
+            type="text" 
+            placeholder="Search by name or MRN..." 
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+          />
+        </div>
+      </section>
+
+      <div className={styles.tableContainer}>
         <table className={styles.table}>
-          <thead className={styles.TableHeading}>
+          <thead>
             <tr>
-              <td>Name</td>
-              <td>MRN/Patient ID</td>
-              <td>Age</td>
-              <td>Gender</td>
-              <td>Phone</td>
-              <td>Last Visit</td>
-              <td>Next Appointment</td>
-              <td>Status</td>
+              <th>Name</th>
+              <th>MRN</th>
+              <th>Age/Gender</th>
+              <th>Contact</th>
+              <th>Last Visit</th>
+              <th>Next Appt</th>
+              <th>Status</th>
             </tr>
           </thead>
-          <tbody className={styles.TableBody}>
-            {PatientData.map((p) => (
+          <tbody>
+            {filteredPatients.map((p) => (
               <tr key={p.id}>
-                <td onClick={() => Navigate(`/Patients/${p.id}`)}>{p.name}</td>
-                <td>{p.MRN}</td>
-                <td>{p.age}</td>
-                <td>{p.gender}</td>
+                <td className={styles.patientName} onClick={() => navigate(`/Patients/${p.id}`)}>{p.name}</td>
+                <td className={styles.mrn}>{p.MRN}</td>
+                <td>
+                  <span className={styles.ageGender}>
+                    {p.age}y • {p.gender}
+                  </span>
+                </td>
                 <td>{p.phone}</td>
                 <td>{p.lastVisit}</td>
                 <td>{p.nextAppointment}</td>
-                <td>{p.status}</td>
+                <td>
+                  <span className={`${styles.badge} ${styles[p.status.toLowerCase()]}`}>
+                    {p.status}
+                  </span>
+                </td>
               </tr>
             ))}
           </tbody>
         </table>
       </div>
-    </>
+    </div>
   );
 }
+
 export default PatientList;

@@ -1,75 +1,160 @@
-.table {
-  width: 95%;
-  /* Remove max-width: 400px if you want it to span the dashboard */
-  border-collapse: collapse;
-  background: white;
-  border-radius: 8px;
-  overflow: hidden;
-  box-shadow: 0px 12px 12px rgba(0, 0, 0, 0.18);
-  margin-top: 50px;
-  margin: 30px 0px 0px 35px;
-  display: flex;
-  flex-direction: column; /* Allows the header and body to stack as blocks */
+.container {
+  padding: 2rem;
+
+  margin: 0 auto;
+  font-family: 'Inter', system-ui, sans-serif;
 }
 
-.Heading {
-  margin: 90px 0px 0px 50px;
+.header {
   display: flex;
-  flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  margin-right: 50px;
+  margin-bottom: 2rem;
 }
-.addButton{
-  margin: 0px 3px 3px 0px;
+
+.header h1 {
+  margin: 0;
+  font-size: 1.75rem;
+  color: #1a202c;
 }
-.Heading button {
-  padding: 5px 15px;
-  background: linear-gradient(180deg, #2f6f95, #1f4e6b, #40677e);
+
+.header p {
+  margin: 0.25rem 0 0;
+  color: #718096;
+}
+
+.addBtn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: #3182ce;
   color: white;
   border: none;
-  border-radius: 6px;
+  padding: 0.75rem 1.25rem;
+  border-radius: 8px;
+  font-weight: 600;
   cursor: pointer;
-  font-weight: 500;
-  height: fit-content;
-}
-.TableHeading,
-.TableBody {
-  display: block; /* Required for scrolling */
+  transition: background 0.2s;
 }
 
-.TableHeading tr,
-.TableBody tr {
-  display: table; /* Maintains the table-row look */
+.addBtn:hover {
+  background-color: #2b6cb0;
+}
+
+.controls {
+  margin-bottom: 1.5rem;
+}
+
+.searchWrapper {
+  position: relative;
+  max-width: 400px;
+}
+
+.searchIcon {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #a0aec0;
+  font-size: 1.2rem;
+}
+
+.searchWrapper input {
   width: 100%;
-  table-layout: fixed; /* Ensures columns align between head and body */
-  white-space: nowrap;
-}
-.TableBody td:first-child {
-  text-decoration: underline;
-  cursor: pointer;
-}
-.TableBody td:first-child:hover {
-  color: blueviolet;
-}
-.TableBody {
-  max-height: 450px; /* Adjust this height to fit your screen */
-  overflow-y: auto;
-  overflow-x: hidden;
+  padding: 0.75rem 0.75rem 0.75rem 2.5rem;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  outline: none;
+  transition: border-color 0.2s;
 }
 
-/* Add a custom scrollbar for a cleaner look */
-.TableBody::-webkit-scrollbar {
-  width: 6px;
+.searchWrapper input:focus {
+  border-color: #3182ce;
+  box-shadow: 0 0 0 3px rgba(49, 130, 206, 0.1);
 }
-.TableBody::-webkit-scrollbar-thumb {
-  background-color: #cbd5e1;
+/* 1. The container that handles the scrolling */
+.tableContainer {
+  width: 100%;
+  max-height: 400px; /* Adjust this height to your needs */
+  overflow-y: auto;
+  overflow-x: auto; /* Handles responsiveness on small screens */
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  background: white;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+/* 2. Make the header stick to the top of .tableContainer */
+.table thead th {
+  position: sticky;
+  top: 0;
+  background-color: #f8fafc; /* Must have a background color to hide rows sliding under */
+  z-index: 10;
+  padding: 1rem;
+  color: #4a5568;
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  border-bottom: 2px solid #e2e8f0;
+}
+
+/* Optional: Custom Scrollbar for a cleaner look */
+.tableContainer::-webkit-scrollbar {
+  width: 8px;
+}
+
+.tableContainer::-webkit-scrollbar-track {
+  background: #f1f1f1;
   border-radius: 10px;
 }
 
-.TableHeading td,
-.TableBody td {
-  padding: 15px 20px; /* Slightly reduced padding for better fit */
-  text-align: left;
-  word-break: break-word;
+.tableContainer::-webkit-scrollbar-thumb {
+  background: #cbd5e0;
+  border-radius: 10px;
 }
+
+.tableContainer::-webkit-scrollbar-thumb:hover {
+  background: #a0aec0;
+}
+
+/* Keep the rest of your cell and badge styles from the previous step */
+.table td {
+  padding: 1rem;
+  border-bottom: 1px solid #edf2f7;
+}
+
+.patientName {
+  font-weight: 600;
+  color: #2b6cb0 !important;
+  text-decoration: underline;
+}
+
+.mrn {
+  font-family: monospace;
+  color: #718096;
+}
+
+.ageGender {
+  background: #edf2f7;
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.85rem;
+}
+
+/* Status Badges */
+.badge {
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: capitalize;
+}
+
+.active { background: #c6f6d5; color: #22543d; }
+.pending { background: #feebc8; color: #744210; }
+.discharged { background: #edf2f7; color: #4a5568; }

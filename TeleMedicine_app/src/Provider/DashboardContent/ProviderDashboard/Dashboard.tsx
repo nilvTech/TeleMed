@@ -1,14 +1,21 @@
 import styles from "./Dashboard.module.css";
 import { GoReply } from "react-icons/go";
 import Avatar from "@mui/material/Avatar";
-import { LuCalendarPlus } from "react-icons/lu";
+//import { LuCalendarPlus } from "react-icons/lu";
 import { useNavigate } from "react-router-dom";
 import { Users, CheckCircle, Clock, Calendar } from "lucide-react";
 import CountUp from "../CountUp";
+import { useEffect } from "react";
 //import Header from "./Header";
 //import SideBar from "./SideBar";
 
 function MainContent() {
+  useEffect(() => {
+    const inverval = setInterval(QuickStats, 900000);
+
+    return () => clearInterval(inverval);
+  });
+
   return (
     <>
       <div className={styles.mainContent}>
@@ -31,10 +38,11 @@ function MainContent() {
 }
 
 function WelcomeBanner() {
-  const NavToAppointment = useNavigate();
-  const HandleOnClick = () => {
-    NavToAppointment("/Appointment");
-  };
+  // const NavToAppointment = useNavigate();
+  // const HandleOnClick = () => {
+  //   NavToAppointment("/Appointment");
+  // };
+
   return (
     <div className={styles.WelcomeBanner}>
       <div className={styles.WelcomeMSG}>
@@ -45,15 +53,17 @@ function WelcomeBanner() {
         <p>Here's your health overview for today</p>
       </div>
 
-      <button onClick={HandleOnClick}>
+      {/* <button onClick={HandleOnClick}>
         <LuCalendarPlus className={styles.BookAppointmentIcon} />
         Book Appointment
-      </button>
+      </button> */}
     </div>
   );
 }
 
 function QuickStats() {
+  console.log("refresh");
+
   const stats = [
     {
       label: "Patients Today",

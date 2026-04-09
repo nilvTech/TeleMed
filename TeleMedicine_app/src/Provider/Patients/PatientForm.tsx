@@ -407,9 +407,10 @@ function PatientForm() {
               value={patient.insuranceType}
               onChange={handleChange}
             >
-              <option value="">Select Insurance</option>
+              <option value="" disabled hidden>Select Insurance</option>
               <option value="private">Private</option>
-              <option value="government">Government</option>
+              <option value="medicare">Medicare</option>
+              <option value="medicaid">Medicaid</option>
               <option value="selfpay">Self Pay</option>
             </select>
           </div>
