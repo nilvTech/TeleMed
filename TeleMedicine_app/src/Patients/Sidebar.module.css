@@ -1,0 +1,93 @@
+.sidebar {
+  width: 230px;
+  height: 100vh;
+  background: linear-gradient(
+    180deg,
+    #2f6f95,
+    #1f4e6b,
+    #123447
+  ); /* medical blue */
+  color: white;
+  position: fixed;
+  left: 0;
+  top: 0;
+  padding-top: 20px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+  overflow-y: auto;
+
+}
+
+/* Logo / Title */
+.sidebar h3 {
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 22px;
+  letter-spacing: 1px;
+}
+
+/* Link container */
+.content {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Links */
+.content a {
+  color: white;
+  text-decoration: none;
+  padding: 14px 25px;
+  font-size: 16px;
+  transition: all 0.2s ease;
+}
+
+/* Hover effect */
+.content a:hover {
+  color: black;
+  background-color: #6a7d8a;
+  padding-left: 32px;
+  text-decoration: none;
+}
+
+/* Active link style (optional later) */
+.content a.active {
+  background-color: #2a78b8;
+  border-left: 4px solid #fff;
+}
+
+/* Clinical Module */
+.menuTitle:hover {
+  color: black;
+  background-color: #6a7d8a;
+  padding-left:32px;
+  text-decoration: none;
+  transition: all 0.2s
+}
+.menuTitle:active{
+   background-color: #2a78b8;
+  border-left: 4px solid #fff;
+}
+
+.menuTitle {
+  cursor: pointer;
+  padding: 14px 25px;
+  font-weight: 400;
+}
+.subMenu {
+  padding-left: 40px;
+  margin-top: 0px;
+  display: flex;
+  flex-direction: column;
+}
+.subMenu a {
+  padding: 8px;
+  font-size: 14px;
+}
+
+.SectionIcon{
+  margin: 0px 10px 3px 0px ;
+}
+.SubSectionIcon{
+  margin: 0px 6px 2px 0px ;
+}

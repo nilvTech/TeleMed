@@ -49,7 +49,7 @@ function PatientList() {
               <th>Age/Gender</th>
               <th>Contact</th>
               <th>Last Visit</th>
-              <th>Next Appt</th>
+              <th>Next Appointment</th>
               <th>Status</th>
             </tr>
           </thead>

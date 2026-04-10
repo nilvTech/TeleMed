@@ -9,10 +9,10 @@ import PatientsPage from "./Provider/Patients/PatientsPage";
 import PatientDetailsPage from "./Provider/Patients/PatientDetailsPage";
 import ProviderLayout from "./Layout/ProviderLayout";
 import MainContent from "./Provider/DashboardContent/ProviderDashboard/Dashboard";
-import AdminLayout from "./Layout/AdminLayout"; 
+import AdminLayout from "./Layout/AdminLayout";
 import AdminDashboard from "./Admin/Dashboard";
 import PatientLayout from "./Layout/PatientLayout";
-import PatientDashboard from "./Patient/Dashboard";
+import PatientDashboard from "./Patients/Dashboard/PatientDashboard";
 import Documents from "./Provider/Patients/PatientDetailsTab/Documents";
 import Orders from "./Provider/Patients/PatientDetailsTab/Orders";
 import DocumentList from "./Provider/Patients/PatientDetailsTab/DocumentList";
@@ -29,6 +29,7 @@ import ProgressPage from "./Provider/Monitoring/Progress";
 // import FilesPage from "./Provider/Files/Files";
 import SettingPage from "./Provider/Setting/Setting";
 import SupportPage from "./Provider/Support/SupportPage";
+import PatientAppointments from "./Patients/Appointment/PatientAppointment";
 
 //import MainContent from "./DashboardContent/Maincontent";
 //import { Dashboard } from "@mui/icons-material";
@@ -41,12 +42,12 @@ function App() {
           <Route path="/" element={<AuthForm />} />
           <Route path="/ForgetPassword" element={<ForgetPass />} />
 
-          <Route element={<PatientLayout/>}>
-           <Route path="/Patient/Dasboard" element={<PatientDashboard/>}/>
+          <Route element={<PatientLayout />}>
+            <Route path="/Patient/Dasboard" element={<PatientDashboard />} />
           </Route>
 
-          <Route element={<AdminLayout/>}>
-           <Route path="/Admin/Dasboard" element={<AdminDashboard/>}/>
+          <Route element={<AdminLayout />}>
+            <Route path="/Admin/Dasboard" element={<AdminDashboard />} />
           </Route>
 
           <Route element={<ProviderLayout />}>
@@ -57,20 +58,28 @@ function App() {
             <Route path="/Patients/:id" element={<PatientDetailsPage />} />
             <Route path="/Patients/documents" element={<Documents />} />
             <Route path="/Patients/Orders" element={<Orders />} />
-            <Route path="/document-list" element={<DocumentList/>} />
+            <Route path="/document-list" element={<DocumentList />} />
             <Route path="/Patients/payments" element={<Payments />} />
             <Route path="/Patients/Form" element={<PatientForm />} />
-            <Route path="/Message" element={<MessagesPage/>} />
-            <Route path="/Billing" element={<BillingDashboard/>} />
-            <Route path="/Charges" element={<ChargesPage/>} />
-            <Route path="/Invoice" element={<InvoicePage/>} />
-            <Route path="/Clinical/MedicalRecords" element={<MedicalHistory/>} />
-            <Route path="/Clinical/Prescriptions" element={<Prescriptions/>} />
-            <Route path="/Clinical/VisitNotes" element={<VisitNotes/>} />
-            <Route path="/Monitoring/Progress" element={<ProgressPage/>} />
-            <Route path="/Setting/Profile" element={<SettingPage/>} />
-            <Route path="/Support" element={<SupportPage/>} />
+            <Route path="/Message" element={<MessagesPage />} />
+            <Route path="/Billing" element={<BillingDashboard />} />
+            <Route path="/Charges" element={<ChargesPage />} />
+            <Route path="/Invoice" element={<InvoicePage />} />
+            <Route
+              path="/Clinical/MedicalRecords"
+              element={<MedicalHistory />}
+            />
+            <Route path="/Clinical/Prescriptions" element={<Prescriptions />} />
+            <Route path="/Clinical/VisitNotes" element={<VisitNotes />} />
+            <Route path="/Monitoring/Progress" element={<ProgressPage />} />
+            <Route path="/Setting/Profile" element={<SettingPage />} />
+            <Route path="/Support" element={<SupportPage />} />
             {/* <Route path="/Files" element={<FilesPage/>} /> */}
+          </Route>
+
+          <Route element={<PatientLayout />}>
+            <Route path="/Patient/Dasboard" element={<PatientDashboard />} />
+            <Route path="/Patient/Appointment" element={<PatientAppointments />} />
           </Route>
         </Routes>
       </BrowserRouter>

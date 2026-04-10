@@ -1,6 +1,6 @@
 import { Outlet } from "react-router-dom";
-import Header from "../Patient/Header";
-import Sidebar from "../Patient/Sidebar";
+import Header from "../Patients/Header";
+import Sidebar from "../Patients/Sidebar";
 
 function PatientLayout() {
   return (
