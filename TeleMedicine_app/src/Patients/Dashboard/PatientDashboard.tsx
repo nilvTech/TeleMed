@@ -53,7 +53,7 @@ function PatientDashboard() {
             </span>
           </div>
           <div className={styles.upcomingActions}>
-            <button className={styles.joinButton} hidden>Join Visit</button>
+            <button className={styles.joinButton} >Join Visit</button>
             <button className={styles.secondaryButton}>View Details</button>
           </div>
         </div>

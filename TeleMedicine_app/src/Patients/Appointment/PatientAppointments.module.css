@@ -13,7 +13,7 @@
 .container {
   margin: 6rem 2rem;
   padding: 0 1rem;
-  font-family: 'Inter', system-ui, sans-serif;
+  font-family: "Inter", system-ui, sans-serif;
   color: var(--text-main);
 }
 
@@ -54,7 +54,8 @@
   margin-bottom: 2rem;
 }
 
-.tab, .tabActive {
+.tab,
+.tabActive {
   padding: 0.75rem 0.25rem;
   border: none;
   background: none;
@@ -64,7 +65,7 @@
   position: relative;
   transition: color 0.2s;
 }
-.tab:focus{
+.tab:focus {
   outline: none;
 }
 
@@ -97,7 +98,9 @@
   background: white;
   border-radius: 12px;
   border: 1px solid var(--border);
-  transition: transform 0.2s, box-shadow 0.2s;
+  transition:
+    transform 0.2s,
+    box-shadow 0.2s;
 }
 
 .card:hover {
@@ -158,7 +161,9 @@
   gap: 0.5rem;
 }
 
-.primaryAction, .secondaryAction, .dangerAction {
+.primaryAction,
+.secondaryAction,
+.dangerAction {
   padding: 0.5rem 1rem;
   font-size: 0.875rem;
   font-weight: 600;
@@ -198,7 +203,7 @@
     grid-template-columns: 1fr;
     gap: 1.5rem;
   }
-  
+
   .cardRight {
     align-items: flex-start;
     border-top: 1px solid var(--border);
@@ -209,4 +214,340 @@
     width: 100%;
     justify-content: space-between;
   }
+}
+
+/* Modal CSS */
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modalContainer {
+  width: 700px;
+  height: 600px;
+  max-width: 95%;
+  background-color: #ffffff;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  position: relative;
+}
+
+.modalHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.modalTitle {
+  font-size: 20px;
+  font-weight: 600;
+  color: #111827;
+}
+
+.closeButton {
+  border: none;
+  background: none;
+  font-size: 22px;
+  cursor: pointer;
+}
+.closeButton:active{
+  outline: none;
+}
+
+.stepIndicator {
+  display: flex;
+  justify-content: bween;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 0.5rem;
+  padding: 1rem 0;
+  border-bottom: 1px solid #e5e7eb; /* Optional separator */
+}
+
+.step,
+.stepActive {
+  flex: 1;
+  position: relative;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #6b7280; /* Gray text for inactive */
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+/* The horizontal bar above/below the text */
+.step::after,
+.stepActive::after {
+  content: "";
+  height: 4px;
+  width: 100%;
+  border-radius: 2px;
+  background-color: #e5e7eb; /* Light gray bar */
+  transition: background-color 0.3s ease;
+}
+
+.stepActive {
+  color: #2563eb; /* Primary Blue */
+}
+
+.stepActive::after {
+  background-color: #2563eb; /* Active Blue bar */
+}
+
+/* Hover effect for better UX */
+.step:hover {
+  color: #374151;
+}
+
+@media (max-width: 640px) {
+  .stepIndicator {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+
+  .step,
+  .stepActive {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .step::after,
+  .stepActive::after {
+    width: 4px;
+    height: 1.25rem;
+  }
+}
+
+.modalBody {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  flex: 1;
+  overflow-y: auto;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+}
+
+.label {
+  font-size: 13px;
+  margin-bottom: 6px;
+  color: #374151;
+}
+
+.input {
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid #d1d5db;
+  font-size: 14px;
+}
+
+.modalFooter {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.primaryButton {
+  padding: 10px 18px;
+  border: none;
+  border-radius: 8px;
+  background-color: #2563eb;
+  color: #ffffff;
+  cursor: pointer;
+}
+
+.secondaryButton {
+  padding: 10px 18px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  background-color: #ffffff;
+  color: #2563eb;
+  cursor: pointer;
+}
+
+.primaryButton:hover {
+  background-color: #1d4ed8;
+}
+
+/*  Time Slot Screen CSS */
+.timeSlots {
+  display: grid;
+  /* Creates 3 columns that adjust based on container width */
+  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  gap: 12px;
+  margin-top: 1rem;
+}
+
+.timeSlot {
+  padding: 12px 8px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #374151;
+  background-color: #ffffff;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: center;
+}
+
+/* Hover state: subtle background change */
+.timeSlot:hover {
+  border-color: #2563eb;
+  background-color: #eff6ff;
+  color: #2563eb;
+}
+
+/* Selected state: should match your primary blue theme */
+.selectedTimeSlot {
+  background-color: #2563eb;
+  border-color: #2563eb;
+  color: #ffffff;
+  box-shadow: 0 4px 6px -1px rgba(37, 99, 235, 0.2);
+}
+
+/* Disabled state: for slots that are already booked */
+.timeSlot:disabled {
+  background-color: #f3f4f6;
+  color: #9ca3af;
+  border-color: #e5e7eb;
+  cursor: not-allowed;
+}
+
+/* Visit Details Screen CSS */
+.textarea {
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #d1d5db;
+  min-height: 100px;
+  resize: none;
+  font-size: 14px;
+}
+
+/* Confirm Appt Screen CSS */
+.summaryCard {
+  background-color: #f3f4f6;
+  padding: 16px;
+  border-radius: 10px;
+}
+
+.summaryTitle {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+.summaryRow {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.checkBox {
+  margin-top: 1.5rem;
+  display: flex;
+  align-items: center;
+}
+
+.checkBox label {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  font-size: 0.95rem;
+  color: #374151;
+  user-select: none;
+}
+
+/* Hide the default checkbox */
+.checkBox input[type="checkbox"] {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 20px;
+  height: 20px;
+  border: 2px solid #d1d5db;
+  border-radius: 4px;
+  margin-right: 12px;
+  display: grid;
+  place-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  background-color: #fff;
+}
+
+/* Hover state */
+.checkBox input[type="checkbox"]:hover {
+  border-color: #2563eb;
+}
+
+/* Checked state background */
+.checkBox input[type="checkbox"]:checked {
+  background-color: #2563eb;
+  border-color: #2563eb;
+}
+
+/* The checkmark (created with a clip-path) */
+.checkBox input[type="checkbox"]::before {
+  content: "";
+  width: 10px;
+  height: 10px;
+  transform: scale(0);
+  transition: 120ms transform ease-in-out;
+  box-shadow: inset 1em 1em white;
+  /* Creates a checkmark shape */
+  clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+}
+
+.checkBox input[type="checkbox"]:checked::before {
+  transform: scale(1);
+}
+
+/* Focus state for accessibility */
+.checkBox input[type="checkbox"]:focus {
+  outline: 2px solid #bfdbfe;
+  outline-offset: 2px;
+}
+
+/* Reshedule */
+.resheduleModalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+.resheduleModalContainer {
+  width: 600px;
+  height: 450px;
+  max-width: 95%;
+  background-color: #ffffff;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  position: relative;
 }
