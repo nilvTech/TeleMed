@@ -30,6 +30,11 @@ import ProgressPage from "./Provider/Monitoring/Progress";
 import SettingPage from "./Provider/Setting/Setting";
 import SupportPage from "./Provider/Support/SupportPage";
 import PatientAppointments from "./Patients/Appointment/PatientAppointment";
+import PatientVisitNotes from "./Patients/MedicalRecords/VisitNotes";
+import { Presentation } from "lucide-react";
+import Prescription from "./Patients/MedicalRecords/Prescription";
+import PatientLabOrders from "./Patients/MedicalRecords/LabOrders";
+import PatientPrescription from "./Patients/MedicalRecords/Prescription";
 
 //import MainContent from "./DashboardContent/Maincontent";
 //import { Dashboard } from "@mui/icons-material";
@@ -80,6 +85,9 @@ function App() {
           <Route element={<PatientLayout />}>
             <Route path="/Patient/Dasboard" element={<PatientDashboard />} />
             <Route path="/Patient/Appointment" element={<PatientAppointments />} />
+            <Route path="/MedicalRecords/VisitNotes" element={<PatientVisitNotes/>} />
+            <Route path="/MedicalRecords/Prescription" element={<PatientPrescription/>} />
+            <Route path="/MedicalRecords/LabOrders" element={<PatientLabOrders/>} />
           </Route>
         </Routes>
       </BrowserRouter>

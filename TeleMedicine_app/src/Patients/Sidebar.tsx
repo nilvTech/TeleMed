@@ -59,11 +59,11 @@ function SideBar() {
             </div>
             {openMedicalRecords && (
               <div className={styles.subMenu}>
-                <Link to="#">
+                <Link to="/MedicalRecords/VisitNotes">
                   <MdNotes className={styles.SubSectionIcon} />
                   Visit Notes
                 </Link>
-                <Link to="#">
+                <Link to="/MedicalRecords/Prescription">
                   <MdMedication className={styles.SubSectionIcon} />
                   Prescriptions
                 </Link>
