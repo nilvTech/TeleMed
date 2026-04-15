@@ -17,7 +17,7 @@ const ConversationItem: React.FC<Props> = ({ conversation }) => {
   //Unread Count data from store
   const getUndreadCount = useMessageStore((state) => state.getUnreadCount);
 
-  const unreadCount = getUndreadCount(conversation.id);
+  const unreadCount = getUndreadCount(conversation.id); 
 
 
 

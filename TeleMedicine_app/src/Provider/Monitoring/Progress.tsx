@@ -1,4 +1,3 @@
-// Progress.tsx (Provider selects Patient first before tracking progress)
 import { useState } from "react";
 import styles from "./ProgressPage.module.css";
 

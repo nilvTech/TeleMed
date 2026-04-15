@@ -71,7 +71,7 @@ function SideBar() {
                   <MdScience className={styles.SubSectionIcon} />
                   Lab Orders
                 </Link>
-                <Link to="#">
+                <Link to="/MedicalRecords/Files">
                   <MdAssignment className={styles.SubSectionIcon} />
                   Files
                 </Link>

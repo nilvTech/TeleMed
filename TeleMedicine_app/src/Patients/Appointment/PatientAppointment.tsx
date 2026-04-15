@@ -21,7 +21,7 @@ const Appointments: Booking[] = [
     SelectedTimeSlots: "10:30 AM",
     Provider: "Dr. Sharma",
     VisitType: "Video Visit",
-    Status: "Upcoming", // Logic: Scheduled/Active
+    Status: "Upcoming", 
     Speciality: "General Medicine",
     ReasonForVisit: "",
     PreferredPharmacy: "",
@@ -206,10 +206,11 @@ function PatientAppointments() {
       </div>
       {/* Filter / Tabs Section  */}
       <div className={styles.tabsContainer}>
-        {tabs.map((tab) => (
+        {tabs.map((tab,index) => (
           <button
             className={`${styles.tab} ${activeTab === tab ? styles.tabActive : ""}`}
             onClick={() => setActiveTab(tab)}
+            key={index}
           >
             {tab}
           </button>
@@ -221,8 +222,8 @@ function PatientAppointments() {
           .filter((item) =>
             activeTab === "All" ? true : item.Status === activeTab,
           )
-          .map((appointment) => (
-            <div className={styles.card}>
+          .map((appointment,index) => (
+            <div className={styles.card} key={index}>
               <div className={styles.cardLeft}>
                 <span className={styles.date}>
                   {new Intl.DateTimeFormat("en-US", {
@@ -263,7 +264,7 @@ function PatientAppointments() {
 
       {/* 
       Booking Modal
-      Logic for open/close and step navigation to be implemented */}
+      Logic for open/close and step navigation */}
 
       {bookingModal && (
         <div className={styles.modalOverlay}>

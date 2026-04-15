@@ -64,7 +64,7 @@ function PatientLabOrders() {
     const matchDate = filteredDate === "" || orders.orderDate === filteredDate;
     return matchStatus && matchDate;
   });
-const handleDownloadReport = (order: LabOrder) => {
+  const handleDownloadReport = (order: LabOrder) => {
     const doc = new jsPDF();
     const indigoTheme = [99, 102, 241]; // Indigo Accent
 
@@ -76,7 +76,7 @@ const handleDownloadReport = (order: LabOrder) => {
     doc.setFont("helvetica", "bold");
     doc.setFontSize(26);
     doc.text("TeleMed", 20, 25);
-    
+
     doc.setFontSize(10);
     doc.setFont("helvetica", "normal");
     doc.text("Laboratory Services & Diagnostics", 20, 32);
@@ -100,7 +100,12 @@ const handleDownloadReport = (order: LabOrder) => {
     const startY = 80;
     const rowHeight = 12;
 
-    const drawRow = (label: string, value: string, y: number, isStatus = false) => {
+    const drawRow = (
+      label: string,
+      value: string,
+      y: number,
+      isStatus = false,
+    ) => {
       doc.setFontSize(11);
       doc.setTextColor(107, 114, 128);
       doc.setFont("helvetica", "normal");
@@ -108,43 +113,63 @@ const handleDownloadReport = (order: LabOrder) => {
 
       if (isStatus) {
         // Status Badge Styling
-        const statusColor = order.status === "Completed" ? [16, 185, 129] : [217, 119, 6];
+        const statusColor =
+          order.status === "Completed" ? [16, 185, 129] : [217, 119, 6];
         doc.setTextColor(statusColor[0], statusColor[1], statusColor[2]);
       } else {
         doc.setTextColor(17, 24, 39);
       }
-      
+
       doc.setFont("helvetica", "bold");
       doc.text(value, 70, y);
     };
 
     drawRow("Test Name", order.testName, startY);
     drawRow("Ordered By", order.provider, startY + rowHeight);
-    drawRow("Lab Facility", order.labName, startY + (rowHeight * 2));
-    drawRow("Request Date", order.orderDate, startY + (rowHeight * 3));
-    drawRow("Current Status", order.status.toUpperCase(), startY + (rowHeight * 4), true);
+    drawRow("Lab Facility", order.labName, startY + rowHeight * 2);
+    drawRow("Request Date", order.orderDate, startY + rowHeight * 3);
+    drawRow(
+      "Current Status",
+      order.status.toUpperCase(),
+      startY + rowHeight * 4,
+      true,
+    );
 
     // --- 5. Footer / Disclaimer Box ---
     doc.setFillColor(249, 250, 251);
     doc.roundedRect(20, 150, 170, 30, 3, 3, "F");
-    
+
     doc.setFontSize(9);
     doc.setTextColor(75, 85, 99);
     doc.setFont("helvetica", "italic");
-    doc.text("Note: This document serves as an official order for diagnostic testing.", 25, 160);
-    doc.text("Please present this report at the lab facility listed above.", 25, 166);
-    doc.text("Results will be sent directly to your provider upon completion.", 25, 172);
+    doc.text(
+      "Note: This document serves as an official order for diagnostic testing.",
+      25,
+      160,
+    );
+    doc.text(
+      "Please present this report at the lab facility listed above.",
+      25,
+      166,
+    );
+    doc.text(
+      "Results will be sent directly to your provider upon completion.",
+      25,
+      172,
+    );
 
     // Bottom Line Footer
     doc.setDrawColor(229, 231, 235);
     doc.line(20, 275, 190, 275);
-    
+
     doc.setFont("helvetica", "normal");
     doc.setFontSize(8);
     doc.setTextColor(156, 163, 175);
-    doc.text("TeleMed Diagnostic Network • Secure Digital Record", 105, 282, { align: "center" });
+    doc.text("TeleMed Diagnostic Network • Secure Digital Record", 105, 282, {
+      align: "center",
+    });
 
-    doc.save(`Lab-Report-${order.id}.pdf`);
+    doc.save(`Lab-Report-${order.labName}.pdf`);
   };
 
   return (
@@ -211,7 +236,10 @@ const handleDownloadReport = (order: LabOrder) => {
                   View Details
                 </button>
 
-                <button className={styles.secondaryButton} onClick={()=>handleDownloadReport(order)}>
+                <button
+                  className={styles.secondaryButton}
+                  onClick={() => handleDownloadReport(order)}
+                >
                   Download Report
                 </button>
               </div>

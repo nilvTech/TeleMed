@@ -42,7 +42,7 @@ function PatientDashboard() {
         </div>
       </div>
 
-                        {/* Upcoming Appointment Section */}
+      {/* Upcoming Appointment Section */}
       <div className={styles.upcomingSection}>
         <h2 className={styles.sectionTitle}>Upcoming Appointment</h2>
         <div className={styles.upcomingCard}>
@@ -53,14 +53,14 @@ function PatientDashboard() {
             </span>
           </div>
           <div className={styles.upcomingActions}>
-            <button className={styles.joinButton} >Join Visit</button>
+            <button className={styles.joinButton}>Join Visit</button>
             <button className={styles.secondaryButton}>View Details</button>
           </div>
         </div>
       </div>
 
       {/* Quick Actions Section */}
-      <div className={styles.quickActionsSection}>
+      {/* <div className={styles.quickActionsSection}>
         <h2 className={styles.sectionTitle}>Quick Actions</h2>
         <div className={styles.quickActionsGrid}>
           <button className={styles.actionButton}>Book Appointment</button>
@@ -68,6 +68,42 @@ function PatientDashboard() {
           <button className={styles.actionButton}>Send Message</button>
           <button className={styles.actionButton}>View Records</button>
           <button className={styles.actionButton}>View Billing</button>
+        </div>
+      </div> */}
+
+      <div className={styles.className}>
+        {/* Recent Activity Section */}
+        <div className={styles.activitySection}>
+          <h2 className={styles.sectionTitle}>Recent Activity</h2>
+
+          <div className={styles.activityList}>
+            <div className={styles.activityItem}>
+              <span className={styles.activityText}>Prescription updated</span>
+              <span className={styles.activityDate}>02 Apr 2026</span>
+            </div>
+
+            <div className={styles.activityItem}>
+              <span className={styles.activityText}>Lab report uploaded</span>
+              <span className={styles.activityDate}>30 Mar 2026</span>
+            </div>
+
+            <div className={styles.activityItem}>
+              <span className={styles.activityText}>Appointment scheduled</span>
+              <span className={styles.activityDate}>28 Mar 2026</span>
+            </div>
+          </div>
+        </div>
+
+        {/* Prescription Reminder Section */}
+        <div className={styles.prescriptionSection}>
+          <h2 className={styles.sectionTitle}>Prescription Reminder</h2>
+          <div className={styles.prescriptionCard}>
+            <div className={styles.prescriptionInfo}>
+              <span className={styles.medicineName}>Paracetamol</span>
+              <span className={styles.medicineDose}>Take 2 times daily</span>
+            </div>
+            <div className={styles.nextDose}>Next Dose: 8:00 PM</div>
+          </div>
         </div>
       </div>
 
@@ -86,40 +122,6 @@ function PatientDashboard() {
           <div className={styles.healthItem}>
             <span className={styles.healthLabel}>Heart Rate</span>
             <span className={styles.healthValue}>72 bpm</span>
-          </div>
-        </div>
-      </div>
-
-      {/* Prescription Reminder Section */}
-      <div className={styles.prescriptionSection}>
-        <h2 className={styles.sectionTitle}>Prescription Reminder</h2>
-        <div className={styles.prescriptionCard}>
-          <div className={styles.prescriptionInfo}>
-            <span className={styles.medicineName}>Paracetamol</span>
-            <span className={styles.medicineDose}>Take 2 times daily</span>
-          </div>
-          <div className={styles.nextDose}>Next Dose: 8:00 PM</div>
-        </div>
-      </div>
-
-      {/* Recent Activity Section */}
-      <div className={styles.activitySection}>
-        <h2 className={styles.sectionTitle}>Recent Activity</h2>
-
-        <div className={styles.activityList}>
-          <div className={styles.activityItem}>
-            <span className={styles.activityText}>Prescription updated</span>
-            <span className={styles.activityDate}>02 Apr 2026</span>
-          </div>
-
-          <div className={styles.activityItem}>
-            <span className={styles.activityText}>Lab report uploaded</span>
-            <span className={styles.activityDate}>30 Mar 2026</span>
-          </div>
-
-          <div className={styles.activityItem}>
-            <span className={styles.activityText}>Appointment scheduled</span>
-            <span className={styles.activityDate}>28 Mar 2026</span>
           </div>
         </div>
       </div>
