@@ -34,6 +34,7 @@ import PatientVisitNotes from "./Patients/MedicalRecords/VisitNotes";
 import PatientLabOrders from "./Patients/MedicalRecords/LabOrders";
 import PatientPrescription from "./Patients/MedicalRecords/Prescription";
 import Files from "./Patients/MedicalRecords/Files";
+import PatientMessage from "./Patients/Messages/Messages";
 
 //import MainContent from "./DashboardContent/Maincontent";
 //import { Dashboard } from "@mui/icons-material";
@@ -88,6 +89,7 @@ function App() {
             <Route path="/MedicalRecords/Prescription" element={<PatientPrescription/>} />
             <Route path="/MedicalRecords/LabOrders" element={<PatientLabOrders/>} />
             <Route path="/MedicalRecords/Files" element={<Files/>} />
+            <Route path="/Messages" element={<PatientMessage/>} />
           </Route>
         </Routes>
       </BrowserRouter>

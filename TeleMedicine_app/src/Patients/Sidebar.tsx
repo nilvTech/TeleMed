@@ -86,7 +86,7 @@ function SideBar() {
             </div>
             {openMessages && (
               <div className={styles.subMenu}>
-                <Link to="#">
+                <Link to="/Messages">
                   <IoChatbubbleEllipsesSharp className={styles.SubSectionIcon} />
                   Chat
                 </Link>
