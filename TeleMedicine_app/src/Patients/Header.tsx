@@ -98,12 +98,12 @@ function Header() {
   }, []);
 
   /* ---------------- LOGOUT CONFIRMATION ---------------- */
-
+  
   const handleLogoutClick = (
     e: React.MouseEvent<HTMLDivElement>
   ) => {
     e.stopPropagation();
-
+    
     setShowMenu(false);
     setShowConfirm(true);
   };
@@ -111,15 +111,21 @@ function Header() {
   const cancelLogout = () => {
     setShowConfirm(false);
   };
-
+  
   const confirmLogout = () => {
     handleLogout();
     setShowConfirm(false);
   };
-
-  const handleProfile = ()=>{
+  
+  /* ---------------- Profile Click ---------------- */
+  const handleProfileClick = ()=>{
+    navigate("/Patient/Setting",
+      {
+        state:{setIsEditingProfile:true}
+      }
+    );
     setShowMenu(false);
-  }
+  };
 
   return (
     <header>
@@ -169,7 +175,7 @@ function Header() {
               >
                 <div
                   className={styles.menuItem}
-                  onClick={handleProfile}
+                  onClick={handleProfileClick}
                 >
                   Profile
                   <ImProfile

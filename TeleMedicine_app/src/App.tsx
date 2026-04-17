@@ -35,6 +35,9 @@ import PatientLabOrders from "./Patients/MedicalRecords/LabOrders";
 import PatientPrescription from "./Patients/MedicalRecords/Prescription";
 import Files from "./Patients/MedicalRecords/Files";
 import PatientMessage from "./Patients/Messages/Messages";
+import Billing from "./Patients/Payments/Billing";
+import Setting from "./Patients/Settings/Setting";
+import Support from "./Patients/Support/Support";
 
 //import MainContent from "./DashboardContent/Maincontent";
 //import { Dashboard } from "@mui/icons-material";
@@ -89,7 +92,10 @@ function App() {
             <Route path="/MedicalRecords/Prescription" element={<PatientPrescription/>} />
             <Route path="/MedicalRecords/LabOrders" element={<PatientLabOrders/>} />
             <Route path="/MedicalRecords/Files" element={<Files/>} />
-            <Route path="/Messages" element={<PatientMessage/>} />
+            <Route path="/Messages/Chat" element={<PatientMessage/>} />
+            <Route path="/Payments/Billing" element={<Billing/>} />
+            <Route path="/Patient/Setting" element={<Setting/>} />
+            <Route path="/Patient/Support" element={<Support/>} />
           </Route>
         </Routes>
       </BrowserRouter>

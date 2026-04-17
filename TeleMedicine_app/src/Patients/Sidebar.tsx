@@ -86,7 +86,7 @@ function SideBar() {
             </div>
             {openMessages && (
               <div className={styles.subMenu}>
-                <Link to="/Messages">
+                <Link to="/Messages/Chat">
                   <IoChatbubbleEllipsesSharp className={styles.SubSectionIcon} />
                   Chat
                 </Link>
@@ -102,7 +102,7 @@ function SideBar() {
             </div>
             {openPayments && (
               <div className={styles.subMenu}>
-                <Link to="#">
+                <Link to="/Payments/Billing">
                   <FaMoneyBills className={styles.SubSectionIcon} />
                   Billing
                 </Link>
@@ -111,14 +111,14 @@ function SideBar() {
           </div>
 
           {/* <Link to="/Files"><MdAttachFile className={styles.SectionIcon}/>Files</Link> */}
-          <Link to="#">
+          {/* <Link to="#">
             <MdHealthAndSafety  className={styles.SectionIcon}/>Insurance
-          </Link>
-          <Link to="#">
+          </Link> */}
+          <Link to="/Patient/Setting">
             <MdSettings className={styles.SectionIcon} />
             Settings
           </Link>
-          <Link to="#">
+          <Link to="/Patient/Support">
             <MdHelpCenter className={styles.SectionIcon} />
             Support
           </Link>
