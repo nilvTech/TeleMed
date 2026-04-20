@@ -46,7 +46,7 @@ function Login({ setLogin }: LoginProps) {
     } else if (form.role === "Provider") {
       NavToDashboard("/Dashboard");
     } else if (form.role === "Admin") {
-      NavToDashboard("/Admin/Dasboard");
+      NavToDashboard("/Admin/Dashboard");
     }
   };
 

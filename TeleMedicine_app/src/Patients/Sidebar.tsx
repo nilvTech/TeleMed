@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import styles from "./Sidebar.module.css";
 import { useState } from "react";
 import {
@@ -12,7 +12,6 @@ import {
   MdHelpCenter,
   MdScience,
   MdOutlinePayment,
-  MdHealthAndSafety,
 } from "react-icons/md";
 import { LuMessageSquareDot } from "react-icons/lu";
 import { IoChatbubbleEllipsesSharp } from "react-icons/io5";
@@ -30,9 +29,9 @@ function SideBar() {
   const toggleMessages = () => {
     setOpenMessages(!openMessages);
   };
-  const togglePayments = ()=>{
+  const togglePayments = () => {
     setOpenPayments(!openPayments);
-  }
+  };
 
   return (
     <>
@@ -40,14 +39,20 @@ function SideBar() {
         <h3>TeleMed</h3>
 
         <div className={styles.content}>
-          <Link to="/Patient/Dasboard">
+          <NavLink
+            to="/Patient/Dasboard"
+            className={({ isActive }) => ` ${isActive ? styles.active : ""}`}
+          >
             <MdDashboard className={styles.SectionIcon} />
             Dashboard
-          </Link>
-          <Link to="/Patient/Appointment">
+          </NavLink>
+          <NavLink
+            to="/Patient/Appointment"
+            className={({ isActive }) => ` ${isActive ? styles.active : ""}`}
+          >
             <MdCalendarToday className={styles.SectionIcon} />
             Appointment
-          </Link>
+          </NavLink>
 
           {/* Sub Sections */}
           <div className={styles.menuGroup}>
@@ -59,22 +64,42 @@ function SideBar() {
             </div>
             {openMedicalRecords && (
               <div className={styles.subMenu}>
-                <Link to="/MedicalRecords/VisitNotes">
+                <NavLink
+                  to="/MedicalRecords/VisitNotes"
+                  className={({ isActive }) =>
+                    ` ${isActive ? styles.active : ""}`
+                  }
+                >
                   <MdNotes className={styles.SubSectionIcon} />
                   Visit Notes
-                </Link>
-                <Link to="/MedicalRecords/Prescription">
+                </NavLink>
+                <NavLink
+                  to="/MedicalRecords/Prescription"
+                  className={({ isActive }) =>
+                    ` ${isActive ? styles.active : ""}`
+                  }
+                >
                   <MdMedication className={styles.SubSectionIcon} />
                   Prescriptions
-                </Link>
-                <Link to="/MedicalRecords/LabOrders">
+                </NavLink>
+                <NavLink
+                  to="/MedicalRecords/LabOrders"
+                  className={({ isActive }) =>
+                    ` ${isActive ? styles.active : ""}`
+                  }
+                >
                   <MdScience className={styles.SubSectionIcon} />
                   Lab Orders
-                </Link>
-                <Link to="/MedicalRecords/Files">
+                </NavLink>
+                <NavLink
+                  to="/MedicalRecords/Files"
+                  className={({ isActive }) =>
+                    ` ${isActive ? styles.active : ""}`
+                  }
+                >
                   <MdAssignment className={styles.SubSectionIcon} />
                   Files
-                </Link>
+                </NavLink>
               </div>
             )}
 
@@ -86,42 +111,60 @@ function SideBar() {
             </div>
             {openMessages && (
               <div className={styles.subMenu}>
-                <Link to="/Messages/Chat">
-                  <IoChatbubbleEllipsesSharp className={styles.SubSectionIcon} />
+                <NavLink
+                  to="/Messages/Chat"
+                  className={({ isActive }) =>
+                    ` ${isActive ? styles.active : ""}`
+                  }
+                >
+                  <IoChatbubbleEllipsesSharp
+                    className={styles.SubSectionIcon}
+                  />
                   Chat
-                </Link>
-                {/* <Link to="/CarePlansOrExercise"><MdSelfImprovement className={styles.SubSectionIcon} />Care Plans / Exercise</Link> */}
+                </NavLink>
+                {/* <NavLink to="/CarePlansOrExercise"><MdSelfImprovement className={styles.SubSectionIcon} />Care Plans / Exercise</NavLink> */}
               </div>
             )}
 
-              {/* Payment Section */}
+            {/* Payment Section */}
             <div className={styles.menuTitle} onClick={togglePayments}>
-              <MdOutlinePayment    className={styles.SectionIcon} />
+              <MdOutlinePayment className={styles.SectionIcon} />
               Payments
               {openPayments ? <FiChevronDown /> : <FiChevronRight />}{" "}
             </div>
             {openPayments && (
               <div className={styles.subMenu}>
-                <Link to="/Payments/Billing">
+                <NavLink
+                  to="/Payments/Billing"
+                  className={({ isActive }) =>
+                    ` ${isActive ? styles.active : ""}`
+                  }
+                >
                   <FaMoneyBills className={styles.SubSectionIcon} />
                   Billing
-                </Link>
+                </NavLink>
               </div>
             )}
           </div>
 
-          {/* <Link to="/Files"><MdAttachFile className={styles.SectionIcon}/>Files</Link> */}
-          {/* <Link to="#">
+          {/* <NavLink to="/Files"><MdAttachFile className={styles.SectionIcon}/>Files</NavLink> */}
+          {/* <NavLink to="#">
             <MdHealthAndSafety  className={styles.SectionIcon}/>Insurance
-          </Link> */}
-          <Link to="/Patient/Setting">
+          </NavLink> */}
+          <NavLink
+            to="/Patient/Setting"
+            className={({ isActive }) => ` ${isActive ? styles.active : ""}`}
+          >
             <MdSettings className={styles.SectionIcon} />
             Settings
-          </Link>
-          <Link to="/Patient/Support">
+          </NavLink>
+          <NavLink
+            to="/Patient/Support"
+            className={({ isActive }) => ` ${isActive ? styles.active : ""}`}
+          >
             <MdHelpCenter className={styles.SectionIcon} />
             Support
-          </Link>
+          </NavLink>
         </div>
       </div>
     </>

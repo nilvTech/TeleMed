@@ -10,7 +10,7 @@ import PatientDetailsPage from "./Provider/Patients/PatientDetailsPage";
 import ProviderLayout from "./Layout/ProviderLayout";
 import MainContent from "./Provider/DashboardContent/ProviderDashboard/Dashboard";
 import AdminLayout from "./Layout/AdminLayout";
-import AdminDashboard from "./Admin/Dashboard";
+import AdminDashboard from "./Admin/Dashboard/AdminDashboard";
 import PatientLayout from "./Layout/PatientLayout";
 import PatientDashboard from "./Patients/Dashboard/PatientDashboard";
 import Documents from "./Provider/Patients/PatientDetailsTab/Documents";
@@ -55,7 +55,7 @@ function App() {
           </Route>
 
           <Route element={<AdminLayout />}>
-            <Route path="/Admin/Dasboard" element={<AdminDashboard />} />
+            <Route path="/Admin/Dashboard" element={<AdminDashboard />} />
           </Route>
 
           <Route element={<ProviderLayout />}>

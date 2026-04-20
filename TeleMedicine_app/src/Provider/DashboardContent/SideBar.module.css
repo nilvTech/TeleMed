@@ -52,7 +52,7 @@
 
 /* Active link style (optional later) */
 .content a.active {
-  background-color: #2a78b8;
+  background-color: #6a7d8a;
   border-left: 4px solid #fff;
 }
 
@@ -65,7 +65,7 @@
   transition: all 0.2s
 }
 .menuTitle:active{
-   background-color: #2a78b8;
+   background-color: #6a7d8a;
   border-left: 4px solid #fff;
 }
 

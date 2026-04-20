@@ -16,7 +16,6 @@
   flex-direction: column;
   box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
   overflow-y: auto;
-
 }
 
 /* Logo / Title */
@@ -52,20 +51,20 @@
 
 /* Active link style (optional later) */
 .content a.active {
-  background-color: #2a78b8;
-  border-left: 4px solid #fff;
+  background-color: #6a7d8a;
+  border-left: 1px solid #fff;
 }
 
 /* Clinical Module */
 .menuTitle:hover {
   color: black;
   background-color: #6a7d8a;
-  padding-left:32px;
+  padding-left: 32px;
   text-decoration: none;
-  transition: all 0.2s
+  transition: all 0.2s;
 }
-.menuTitle:active{
-   background-color: #2a78b8;
+.menuTitle:active {
+  background-color: #2a78b8;
   border-left: 4px solid #fff;
 }
 
@@ -85,9 +84,9 @@
   font-size: 14px;
 }
 
-.SectionIcon{
-  margin: 0px 10px 3px 0px ;
+.SectionIcon {
+  margin: 0px 10px 3px 0px;
 }
-.SubSectionIcon{
-  margin: 0px 6px 2px 0px ;
+.SubSectionIcon {
+  margin: 0px 6px 2px 0px;
 }

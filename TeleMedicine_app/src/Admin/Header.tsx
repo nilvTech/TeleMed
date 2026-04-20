@@ -10,12 +10,12 @@ function Header() {
     <header>
       <div className={styles.header}>
         <div className={styles.searchcontainer}>
-          <input
+          {/* <input
             type="text"
             placeholder="Search patients, appointments..."
             className={styles.searchInput}
             style={{ width: "400px" }}
-          />
+          /> */}
         </div>
         <div className={styles.headerRight}>
           <MdNotificationsNone className={styles.notificationIcon} />
