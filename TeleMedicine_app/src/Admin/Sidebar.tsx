@@ -17,7 +17,10 @@ function SideBar() {
             <MdDashboard className={styles.SectionIcon} />
             Dashboard
           </NavLink>
-          <NavLink to="#">
+          <NavLink
+            to="/Admin/Providers"
+            className={({ isActive }) => ` ${isActive ? styles.active : ""}`}
+          >
             <MdPeopleAlt className={styles.SectionIcon} />
             Providers
           </NavLink>

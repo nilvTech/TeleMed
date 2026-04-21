@@ -1,14 +1,5 @@
 import React from 'react';
-import {
-  LineChart,
-  Line,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  Legend,
-  ResponsiveContainer
-} from 'recharts';
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 import DashboardChartCard from './DashboardCCard';
 import styles from './Charts.module.css';
 
@@ -23,7 +14,7 @@ interface AppointmentsTrendChartProps {
   data: AppointmentData[];
 }
 
-const CustomTooltip: React.FC<any> = ({ active, payload,  }) => { //label
+const CustomTooltip: React.FC<any> = ({ active, payload }) => {
   if (active && payload && payload.length) {
     return (
       <div className={styles.customTooltip}>

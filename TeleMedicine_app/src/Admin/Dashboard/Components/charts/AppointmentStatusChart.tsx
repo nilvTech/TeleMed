@@ -13,7 +13,7 @@ interface AppointmentStatusChartProps {
   data: StatusData[];
 }
 
-const CustomTooltip: React.FC<any> = ({ active, payload }) => {
+const CustomTooltip: React.FC<any> = ({ active, payload}) => {
   if (active && payload && payload.length) {
     const data = payload[0];
     const percentage = ((data.value / data.payload.total) * 100).toFixed(1);
@@ -44,7 +44,7 @@ const AppointmentStatusChart: React.FC<AppointmentStatusChartProps> = ({ data })
             data={dataWithTotal}
             cx="50%"
             cy="50%"
-            labelLine={false}
+            labelLine={true}
             label={({ name, percent }) => `${name} ${(percent! * 100).toFixed(0)}%`}
             outerRadius={80}
             fill="#8884d8"

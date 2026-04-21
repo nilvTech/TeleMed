@@ -116,8 +116,8 @@ const systemAlertsData: SystemAlert[] = [
 
 const appointmentsTrendData = [
   { date: 'Mon', scheduled: 32, completed: 28, cancelled: 4 },
-  { date: 'Tue', scheduled: 38, completed: 35, cancelled: 3 },
-  { date: 'Wed', scheduled: 45, completed: 42, cancelled: 3 },
+  { date: 'Tue', scheduled: 38, completed: 15, cancelled: 3 },
+  { date: 'Wed', scheduled: 45, completed: 22, cancelled: 4 },
   { date: 'Thu', scheduled: 42, completed: 39, cancelled: 3 },
   { date: 'Fri', scheduled: 48, completed: 45, cancelled: 3 },
   { date: 'Sat', scheduled: 28, completed: 26, cancelled: 2 },
@@ -125,13 +125,13 @@ const appointmentsTrendData = [
 ];
 
 const revenueTrendData = [
-  { date: 'Mon', daily: 15200, weekly: 15200, monthly: 15200 },
-  { date: 'Tue', daily: 16800, weekly: 32000, monthly: 32000 },
-  { date: 'Wed', daily: 18500, weekly: 50500, monthly: 50500 },
-  { date: 'Thu', daily: 17200, weekly: 67700, monthly: 67700 },
-  { date: 'Fri', daily: 19300, weekly: 87000, monthly: 87000 },
-  { date: 'Sat', daily: 12400, weekly: 99400, monthly: 99400 },
-  { date: 'Sun', daily: 10800, weekly: 110200, monthly: 110200 },
+  { date: 'Mon', daily: 15200, weekly: 50200, monthly: 100200 },
+  { date: 'Tue', daily: 16800, weekly: 70300, monthly: 120300 },
+  { date: 'Wed', daily: 18500, weekly: 80500, monthly: 95500 },
+  { date: 'Thu', daily: 17200, weekly: 67700, monthly: 110700 },
+  { date: 'Fri', daily: 19300, weekly: 87000, monthly: 164000 },
+  { date: 'Sat', daily: 12400, weekly: 99400, monthly: 114400 },
+  { date: 'Sun', daily: 10800, weekly: 110200, monthly: 150200 },
 ];
 
 const appointmentStatusData = [
