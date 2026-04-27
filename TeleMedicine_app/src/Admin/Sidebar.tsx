@@ -24,7 +24,10 @@ function SideBar() {
             <MdPeopleAlt className={styles.SectionIcon} />
             Providers
           </NavLink>
-          <NavLink to="#">
+          <NavLink
+            to="/Admin/Appointments"
+            className={({ isActive }) => ` ${isActive ? styles.active : ""}`}
+          >
             <MdCalendarToday className={styles.SectionIcon} />
             Appointments
           </NavLink>

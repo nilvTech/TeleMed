@@ -897,7 +897,7 @@ const Providers: React.FC = () => {
   const [filterAvail, setFilterAvail] = useState("All Availability");
   const [selectedRows, setSelectedRows] = useState<Set<string>>(new Set());
   const [currentPage, setCurrentPage] = useState(1);
-  const [pageSize, setPageSize] = useState(10);
+  const [pageSize, setPageSize] = useState(5);
   const [loading] = useState(false);
   const [toast, setToast] = useState<string | null>(null);
   const [modal, setModal] = useState<ModalType>(null);
