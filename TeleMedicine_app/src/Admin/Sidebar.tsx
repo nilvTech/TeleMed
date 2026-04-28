@@ -31,9 +31,12 @@ function SideBar() {
             <MdCalendarToday className={styles.SectionIcon} />
             Appointments
           </NavLink>
-          <NavLink to="#">
+          <NavLink
+            to="/Admin/Billing&Claims"
+            className={({ isActive }) => ` ${isActive ? styles.active : ""}`}
+          >
             <MdCalendarToday className={styles.SectionIcon} />
-            Billing & Finance
+            Billing & Claims
           </NavLink>
           <NavLink to="#">
             <MdCalendarToday className={styles.SectionIcon} />

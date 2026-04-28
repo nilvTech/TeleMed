@@ -100,10 +100,10 @@ const INITIAL_PROVIDERS: Provider[] = [
     malpracticeInsurance: "Expired", credentialStatus: "Expired", timezone: "PST",
   },
   {
-    id: "6", name: "Dr. Aisha Patel", avatar: "AP", specialty: "Neurology",
+    id: "6", name: "Dr. Maria Lee", avatar: "AP", specialty: "Neurology",
     npi: "6789012345", license: "IL-789123", state: "Illinois", experience: 10,
     status: "Active", lastActive: "30 mins ago", availability: "Available",
-    email: "aisha.patel@telehealth.com", licenseExpiry: "2026-07-10",
+    email: "maria.lee@telehealth.com", licenseExpiry: "2026-07-10",
     deaNumber: "BP3214567", boardCertification: "ABPN", malpracticeInsurance: "Active",
     credentialStatus: "Valid", todaySchedule: "8:00 AM – 4:00 PM", nextSlot: "1:00 PM", timezone: "CST",
   },

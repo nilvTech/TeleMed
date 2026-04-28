@@ -429,7 +429,7 @@ const AppointmentDetailsView: React.FC<DetailsProps> = ({ apt, onBack, onUpdate,
       <div className={styles.actionsPanel}>
         <p className={styles.actionsPanelLabel}>Actions</p>
         <div className={styles.actionsBtnRow}>
-          {current.status === "Scheduled" && (<>
+          {current.status === "Scheduled" && (<>  
             <button className={styles.btnAction} onClick={() => setModal("edit")}>✏️ Edit</button>
             <button className={styles.btnAction} onClick={() => setModal("reschedule")}>📅 Reschedule</button>
             <button className={`${styles.btnAction} ${styles.btnActionDanger}`} onClick={() => setModal("cancel-confirm")}>🚫 Cancel</button>
@@ -541,7 +541,7 @@ const AppointmentDetailsView: React.FC<DetailsProps> = ({ apt, onBack, onUpdate,
         </section>
 
         {/* Timeline */}
-        <section className={`${styles.detailsCard} ${styles.cardTimeline}`} aria-label="Activity Timeline">
+        <section className={`${styles.detailsCard}`} aria-label="Activity Timeline">
           <h2 className={styles.cardTitle}>Activity Timeline</h2>
           <ol className={styles.timeline}>
             {current.timeline.map((entry, i) => (

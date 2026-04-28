@@ -1059,9 +1059,6 @@
   grid-column: 1 / -1;
 }
 
-.cardTimeline {
-  grid-column: 1 / -1;
-}
 
 .cardTitle {
   font-size: 14px;
@@ -1205,7 +1202,7 @@
   .detailsGrid {
     grid-template-columns: 1fr;
   }
-  .cardSummary, .cardTimeline {
+  .cardSummary {
     grid-column: 1;
   }
   .summaryGrid {

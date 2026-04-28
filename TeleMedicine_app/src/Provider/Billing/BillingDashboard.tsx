@@ -32,13 +32,15 @@ function BillingDashboard() {
     <>
       {" "}
       <header className={styles.header}>
-        <div>
-          <h2 className={styles.title}>Billing Overview</h2>
-          <p className={styles.subtitle}>
-            Manage your revenue and claims in real-time.
-          </p>
+        <div className={styles.TopHeader}>
+          <div>
+            <h2 className={styles.title}>Billing Overview</h2>
+            <p className={styles.subtitle}>
+              Manage your revenue and claims in real-time.
+            </p>
+          </div>
+          <button className={styles.primaryBtn}>+ Create Claim</button>
         </div>
-        {/* <button className={styles.primaryBtn}>Generate Report</button> */}
 
         {/* Modern Tabs */}
         <nav className={styles.tabsContainer}>
