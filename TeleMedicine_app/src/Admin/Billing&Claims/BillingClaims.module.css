@@ -76,7 +76,7 @@
   flex-wrap: wrap;
 }
 
-.headerLeft {}
+
 
 .pageTitle {
   font-size: 26px;
@@ -453,7 +453,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 30px;
+  width: fit-content;
   height: 30px;
   border: 1px solid var(--gray-200);
   border-radius: var(--radius-sm);
@@ -463,6 +463,8 @@
   transition: all 0.12s;
   font-size: 12px;
   font-weight: 500;
+  padding: 5px;
+  gap: 5px;
 }
 .actionBtn:hover {
   background: var(--blue-50);
@@ -583,7 +585,6 @@
   margin-top: 4px;
 }
 
-.queueList {}
 
 .queueItem {
   display: flex;
@@ -1056,7 +1057,6 @@
 }
 
 /* ─── Form Styles ────────────────────────────────────────────────────────────── */
-.formSection {}
 
 .formSectionTitle {
   font-size: 13px;

@@ -38,7 +38,10 @@ function SideBar() {
             <MdCalendarToday className={styles.SectionIcon} />
             Billing & Claims
           </NavLink>
-          <NavLink to="#">
+          <NavLink
+            to="/Admin/ClinicalOverview"
+            className={({ isActive }) => ` ${isActive ? styles.active : ""}`}
+          >
             <MdCalendarToday className={styles.SectionIcon} />
             Clinical Oversight
           </NavLink>

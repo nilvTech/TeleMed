@@ -8,7 +8,7 @@ const paymentData = [
     patient: "John Smith",
     provider: "Dr. Michael Chen",
     amount: "$50",
-    method: "Card",
+    method: "Insurance",
     date: "04/02/2026",
     status: "Completed",
   },
@@ -18,7 +18,7 @@ const paymentData = [
     patient: "Mary Brown",
     provider: "Dr. Sarah Lee",
     amount: "$200",
-    method: "UPI",
+    method: "Copay",
     date: "04/01/2026",
     status: "Pending",
   },
@@ -62,7 +62,7 @@ function PaymentPage() {
       <div className={styles.header}>
         <h2>Payments</h2>
 
-        <button className={styles.recordButton}>Record Payment</button>
+        {/* <button className={styles.recordButton}>Record Payment</button> */}
       </div>
 
       {/* Filters */}
@@ -80,7 +80,7 @@ function PaymentPage() {
           value={provider}
           onChange={(e) => setProvider(e.target.value)}
         >
-          <option value="">Provider</option>
+          <option value="" disabled>Provider</option>
           <option value="Dr. Michael Chen">Dr. Michael Chen</option>
           <option value="Dr. Sarah Lee">Dr. Sarah Lee</option>
         </select>
@@ -90,11 +90,9 @@ function PaymentPage() {
           value={method}
           onChange={(e) => setMethod(e.target.value)}
         >
-          <option value="">Payment Method</option>
-          <option value="Card">Card</option>
-          <option value="UPI">UPI</option>
-          <option value="Cash">Cash</option>
-          <option value="Net Banking">Net Banking</option>
+          <option value="" disabled>Payment Method</option>
+          <option value="Insurance">Insurance</option>
+          <option value="Copay">Copay</option>
         </select>
 
         <select

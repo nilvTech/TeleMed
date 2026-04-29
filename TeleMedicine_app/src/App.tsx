@@ -41,6 +41,7 @@ import Support from "./Patients/Support/Support";
 import Providers from "./Admin/Providers/Providers";
 import Appointments from "./Admin/Appointments/Appointments";
 import BillingClaims from "./Admin/Billing&Claims/Billing&Claims";
+import ClinicalOversight from "./Admin/Clinical Oversight/ClinicalOversight";
 
 //import MainContent from "./DashboardContent/Maincontent";
 //import { Dashboard } from "@mui/icons-material";
@@ -62,6 +63,7 @@ function App() {
             <Route path="/Admin/Providers" element={<Providers />} />
             <Route path="/Admin/Appointments" element={<Appointments />} />
             <Route path="/Admin/Billing&Claims" element={<BillingClaims/>} />
+            <Route path="/Admin/ClinicalOverview" element={<ClinicalOversight/>} />
           </Route>
 
           <Route element={<ProviderLayout />}>

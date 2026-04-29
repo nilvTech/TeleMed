@@ -4,11 +4,11 @@ import {
   CreditCard,
   Receipt,
   Wallet,
-  ShieldCheck,
-  BarChart3,
+  
   TrendingUp,
   AlertCircle,
-} from "lucide-react";
+} from "lucide-react"; //ShieldCheck,
+  //BarChart3,
 import styles from "./BillingDashboard.module.css";
 import ChargesPage from "./ChargesPage";
 import InvoicePage from "./Invoice";
@@ -21,8 +21,8 @@ const tabs = [
   { name: "Charges", icon: <CreditCard size={18} /> },
   { name: "Invoices", icon: <Receipt size={18} /> },
   { name: "Payments", icon: <Wallet size={18} /> },
-  { name: "Insurance", icon: <ShieldCheck size={18} /> },
-  { name: "Reports", icon: <BarChart3 size={18} /> },
+  // { name: "Insurance", icon: <ShieldCheck size={18} /> },
+  // { name: "Reports", icon: <BarChart3 size={18} /> },
 ];
 
 function BillingDashboard() {

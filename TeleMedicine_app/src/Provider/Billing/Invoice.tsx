@@ -73,9 +73,9 @@ function InvoicePage() {
       <div className={styles.header}>
         <h2>Invoices</h2>
 
-        <button className={styles.createButton}>
+        {/* <button className={styles.createButton}>
           Create Invoice
-        </button>
+        </button> */}
       </div>
 
       {/* Filters */}
