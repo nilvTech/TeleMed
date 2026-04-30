@@ -501,7 +501,7 @@ outline: none;
   flex-shrink: 0;
 }
 
-.avatarDot {
+/* .avatarDot {
   position: absolute;
   bottom: -1px;
   right: -1px;
@@ -512,7 +512,7 @@ outline: none;
 }
 .dotGreen { background: #22c55e; }
 .dotYellow { background: #f59e0b; }
-.dotGray { background: #94a3b8; }
+.dotGray { background: #94a3b8; } */
 
 .providerName {
   display: block;

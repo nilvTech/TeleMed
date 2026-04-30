@@ -5,7 +5,7 @@ import styles from "./Appointments.module.css";
 
 type AppointmentStatus = "Scheduled" | "In Progress" | "Completed" | "Cancelled" | "No-show";
 type PaymentStatus = "Paid" | "Pending" | "Refunded" | "Failed" | "Waived";
-type VisitType = "Video" | "In-Person" | "Chat";
+type VisitType = "Video" | "In-Person";
 
 interface Appointment {
   id: string;
@@ -70,7 +70,7 @@ const MOCK_APPOINTMENTS: Appointment[] = [
     date: "Apr 27, 2026", time: "10:30 AM", duration: 30,
     reason: "Chest discomfort and shortness of breath follow-up",
     notes: "Patient reported improvement since last visit. Medication adjusted.",
-    status: "Scheduled", paymentStatus: "Pending",
+    status: "Scheduled", paymentStatus: "Paid",
     paymentMethod: "Insurance + Copay", amount: 250, insuranceCoverage: 200,
     patientResponsibility: 50, transactionId: "TXN-88192", invoiceId: "INV-55031",
     paymentDate: "Apr 25, 2026", location: "Virtual", timezone: "CST",
@@ -97,7 +97,7 @@ const MOCK_APPOINTMENTS: Appointment[] = [
     date: "Apr 27, 2026", time: "02:00 PM", duration: 45,
     reason: "Diabetes management quarterly review",
     notes: "HbA1c trending down. Continue current regimen.",
-    status: "In Progress", paymentStatus: "Pending",
+    status: "In Progress", paymentStatus: "Paid",
     paymentMethod: "Insurance", amount: 320, insuranceCoverage: 320,
     patientResponsibility: 0, transactionId: "TXN-88204", invoiceId: "INV-55042",
     paymentDate: "Apr 20, 2026", location: "Dallas Clinic — Room 3B", timezone: "CST",
@@ -141,9 +141,9 @@ const MOCK_APPOINTMENTS: Appointment[] = [
     ],
   },
   {
-    id: "APT-1004", patientName: "Anna Chen", patientId: "PT-10104",
+    id: "APT-1004", patientName: "Priya Patel", patientId: "PT-10104",
     patientDob: "Feb 18, 2000", patientGender: "Female",
-    patientPhone: "(555) 443-9900", patientEmail: "anna.chen@email.com",
+    patientPhone: "(555) 443-9900", patientEmail: "priya.patel@email.com",
     patientAddress: "321 Birch Blvd, San Antonio, TX 78201",
     insuranceProvider: "Cigna", insuranceId: "CGN-219087",
     providerName: "Dr. James Ortiz", providerSpecialty: "General Practice",
@@ -230,7 +230,7 @@ const MOCK_APPOINTMENTS: Appointment[] = [
     date: "Apr 23, 2026", time: "08:30 AM", duration: 60,
     reason: "Pre-operative consultation — left knee replacement",
     notes: "Surgery scheduled for May 15. Labs ordered.",
-    status: "Cancelled", paymentStatus: "Waived",
+    status: "Cancelled", paymentStatus: "Refunded",
     paymentMethod: "Medicare", amount: 0, insuranceCoverage: 0,
     patientResponsibility: 0, transactionId: "TXN-87888", invoiceId: "INV-54990",
     paymentDate: "Apr 23, 2026", location: "Lubbock Ortho — Suite 201", timezone: "CST",
@@ -253,11 +253,11 @@ const MOCK_APPOINTMENTS: Appointment[] = [
     providerName: "Dr. Michael Lee", providerSpecialty: "Endocrinology",
     providerLicense: "TX-MD-29871", providerNPI: "2345678901", providerYears: 9,
     clinicName: "Dallas Endocrine Clinic",
-    specialty: "Endocrinology", visitType: "Chat",
+    specialty: "Endocrinology", visitType: "Video",
     date: "Apr 30, 2026", time: "11:30 AM", duration: 20,
     reason: "Thyroid medication dosage adjustment",
     notes: "Recent labs faxed over — TSH slightly elevated.",
-    status: "Scheduled", paymentStatus: "Pending",
+    status: "Scheduled", paymentStatus: "Paid",
     paymentMethod: "Credit Card", amount: 120, insuranceCoverage: 0,
     patientResponsibility: 120, transactionId: "TXN-88301", invoiceId: "INV-55110",
     paymentDate: "Apr 27, 2026", location: "Virtual", timezone: "CST",
@@ -297,7 +297,7 @@ function paymentClass(p: PaymentStatus, s: typeof styles): string {
   return map[p] ?? "";
 }
 function visitTypeIcon(t: VisitType): string {
-  return { Video: "🎥", "In-Person": "🏥", Chat: "💬" }[t] ?? "🩺";
+  return { Video: "🎥", "In-Person": "🏥"}[t] ?? "🩺";
 }
 
 // ─── Modal ────────────────────────────────────────────────────────────────────
@@ -305,12 +305,21 @@ function visitTypeIcon(t: VisitType): string {
 interface ModalProps { title: string; onClose: () => void; children: React.ReactNode; }
 const Modal: React.FC<ModalProps> = ({ title, onClose, children }) => {
   const ref = useRef<HTMLDivElement>(null);
+  // Always keep a current copy of onClose so the Escape handler never goes stale,
+  // without adding onClose to the effect's dependency array.
+  const onCloseRef = useRef(onClose);
+  useEffect(() => { onCloseRef.current = onClose; });
+
   useEffect(() => {
-    const handleKey = (e: KeyboardEvent) => { if (e.key === "Escape") onClose(); };
+    // Empty deps []: runs ONCE on mount only.
+    // Do NOT add onClose here — it's a new inline arrow on every parent render,
+    // so listing it would re-run focus() after every keystroke and steal focus
+    // away from whichever input the user is typing in.
+    const handleKey = (e: KeyboardEvent) => { if (e.key === "Escape") onCloseRef.current(); };
     document.addEventListener("keydown", handleKey);
     ref.current?.focus();
     return () => document.removeEventListener("keydown", handleKey);
-  }, [onClose]);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
   return (
     <div className={styles.modalOverlay} role="dialog" aria-modal="true" aria-labelledby="modal-title">
       <div className={styles.modalBox} ref={ref} tabIndex={-1}>
@@ -429,7 +438,7 @@ const AppointmentDetailsView: React.FC<DetailsProps> = ({ apt, onBack, onUpdate,
       <div className={styles.actionsPanel}>
         <p className={styles.actionsPanelLabel}>Actions</p>
         <div className={styles.actionsBtnRow}>
-          {current.status === "Scheduled" && (<>  
+          {current.status === "Scheduled" && (<>
             <button className={styles.btnAction} onClick={() => setModal("edit")}>✏️ Edit</button>
             <button className={styles.btnAction} onClick={() => setModal("reschedule")}>📅 Reschedule</button>
             <button className={`${styles.btnAction} ${styles.btnActionDanger}`} onClick={() => setModal("cancel-confirm")}>🚫 Cancel</button>
@@ -541,7 +550,7 @@ const AppointmentDetailsView: React.FC<DetailsProps> = ({ apt, onBack, onUpdate,
         </section>
 
         {/* Timeline */}
-        <section className={`${styles.detailsCard}`} aria-label="Activity Timeline">
+        <section className={`${styles.detailsCard} ${styles.cardTimeline}`} aria-label="Activity Timeline">
           <h2 className={styles.cardTitle}>Activity Timeline</h2>
           <ol className={styles.timeline}>
             {current.timeline.map((entry, i) => (
@@ -580,7 +589,7 @@ const AppointmentDetailsView: React.FC<DetailsProps> = ({ apt, onBack, onUpdate,
             <div className={styles.formGroup}>
               <label className={styles.formLabel}>Visit Type</label>
               <select className={styles.formSelect} value={editForm.visitType} onChange={e => setEditForm(f => ({ ...f, visitType: e.target.value as VisitType }))}>
-                {(["Video","In-Person","Chat"] as VisitType[]).map(v => <option key={v} value={v}>{v}</option>)}
+                {(["Video","In-Person"] as VisitType[]).map(v => <option key={v} value={v}>{v}</option>)}
               </select>
             </div>
             <div className={styles.formGroup}>
@@ -649,16 +658,24 @@ const Appointments: React.FC = () => {
   const [filterStatus, setFilterStatus] = useState("");
   const [filterVisitType, setFilterVisitType] = useState("");
   const [filterProvider, setFilterProvider] = useState("");
-  //const [filterDateRange, setFilterDateRange] = useState("");
+ // const [filterDateRange, setFilterDateRange] = useState("");
   const [filterLocation, setFilterLocation] = useState("");
   const [selectedRows, setSelectedRows] = useState<Set<string>>(new Set());
   const [currentPage, setCurrentPage] = useState(1);
-  const [rowsPerPage, setRowsPerPage] = useState(5);
+  const rowsPerPage = 5;
+  //const [rowsPerPage, setRowsPerPage] = useState(5);
   const [selectedAppointment, setSelectedAppointment] = useState<Appointment | null>(null);
   const [showDetailsView, setShowDetailsView] = useState(false);
   const [toast, setToast] = useState<string | null>(null);
   const [showBulkCancelConfirm, setShowBulkCancelConfirm] = useState(false);
   const [showBulkReminderConfirm, setShowBulkReminderConfirm] = useState(false);
+  // [NEW] Schedule Appointment modal
+  const [showScheduleModal, setShowScheduleModal] = useState(false);
+  const [scheduleForm, setScheduleForm] = useState({
+    patientName: "", patientId: "", patientPhone: "", patientEmail: "",
+    providerName: PROVIDERS[0], visitType: "Video" as VisitType,
+    date: "", time: "", duration: 30, reason: "", notes: "", location: "Virtual",
+  });
 
   useEffect(() => {
     const t = setTimeout(() => setLoading(false), 900);
@@ -669,6 +686,61 @@ const Appointments: React.FC = () => {
     setToast(msg);
     setTimeout(() => setToast(null), 3500);
   }, []);
+
+  // [NEW] Schedule Appointment — generate a new appointment from the form
+  const handleScheduleSave = () => {
+    if (!scheduleForm.patientName || !scheduleForm.date || !scheduleForm.time) return;
+    const newId = `APT-${1000 + appointments.length + 1}`;
+    const provider = MOCK_APPOINTMENTS.find(a => a.providerName === scheduleForm.providerName);
+    const newApt: Appointment = {
+      id: newId,
+      patientName: scheduleForm.patientName,
+      patientId: scheduleForm.patientId || `PT-${Math.floor(10000 + Math.random() * 90000)}`,
+      patientDob: "—", patientGender: "—",
+      patientPhone: scheduleForm.patientPhone,
+      patientEmail: scheduleForm.patientEmail,
+      patientAddress: "—", insuranceProvider: "—", insuranceId: "—",
+      providerName: scheduleForm.providerName,
+      providerSpecialty: provider?.providerSpecialty ?? "—",
+      providerLicense: provider?.providerLicense ?? "—",
+      providerNPI: provider?.providerNPI ?? "—",
+      providerYears: provider?.providerYears ?? 0,
+      clinicName: provider?.clinicName ?? "—",
+      specialty: provider?.specialty ?? "—",
+      visitType: scheduleForm.visitType,
+      date: scheduleForm.date,
+      time: scheduleForm.time,
+      duration: scheduleForm.duration,
+      reason: scheduleForm.reason,
+      notes: scheduleForm.notes,
+      status: "Scheduled",
+      paymentStatus: "Pending",
+      paymentMethod: "—", amount: 0, insuranceCoverage: 0, patientResponsibility: 0,
+      transactionId: "—", invoiceId: `INV-${Math.floor(55000 + Math.random() * 1000)}`,
+      paymentDate: "—",
+      location: scheduleForm.location,
+      timezone: "CST",
+      meetingId: scheduleForm.visitType === "Video" || scheduleForm.visitType === "In-Person"
+        ? `MTG-${Math.floor(1000 + Math.random() * 9000)}-XX` : "—",
+      platform: scheduleForm.visitType === "Video" ? "TeleCare Pro"
+        : scheduleForm.visitType === "In-Person" ? "In-Person" : "—",
+      sessionStatus: "Pending",
+      sessionStart: "—", sessionEnd: "—", recordingAvailable: false,
+      createdAt: "Apr 30, 2026",
+      timeline: [
+        { time: "Apr 30, 2026 " + new Date().toLocaleTimeString(), event: "Appointment scheduled by admin", icon: "📋" },
+        { time: "Apr 30, 2026 " + new Date().toLocaleTimeString(), event: "Confirmation email queued", icon: "📧" },
+      ],
+    };
+    setAppointments(prev => [newApt, ...prev]);
+    setShowScheduleModal(false);
+    setScheduleForm({
+      patientName: "", patientId: "", patientPhone: "", patientEmail: "",
+      providerName: PROVIDERS[0], visitType: "Video", date: "", time: "",
+      duration: 30, reason: "", notes: "", location: "Virtual",
+    });
+    showToast(`Appointment ${newId} scheduled successfully.`);
+  };
 
   const handleUpdate = useCallback((updated: Appointment) => {
     setAppointments(prev => prev.map(a => a.id === updated.id ? updated : a));
@@ -775,9 +847,15 @@ const Appointments: React.FC = () => {
             <h1 className={styles.pageTitle}>Appointments</h1>
             <p className={styles.pageSubtitle}>Monitor and manage all patient appointments across the platform.</p>
           </div>
-          <button className={styles.btnExport} onClick={() => exportCSV(filtered, "appointments_export.csv")} aria-label="Export appointments">
-            ⬇️ Export
-          </button>
+          {/* [NEW] Schedule Appointment button */}
+          <div className={styles.pageTitleActions}>
+            <button className={styles.btnSchedule} onClick={() => setShowScheduleModal(true)} aria-label="Schedule a new appointment">
+              📅 Schedule Appointment
+            </button>
+            <button className={styles.btnExport} onClick={() => exportCSV(filtered, "appointments_export.csv")} aria-label="Export appointments">
+              ⬇️ Export
+            </button>
+          </div>
         </div>
         <div className={styles.controlsRow}>
           <div className={styles.searchWrapper}>
@@ -798,7 +876,7 @@ const Appointments: React.FC = () => {
             </select>
             <select className={styles.filterSelect} value={filterVisitType} onChange={e => { setFilterVisitType(e.target.value); setCurrentPage(1); }} aria-label="Filter by visit type">
               <option value="">All Visit Types</option>
-              {["Video","In-Person","Chat"].map(v => <option key={v} value={v}>{v}</option>)}
+              {["Video","In-Person"].map(v => <option key={v} value={v}>{v}</option>)}
             </select>
             <select className={styles.filterSelect} value={filterProvider} onChange={e => { setFilterProvider(e.target.value); setCurrentPage(1); }} aria-label="Filter by provider">
               <option value="">All Providers</option>
@@ -807,10 +885,10 @@ const Appointments: React.FC = () => {
             <select className={styles.filterSelect} value={filterLocation} onChange={e => { setFilterLocation(e.target.value); setCurrentPage(1); }} aria-label="Filter by location">
               <option value="">All Locations</option>
               <option value="Virtual">Virtual</option>
+              {/* <option value="Phone">Phone</option> */}
+              <option value="In-Person">In-Person</option>
               <option value="Dallas Clinic — Room 3B">Dallas Clinic — Room 3B</option>
               <option value="Lubbock Ortho — Suite 201">Lubbock Ortho — Suite 201</option>
-              {/* <option value="Phone">Phone</option> */}
-              {/* <option value="In-Person">In-Person</option> */}
             </select>
           </div>
         </div>
@@ -834,18 +912,13 @@ const Appointments: React.FC = () => {
 
       {/* Bulk Actions Bar */}
       {selectedRows.size > 0 && (
-        console.log("Selected rows:", selectedRows),
         <div className={styles.bulkBar} role="region" aria-label="Bulk actions">
           <span className={styles.bulkCount}>{selectedRows.size} selected</span>
           <div className={styles.bulkActions}>
-            {
-                !appointments.some(a=> selectedRows.has(a.id) && a.status === "Completed") && (
-                    <>
-                        <button className={styles.btnBulk} onClick={() => setShowBulkCancelConfirm(true)}>🚫 Cancel</button>
-                        <button className={styles.btnBulk} onClick={() => setShowBulkReminderConfirm(true)}>📨 Send Reminder</button>
-                    </>
-                )
-            }
+            {!appointments.some(a => selectedRows.has(a.id) && a.status === "Completed") && (
+              <button className={styles.btnBulk} onClick={() => setShowBulkCancelConfirm(true)}>🚫 Cancel</button>
+            )}
+            <button className={styles.btnBulk} onClick={() => setShowBulkReminderConfirm(true)}>📨 Send Reminder</button>
             <button className={styles.btnBulk} onClick={() => exportCSV(appointments.filter(a => selectedRows.has(a.id)), "selected_appointments.csv")}>⬇️ Export</button>
             <button className={styles.btnBulkClear} onClick={() => setSelectedRows(new Set())}>✕ Clear</button>
           </div>
@@ -941,12 +1014,12 @@ const Appointments: React.FC = () => {
             <span className={styles.paginationInfo}>
               Showing {((currentPage - 1) * rowsPerPage) + 1}–{Math.min(currentPage * rowsPerPage, filtered.length)} of {filtered.length}
             </span>
-            <label className={styles.rowsLabel}>
+            {/* <label className={styles.rowsLabel}>
               Rows per page:
               <select className={styles.rowsSelect} value={rowsPerPage} onChange={e => { setRowsPerPage(+e.target.value); setCurrentPage(1); }} aria-label="Rows per page">
-                {[10,25,50].map(n => <option key={n} value={n}>{n}</option>)}
+                {[5,25,50].map(n => <option key={n} value={n}>{n}</option>)}
               </select>
-            </label>
+            </label> */}
           </div>
           <div className={styles.paginationRight}>
             <button className={styles.pageBtn} onClick={() => setCurrentPage(p => Math.max(1, p - 1))} disabled={currentPage === 1} aria-label="Previous page">‹</button>
@@ -967,6 +1040,116 @@ const Appointments: React.FC = () => {
       {/* Bulk Confirm Dialogs */}
       {showBulkCancelConfirm && <ConfirmDialog message={`Cancel ${selectedRows.size} selected appointment(s)?`} onConfirm={handleBulkCancel} onCancel={() => setShowBulkCancelConfirm(false)} confirmLabel="Cancel Appointments" danger />}
       {showBulkReminderConfirm && <ConfirmDialog message={`Send reminders to ${selectedRows.size} patient(s)?`} onConfirm={handleBulkReminder} onCancel={() => setShowBulkReminderConfirm(false)} confirmLabel="Send Reminders" />}
+
+      {/* Schedule Appointment Modal */}
+      {showScheduleModal && (
+        <Modal title="Schedule Appointment" onClose={() => setShowScheduleModal(false)}>
+          <div className={styles.scheduleSection}>
+            <p className={styles.scheduleSectionLabel}>Patient Information</p>
+            <div className={styles.formRow}>
+              <div className={styles.formGroup}>
+                <label className={styles.formLabel}>Patient Name <span className={styles.required}>*</span></label>
+                <input className={styles.formInput} type="text" placeholder="Full name"
+                  value={scheduleForm.patientName}
+                  onChange={e => setScheduleForm(f => ({ ...f, patientName: e.target.value }))} />
+              </div>
+              <div className={styles.formGroup}>
+                <label className={styles.formLabel}>Patient ID</label>
+                <input className={styles.formInput} type="text" placeholder="e.g. PT-10001"
+                  value={scheduleForm.patientId}
+                  onChange={e => setScheduleForm(f => ({ ...f, patientId: e.target.value }))} />
+              </div>
+            </div>
+            <div className={styles.formRow}>
+              <div className={styles.formGroup}>
+                <label className={styles.formLabel}>Phone</label>
+                <input className={styles.formInput} type="text" placeholder="(555) 000-0000"
+                  value={scheduleForm.patientPhone}
+                  onChange={e => setScheduleForm(f => ({ ...f, patientPhone: e.target.value }))} />
+              </div>
+              <div className={styles.formGroup}>
+                <label className={styles.formLabel}>Email</label>
+                <input className={styles.formInput} type="email" placeholder="patient@email.com"
+                  value={scheduleForm.patientEmail}
+                  onChange={e => setScheduleForm(f => ({ ...f, patientEmail: e.target.value }))} />
+              </div>
+            </div>
+          </div>
+
+          <div className={styles.scheduleSection}>
+            <p className={styles.scheduleSectionLabel}>Appointment Details</p>
+            <div className={styles.formGroup}>
+              <label className={styles.formLabel}>Provider</label>
+              <select className={styles.formSelect} value={scheduleForm.providerName}
+                onChange={e => setScheduleForm(f => ({ ...f, providerName: e.target.value }))}>
+                {PROVIDERS.map(p => <option key={p} value={p}>{p}</option>)}
+              </select>
+            </div>
+            <div className={styles.formRow}>
+              <div className={styles.formGroup}>
+                <label className={styles.formLabel}>Visit Type</label>
+                <select className={styles.formSelect} value={scheduleForm.visitType}
+                  onChange={e => setScheduleForm(f => ({ ...f, visitType: e.target.value as VisitType }))}>
+                  {(["Video","In-Person"] as VisitType[]).map(v => <option key={v} value={v}>{v}</option>)}
+                </select>
+              </div>
+              <div className={styles.formGroup}>
+                <label className={styles.formLabel}>Location</label>
+                <select className={styles.formSelect} value={scheduleForm.location}
+                  onChange={e => setScheduleForm(f => ({ ...f, location: e.target.value }))}>
+                  <option value="Virtual">Virtual</option>
+                  {/* <option value="Phone">Phone</option> */}
+                  <option value="In-Person">In-Person</option>
+                </select>
+              </div>
+            </div>
+            <div className={styles.formRow}>
+              <div className={styles.formGroup}>
+                <label className={styles.formLabel}>Date <span className={styles.required}>*</span></label>
+                <input className={styles.formInput} type="text" placeholder="e.g. May 5, 2026"
+                  value={scheduleForm.date}
+                  onChange={e => setScheduleForm(f => ({ ...f, date: e.target.value }))} />
+              </div>
+              <div className={styles.formGroup}>
+                <label className={styles.formLabel}>Time <span className={styles.required}>*</span></label>
+                <input className={styles.formInput} type="text" placeholder="e.g. 10:30 AM"
+                  value={scheduleForm.time}
+                  onChange={e => setScheduleForm(f => ({ ...f, time: e.target.value }))} />
+              </div>
+              <div className={styles.formGroup}>
+                <label className={styles.formLabel}>Duration (min)</label>
+                <input className={styles.formInput} type="number" min={5} max={120}
+                  value={scheduleForm.duration}
+                  onChange={e => setScheduleForm(f => ({ ...f, duration: +e.target.value }))} />
+              </div>
+            </div>
+            <div className={styles.formGroup}>
+              <label className={styles.formLabel}>Reason for Visit</label>
+              <input className={styles.formInput} type="text" placeholder="Brief description of visit reason"
+                value={scheduleForm.reason}
+                onChange={e => setScheduleForm(f => ({ ...f, reason: e.target.value }))} />
+            </div>
+            <div className={styles.formGroup}>
+              <label className={styles.formLabel}>Notes</label>
+              <textarea className={styles.formTextarea} rows={3} placeholder="Optional admin notes…"
+                value={scheduleForm.notes}
+                onChange={e => setScheduleForm(f => ({ ...f, notes: e.target.value }))} />
+            </div>
+          </div>
+
+          <div className={styles.modalFooter}>
+            <button className={styles.btnSecondary} onClick={() => setShowScheduleModal(false)}>Cancel</button>
+            <button
+              className={styles.btnScheduleSave}
+              onClick={handleScheduleSave}
+              disabled={!scheduleForm.patientName || !scheduleForm.date || !scheduleForm.time}
+              aria-label="Confirm schedule appointment"
+            >
+              📅 Schedule Appointment
+            </button>
+          </div>
+        </Modal>
+      )}
     </div>
   );
 };

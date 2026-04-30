@@ -294,6 +294,7 @@
   text-transform: uppercase;
   letter-spacing: 0.05em;
   white-space: nowrap;
+  width: fit-content;
 }
 
 .badgePrimary {
@@ -630,6 +631,7 @@
   
   .table {
     min-width: 800px;
+    white-space: nowrap;
   }
   
   .modal {

@@ -25,6 +25,15 @@
   align-items: flex-start;
   justify-content: space-between;
   margin-bottom: 20px;
+  gap: 12px;
+}
+
+/* [NEW] wrapper that groups the two top-right buttons */
+.pageTitleActions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
 }
 
 .pageTitle {
@@ -109,8 +118,37 @@
   box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
 }
 
-/* ─── Export Button ───────────────────────────────────────────────────────── */
+/* ─── Top Action Buttons ──────────────────────────────────────────────────── */
 
+/* [NEW] Schedule Appointment button */
+.btnSchedule {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 9px 18px;
+  background: #2563eb;
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  font-size: 13.5px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.18s, transform 0.12s, box-shadow 0.18s;
+  white-space: nowrap;
+  box-shadow: 0 2px 8px rgba(37, 99, 235, 0.28);
+}
+
+.btnSchedule:hover {
+  background: #1d4ed8;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 14px rgba(37, 99, 235, 0.35);
+}
+
+.btnSchedule:active {
+  transform: translateY(0);
+}
+
+/* Export Button */
 .btnExport {
   display: flex;
   align-items: center;
@@ -130,6 +168,60 @@
 .btnExport:hover {
   background: #1a3460;
   transform: translateY(-1px);
+}
+
+/* [NEW] Schedule modal — section divider */
+.scheduleSection {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding-bottom: 16px;
+  border-bottom: 1.5px solid #f0f3f8;
+}
+
+.scheduleSection:last-of-type {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.scheduleSectionLabel {
+  font-size: 11.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  color: #9ca3af;
+  margin: 0;
+}
+
+/* [NEW] Required field asterisk */
+.required {
+  color: #dc2626;
+  margin-left: 2px;
+}
+
+/* [NEW] Schedule save button inside modal */
+.btnScheduleSave {
+  padding: 9px 22px;
+  background: #2563eb;
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  font-size: 13.5px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.18s, opacity 0.18s;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.btnScheduleSave:hover:not(:disabled) {
+  background: #1d4ed8;
+}
+
+.btnScheduleSave:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
 }
 
 /* ─── Tabs ────────────────────────────────────────────────────────────────── */
@@ -676,11 +768,17 @@
   border-radius: 14px;
   width: 100%;
   max-width: 520px;
+  /* FIX 1: prevent the box from exceeding the viewport */
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
   box-shadow: 0 20px 60px rgba(15,31,61,0.18);
   outline: none;
 }
 
 .modalHeader {
+  /* FIX 1: header is always visible — never scrolls away */
+  flex-shrink: 0;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -716,6 +814,9 @@
 }
 
 .modalBody {
+  /* FIX 1: body scrolls when content is taller than the viewport-constrained box */
+  flex: 1 1 auto;
+  overflow-y: auto;
   padding: 24px;
   display: flex;
   flex-direction: column;
@@ -723,10 +824,15 @@
 }
 
 .modalFooter {
+  /* FIX 1: footer is always visible — sticks to the bottom of the modal */
+  flex-shrink: 0;
   display: flex;
   justify-content: flex-end;
   gap: 10px;
-  padding-top: 8px;
+  padding: 16px 24px;
+  border-top: 1.5px solid #f0f3f8;
+  background: #ffffff;
+  border-radius: 0 0 14px 14px;
 }
 
 /* ─── Form Elements ───────────────────────────────────────────────────────── */
@@ -926,13 +1032,14 @@
   padding: 0;
   transition: opacity 0.15s;
 }
+.backBtn:active{
+  outline: none;
+}
 
 .backBtn:hover {
   opacity: 0.75;
 }
-.backBtn:active{
-    outline: none;
-}
+
 .backArrow {
   font-size: 16px;
 }
@@ -967,6 +1074,7 @@
   align-items: center;
   flex-wrap: wrap;
   padding-top: 6px;
+  width: fit-content;
 }
 
 /* ─── Actions Panel ───────────────────────────────────────────────────────── */
@@ -1059,6 +1167,9 @@
   grid-column: 1 / -1;
 }
 
+.cardTimeline {
+  grid-column: 1 / -1;
+}
 
 .cardTitle {
   font-size: 14px;
@@ -1202,7 +1313,7 @@
   .detailsGrid {
     grid-template-columns: 1fr;
   }
-  .cardSummary {
+  .cardSummary, .cardTimeline {
     grid-column: 1;
   }
   .summaryGrid {

@@ -1132,7 +1132,7 @@ const Providers: React.FC = () => {
       </div>
 
       {/* ── Stats Bar ── */}
-      <div className={styles.statsBar}>
+      {/* <div className={styles.statsBar}>
         {[
           { label: "Total Providers", value: providers.length, color: "#2563eb" },
           { label: "Active", value: providers.filter((p) => p.status === "Active").length, color: "#059669" },
@@ -1144,7 +1144,7 @@ const Providers: React.FC = () => {
             <span className={styles.statLabel}>{label}</span>
           </div>
         ))}
-      </div>
+      </div> */}
 
       {/* ── Search & Filters ── */}
       <div className={styles.controls}>

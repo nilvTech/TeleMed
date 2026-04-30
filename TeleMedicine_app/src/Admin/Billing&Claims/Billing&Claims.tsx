@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import styles from "./BillingClaims.module.css";
 
 // ─── Types ────────────────────────────────────────────────────────────────────
@@ -11,7 +11,7 @@ type ClaimStatus =
   | "Cancelled";
 type BillingStatus = "Unpaid" | "Paid" | "Partial" | "Refunded" | "Cancelled";
 type ActiveTab = "claims" | "billing";
-type BillingSubTab = "invoices" | "charges" | "payment-posting" | "adjustments";
+//type BillingSubTab = "invoices" | "charges" | "payment-posting" | "adjustments";
 type ClaimsSubTab =
   | "all-claims"
   | "claim-queue"
@@ -46,19 +46,20 @@ interface Invoice {
   status: BillingStatus;
   dueDate: string;
   paymentMethod: string;
+  cptCode:string
 }
 
-interface Charge {
-  id: string;
-  patientName: string;
-  cptCode: string;
-  description: string;
-  units: number;
-  chargeAmount: number;
-  allowedAmount: number;
-  date: string;
-  provider: string;
-}
+// interface Charge {
+//   id: string;
+//   patientName: string;
+//   cptCode: string;
+//   description: string;
+//   units: number;
+//   chargeAmount: number;
+//   allowedAmount: number;
+//   date: string;
+//   provider: string;
+// }
 
 // ─── Mock Data ────────────────────────────────────────────────────────────────
 
@@ -176,6 +177,7 @@ const mockInvoices: Invoice[] = [
     status: "Partial",
     dueDate: "2024-06-01",
     paymentMethod: "Insurance Billing",
+    cptCode:"90837"
   },
   {
     id: "INV-2024-0092",
@@ -189,6 +191,7 @@ const mockInvoices: Invoice[] = [
     status: "Paid",
     dueDate: "2024-05-28",
     paymentMethod: "Credit Card",
+    cptCode:"99213"
   },
   {
     id: "INV-2024-0093",
@@ -202,6 +205,7 @@ const mockInvoices: Invoice[] = [
     status: "Unpaid",
     dueDate: "2024-05-25",
     paymentMethod: "Insurance Billing",
+    cptCode:"99214"
   },
   {
     id: "INV-2024-0094",
@@ -215,6 +219,7 @@ const mockInvoices: Invoice[] = [
     status: "Paid",
     dueDate: "2024-05-30",
     paymentMethod: "Credit Card",
+    cptCode:"992214"
   },
   {
     id: "INV-2024-0095",
@@ -228,6 +233,7 @@ const mockInvoices: Invoice[] = [
     status: "Refunded",
     dueDate: "2024-05-22",
     paymentMethod: "Credit Card",
+    cptCode:"90834"
   },
   {
     id: "INV-2024-0096",
@@ -241,55 +247,56 @@ const mockInvoices: Invoice[] = [
     status: "Unpaid",
     dueDate: "2024-06-05",
     paymentMethod: "Insurance Billing",
+    cptCode:"99215"
   },
 ];
 
-const mockCharges: Charge[] = [
-  {
-    id: "CHG-001",
-    patientName: "James Whitmore",
-    cptCode: "90837",
-    description: "Psychotherapy, 60 min",
-    units: 1,
-    chargeAmount: 285.0,
-    allowedAmount: 220.0,
-    date: "2024-05-10",
-    provider: "Dr. Sarah Chen",
-  },
-  {
-    id: "CHG-002",
-    patientName: "Maria Gonzalez",
-    cptCode: "99213",
-    description: "Office Visit, Established Patient",
-    units: 1,
-    chargeAmount: 195.0,
-    allowedAmount: 175.0,
-    date: "2024-05-11",
-    provider: "Dr. Michael Lee",
-  },
-  {
-    id: "CHG-003",
-    patientName: "Robert Kline",
-    cptCode: "99214",
-    description: "Office Visit, Moderate Complexity",
-    units: 1,
-    chargeAmount: 420.0,
-    allowedAmount: 380.0,
-    date: "2024-05-09",
-    provider: "Dr. Amy Foster",
-  },
-  {
-    id: "CHG-004",
-    patientName: "Priya Sharma",
-    cptCode: "99215",
-    description: "Office Visit, High Complexity",
-    units: 1,
-    chargeAmount: 340.0,
-    allowedAmount: 310.0,
-    date: "2024-05-13",
-    provider: "Dr. Michael Lee",
-  },
-];
+// const mockCharges: Charge[] = [
+//   {
+//     id: "CHG-001",
+//     patientName: "James Whitmore",
+//     cptCode: "90837",
+//     description: "Psychotherapy, 60 min",
+//     units: 1,
+//     chargeAmount: 285.0,
+//     allowedAmount: 220.0,
+//     date: "2024-05-10",
+//     provider: "Dr. Sarah Chen",
+//   },
+//   {
+//     id: "CHG-002",
+//     patientName: "Maria Gonzalez",
+//     cptCode: "99213",
+//     description: "Office Visit, Established Patient",
+//     units: 1,
+//     chargeAmount: 195.0,
+//     allowedAmount: 175.0,
+//     date: "2024-05-11",
+//     provider: "Dr. Michael Lee",
+//   },
+//   {
+//     id: "CHG-003",
+//     patientName: "Robert Kline",
+//     cptCode: "99214",
+//     description: "Office Visit, Moderate Complexity",
+//     units: 1,
+//     chargeAmount: 420.0,
+//     allowedAmount: 380.0,
+//     date: "2024-05-09",
+//     provider: "Dr. Amy Foster",
+//   },
+//   {
+//     id: "CHG-004",
+//     patientName: "Priya Sharma",
+//     cptCode: "99215",
+//     description: "Office Visit, High Complexity",
+//     units: 1,
+//     chargeAmount: 340.0,
+//     allowedAmount: 310.0,
+//     date: "2024-05-13",
+//     provider: "Dr. Michael Lee",
+//   },
+// ];
 
 // ─── Helpers ──────────────────────────────────────────────────────────────────
 
@@ -315,49 +322,49 @@ const StatusBadge = ({ status }: { status: string }) => (
 
 // ─── Claim Status Stepper ─────────────────────────────────────────────────────
 
-const CLAIM_STEPS: ClaimStatus[] = [
-  "Draft",
-  "Submitted",
-  "Processing",
-  "Completed",
-];
+// const CLAIM_STEPS: ClaimStatus[] = [
+//   "Draft",
+//   "Submitted",
+//   "Processing",
+//   "Completed",
+// ];
 
-const ClaimStepper = ({ status }: { status: ClaimStatus }) => {
-  const currentIdx = CLAIM_STEPS.indexOf(status);
-  return (
-    <div className={styles.stepper}>
-      {CLAIM_STEPS.map((step, i) => (
-        <React.Fragment key={step}>
-          <div
-            className={`${styles.stepItem} ${i <= currentIdx && status !== "Cancelled" ? styles.stepActive : ""} ${i < currentIdx && status !== "Cancelled" ? styles.stepDone : ""}`}
-          >
-            <div className={styles.stepCircle}>
-              {i < currentIdx && status !== "Cancelled" ? (
-                <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-                  <path
-                    d="M2 7l3.5 3.5L12 3.5"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
-              ) : (
-                <span>{i + 1}</span>
-              )}
-            </div>
-            <span className={styles.stepLabel}>{step}</span>
-          </div>
-          {i < CLAIM_STEPS.length - 1 && (
-            <div
-              className={`${styles.stepLine} ${i < currentIdx && status !== "Cancelled" ? styles.stepLineDone : ""}`}
-            />
-          )}
-        </React.Fragment>
-      ))}
-    </div>
-  );
-};
+// const ClaimStepper = ({ status }: { status: ClaimStatus }) => {
+//   const currentIdx = CLAIM_STEPS.indexOf(status);
+//   return (
+//     <div className={styles.stepper}>
+//       {CLAIM_STEPS.map((step, i) => (
+//         <React.Fragment key={step}>
+//           <div
+//             className={`${styles.stepItem} ${i <= currentIdx && status !== "Cancelled" ? styles.stepActive : ""} ${i < currentIdx && status !== "Cancelled" ? styles.stepDone : ""}`}
+//           >
+//             <div className={styles.stepCircle}>
+//               {i < currentIdx && status !== "Cancelled" ? (
+//                 <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+//                   <path
+//                     d="M2 7l3.5 3.5L12 3.5"
+//                     stroke="currentColor"
+//                     strokeWidth="2"
+//                     strokeLinecap="round"
+//                     strokeLinejoin="round"
+//                   />
+//                 </svg>
+//               ) : (
+//                 <span>{i + 1}</span>
+//               )}
+//             </div>
+//             <span className={styles.stepLabel}>{step}</span>
+//           </div>
+//           {i < CLAIM_STEPS.length - 1 && (
+//             <div
+//               className={`${styles.stepLine} ${i < currentIdx && status !== "Cancelled" ? styles.stepLineDone : ""}`}
+//             />
+//           )}
+//         </React.Fragment>
+//       ))}
+//     </div>
+//   );
+// };
 
 // ─── Icons ────────────────────────────────────────────────────────────────────
 
@@ -976,104 +983,104 @@ const AdjustmentModal = ({ invoice, onClose }: AdjustmentModalProps) => (
 
 // ─── Sub Panels ───────────────────────────────────────────────────────────────
 
-const ClaimQueue = ({ claims }: { claims: Claim[] }) => {
-  const pending = claims.filter(
-    (c) => c.status === "Draft" || c.status === "Submitted",
-  ).length;
-  const processing = claims.filter((c) => c.status === "Processing").length;
-  const completed = claims.filter((c) => c.status === "Completed").length;
-  const today = claims.filter((c) => c.createdDate === "2024-05-13").length;
-  return (
-    <div>
-      <div className={styles.queueGrid}>
-        {[
-          {
-            label: "Pending Claims",
-            value: pending,
-            icon: Icon.clock,
-            color: styles.queueCardYellow,
-          },
-          {
-            label: "Processing Claims",
-            value: processing,
-            icon: Icon.trend,
-            color: styles.queueCardBlue,
-          },
-          {
-            label: "Completed Claims",
-            value: completed,
-            icon: Icon.check,
-            color: styles.queueCardGreen,
-          },
-          {
-            label: "Today's Claims",
-            value: today,
-            icon: Icon.file,
-            color: styles.queueCardPurple,
-          },
-        ].map((q) => (
-          <div key={q.label} className={`${styles.queueCard} ${q.color}`}>
-            <div className={styles.queueIcon}>{q.icon}</div>
-            <div>
-              <div className={styles.queueValue}>{q.value}</div>
-              <div className={styles.queueLabel}>{q.label}</div>
-            </div>
-          </div>
-        ))}
-      </div>
-      <div className={styles.queueList}>
-        <h3 className={styles.panelSubtitle}>Priority Queue</h3>
-        {claims
-          .filter((c) => c.status !== "Completed" && c.status !== "Cancelled")
-          .map((c) => (
-            <div key={c.id} className={styles.queueItem}>
-              <div className={styles.queueItemLeft}>
-                <span className={styles.queueItemId}>{c.id}</span>
-                <span className={styles.queueItemPatient}>{c.patientName}</span>
-              </div>
-              <div className={styles.queueItemRight}>
-                <span className={styles.queueItemAmt}>
-                  {fmt(c.claimAmount)}
-                </span>
-                <StatusBadge status={c.status} />
-              </div>
-            </div>
-          ))}
-      </div>
-    </div>
-  );
-};
+// const ClaimQueue = ({ claims }: { claims: Claim[] }) => {
+//   const pending = claims.filter(
+//     (c) => c.status === "Draft" || c.status === "Submitted",
+//   ).length;
+//   const processing = claims.filter((c) => c.status === "Processing").length;
+//   const completed = claims.filter((c) => c.status === "Completed").length;
+//   const today = claims.filter((c) => c.createdDate === "2024-05-13").length;
+//   return (
+//     <div>
+//       <div className={styles.queueGrid}>
+//         {[
+//           {
+//             label: "Pending Claims",
+//             value: pending,
+//             icon: Icon.clock,
+//             color: styles.queueCardYellow,
+//           },
+//           {
+//             label: "Processing Claims",
+//             value: processing,
+//             icon: Icon.trend,
+//             color: styles.queueCardBlue,
+//           },
+//           {
+//             label: "Completed Claims",
+//             value: completed,
+//             icon: Icon.check,
+//             color: styles.queueCardGreen,
+//           },
+//           {
+//             label: "Today's Claims",
+//             value: today,
+//             icon: Icon.file,
+//             color: styles.queueCardPurple,
+//           },
+//         ].map((q) => (
+//           <div key={q.label} className={`${styles.queueCard} ${q.color}`}>
+//             <div className={styles.queueIcon}>{q.icon}</div>
+//             <div>
+//               <div className={styles.queueValue}>{q.value}</div>
+//               <div className={styles.queueLabel}>{q.label}</div>
+//             </div>
+//           </div>
+//         ))}
+//       </div>
+//       <div className={styles.queueList}>
+//         <h3 className={styles.panelSubtitle}>Priority Queue</h3>
+//         {claims
+//           .filter((c) => c.status !== "Completed" && c.status !== "Cancelled")
+//           .map((c) => (
+//             <div key={c.id} className={styles.queueItem}>
+//               <div className={styles.queueItemLeft}>
+//                 <span className={styles.queueItemId}>{c.id}</span>
+//                 <span className={styles.queueItemPatient}>{c.patientName}</span>
+//               </div>
+//               <div className={styles.queueItemRight}>
+//                 <span className={styles.queueItemAmt}>
+//                   {fmt(c.claimAmount)}
+//                 </span>
+//                 <StatusBadge status={c.status} />
+//               </div>
+//             </div>
+//           ))}
+//       </div>
+//     </div>
+//   );
+// };
 
-const StatusTracker = ({ claims }: { claims: Claim[] }) => (
-  <div>
-    <h3 className={styles.panelSubtitle}>Claim Status Tracker</h3>
-    <div className={styles.trackerList}>
-      {claims.map((c) => (
-        <div key={c.id} className={styles.trackerItem}>
-          <div className={styles.trackerHeader}>
-            <div>
-              <span className={styles.trackerClaimId}>{c.id}</span>
-              <span className={styles.trackerPatient}>
-                {c.patientName} — {c.serviceType}
-              </span>
-            </div>
-            <div className={styles.trackerMeta}>
-              <span>{fmt(c.claimAmount)}</span>
-              {c.status === "Cancelled" && <StatusBadge status="Cancelled" />}
-            </div>
-          </div>
-          {c.status !== "Cancelled" ? (
-            <ClaimStepper status={c.status} />
-          ) : (
-            <div className={styles.cancelledNote}>
-              This claim has been cancelled and will not be processed.
-            </div>
-          )}
-        </div>
-      ))}
-    </div>
-  </div>
-);
+// const StatusTracker = ({ claims }: { claims: Claim[] }) => (
+//   <div>
+//     <h3 className={styles.panelSubtitle}>Claim Status Tracker</h3>
+//     <div className={styles.trackerList}>
+//       {claims.map((c) => (
+//         <div key={c.id} className={styles.trackerItem}>
+//           <div className={styles.trackerHeader}>
+//             <div>
+//               <span className={styles.trackerClaimId}>{c.id}</span>
+//               <span className={styles.trackerPatient}>
+//                 {c.patientName} — {c.serviceType}
+//               </span>
+//             </div>
+//             <div className={styles.trackerMeta}>
+//               <span>{fmt(c.claimAmount)}</span>
+//               {c.status === "Cancelled" && <StatusBadge status="Cancelled" />}
+//             </div>
+//           </div>
+//           {c.status !== "Cancelled" ? (
+//             <ClaimStepper status={c.status} />
+//           ) : (
+//             <div className={styles.cancelledNote}>
+//               This claim has been cancelled and will not be processed.
+//             </div>
+//           )}
+//         </div>
+//       ))}
+//     </div>
+//   </div>
+// );
 
 // const EOBRemittance = () => (
 //   <div>
@@ -1144,235 +1151,235 @@ const StatusTracker = ({ claims }: { claims: Claim[] }) => (
 //   </div>
 // );
 
-const DenialManagement = () => (
-  <div>
-    <h3 className={styles.panelSubtitle}>Denial Management</h3>
-    <div className={styles.denialStats}>
-      {[
-        {
-          label: "Total Denials",
-          value: 4,
-          sub: "This month",
-          color: "#ef4444",
-        },
-        {
-          label: "Denial Rate",
-          value: "12%",
-          sub: "Avg. industry 5–10%",
-          color: "#f59e0b",
-        },
-        {
-          label: "Pending Appeals",
-          value: 2,
-          sub: "Requires action",
-          color: "#3b82f6",
-        },
-        {
-          label: "Recovered",
-          value: "$1,240",
-          sub: "Via appeals",
-          color: "#10b981",
-        },
-      ].map((s) => (
-        <div key={s.label} className={styles.denialStatCard}>
-          <div className={styles.denialStatValue} style={{ color: s.color }}>
-            {s.value}
-          </div>
-          <div className={styles.denialStatLabel}>{s.label}</div>
-          <div className={styles.denialStatSub}>{s.sub}</div>
-        </div>
-      ))}
-    </div>
-    <table className={styles.table}>
-      <thead>
-        <tr>
-          <th>Claim ID</th>
-          <th>Patient</th>
-          <th>Denial Reason</th>
-          <th>Code</th>
-          <th>Amount</th>
-          <th>Appeal Due</th>
-          <th>Status</th>
-          <th>Action</th>
-        </tr>
-      </thead>
-      <tbody>
-        {[
-          {
-            id: "CLM-2024-0008",
-            patient: "Anne Collins",
-            reason: "Service Not Covered",
-            code: "CO-96",
-            amount: 195.0,
-            due: "2024-06-01",
-            status: "Denied",
-          },
-          {
-            id: "CLM-2024-0009",
-            patient: "Ben Torres",
-            reason: "Authorization Required",
-            code: "CO-197",
-            amount: 340.0,
-            due: "2024-05-30",
-            status: "Appeal Filed",
-          },
-          {
-            id: "CLM-2024-0010",
-            patient: "Claire Moon",
-            reason: "Duplicate Claim",
-            code: "CO-18",
-            amount: 150.0,
-            due: "2024-06-05",
-            status: "Denied",
-          },
-          {
-            id: "CLM-2024-0011",
-            patient: "Derek Shaw",
-            reason: "Coding Error",
-            code: "CO-4",
-            amount: 285.0,
-            due: "2024-05-28",
-            status: "Resubmitted",
-          },
-        ].map((d) => (
-          <tr key={d.id}>
-            <td>
-              <span className={styles.claimId}>{d.id}</span>
-            </td>
-            <td>{d.patient}</td>
-            <td>{d.reason}</td>
-            <td>
-              <code className={styles.codeChip}>{d.code}</code>
-            </td>
-            <td>{fmt(d.amount)}</td>
-            <td>{d.due}</td>
-            <td>
-              <StatusBadge status={d.status} />
-            </td>
-            <td>
-              <div className={styles.actionGroup}>
-                <button className={styles.actionBtn} title="File Appeal">
-                  Appeal
-                </button>
-              </div>
-            </td>
-          </tr>
-        ))}
-      </tbody>
-    </table>
-  </div>
-);
+// const DenialManagement = () => (
+//   <div>
+//     <h3 className={styles.panelSubtitle}>Denial Management</h3>
+//     <div className={styles.denialStats}>
+//       {[
+//         {
+//           label: "Total Denials",
+//           value: 4,
+//           sub: "This month",
+//           color: "#ef4444",
+//         },
+//         {
+//           label: "Denial Rate",
+//           value: "12%",
+//           sub: "Avg. industry 5–10%",
+//           color: "#f59e0b",
+//         },
+//         {
+//           label: "Pending Appeals",
+//           value: 2,
+//           sub: "Requires action",
+//           color: "#3b82f6",
+//         },
+//         {
+//           label: "Recovered",
+//           value: "$1,240",
+//           sub: "Via appeals",
+//           color: "#10b981",
+//         },
+//       ].map((s) => (
+//         <div key={s.label} className={styles.denialStatCard}>
+//           <div className={styles.denialStatValue} style={{ color: s.color }}>
+//             {s.value}
+//           </div>
+//           <div className={styles.denialStatLabel}>{s.label}</div>
+//           <div className={styles.denialStatSub}>{s.sub}</div>
+//         </div>
+//       ))}
+//     </div>
+//     <table className={styles.table}>
+//       <thead>
+//         <tr>
+//           <th>Claim ID</th>
+//           <th>Patient</th>
+//           <th>Denial Reason</th>
+//           <th>Code</th>
+//           <th>Amount</th>
+//           <th>Appeal Due</th>
+//           <th>Status</th>
+//           <th>Action</th>
+//         </tr>
+//       </thead>
+//       <tbody>
+//         {[
+//           {
+//             id: "CLM-2024-0008",
+//             patient: "Anne Collins",
+//             reason: "Service Not Covered",
+//             code: "CO-96",
+//             amount: 195.0,
+//             due: "2024-06-01",
+//             status: "Denied",
+//           },
+//           {
+//             id: "CLM-2024-0009",
+//             patient: "Ben Torres",
+//             reason: "Authorization Required",
+//             code: "CO-197",
+//             amount: 340.0,
+//             due: "2024-05-30",
+//             status: "Appeal Filed",
+//           },
+//           {
+//             id: "CLM-2024-0010",
+//             patient: "Claire Moon",
+//             reason: "Duplicate Claim",
+//             code: "CO-18",
+//             amount: 150.0,
+//             due: "2024-06-05",
+//             status: "Denied",
+//           },
+//           {
+//             id: "CLM-2024-0011",
+//             patient: "Derek Shaw",
+//             reason: "Coding Error",
+//             code: "CO-4",
+//             amount: 285.0,
+//             due: "2024-05-28",
+//             status: "Resubmitted",
+//           },
+//         ].map((d) => (
+//           <tr key={d.id}>
+//             <td>
+//               <span className={styles.claimId}>{d.id}</span>
+//             </td>
+//             <td>{d.patient}</td>
+//             <td>{d.reason}</td>
+//             <td>
+//               <code className={styles.codeChip}>{d.code}</code>
+//             </td>
+//             <td>{fmt(d.amount)}</td>
+//             <td>{d.due}</td>
+//             <td>
+//               <StatusBadge status={d.status} />
+//             </td>
+//             <td>
+//               <div className={styles.actionGroup}>
+//                 <button className={styles.actionBtn} title="File Appeal">
+//                   Appeal
+//                 </button>
+//               </div>
+//             </td>
+//           </tr>
+//         ))}
+//       </tbody>
+//     </table>
+//   </div>
+// );
 
-const ChargesPanel = ({ charges }: { charges: Charge[] }) => (
-  <div>
-    <h3 className={styles.panelSubtitle}>Charge Entry</h3>
-    <table className={styles.table}>
-      <thead>
-        <tr>
-          <th>Charge ID</th>
-          <th>Patient</th>
-          <th>CPT Code</th>
-          <th>Description</th>
-          <th>Units</th>
-          <th>Charge Amt</th>
-          <th>Allowed Amt</th>
-          <th>Variance</th>
-          <th>Date</th>
-          <th>Provider</th>
-        </tr>
-      </thead>
-      <tbody>
-        {charges.map((c) => (
-          <tr key={c.id}>
-            <td>
-              <span className={styles.claimId}>{c.id}</span>
-            </td>
-            <td>{c.patientName}</td>
-            <td>
-              <code className={styles.codeChip}>{c.cptCode}</code>
-            </td>
-            <td>{c.description}</td>
-            <td>{c.units}</td>
-            <td>{fmt(c.chargeAmount)}</td>
-            <td>{fmt(c.allowedAmount)}</td>
-            <td
-              className={
-                c.chargeAmount - c.allowedAmount > 0
-                  ? styles.varNeg
-                  : styles.varPos
-              }
-            >
-              {c.chargeAmount > c.allowedAmount
-                ? `-${fmt(c.chargeAmount - c.allowedAmount)}`
-                : `+${fmt(c.allowedAmount - c.chargeAmount)}`}
-            </td>
-            <td>{c.date}</td>
-            <td>{c.provider}</td>
-          </tr>
-        ))}
-      </tbody>
-    </table>
-  </div>
-);
+// const ChargesPanel = ({ charges }: { charges: Charge[] }) => (
+//   <div>
+//     <h3 className={styles.panelSubtitle}>Charge Entry</h3>
+//     <table className={styles.table}>
+//       <thead>
+//         <tr>
+//           <th>Charge ID</th>
+//           <th>Patient</th>
+//           <th>CPT Code</th>
+//           <th>Description</th>
+//           <th>Units</th>
+//           <th>Charge Amt</th>
+//           <th>Allowed Amt</th>
+//           <th>Variance</th>
+//           <th>Date</th>
+//           <th>Provider</th>
+//         </tr>
+//       </thead>
+//       <tbody>
+//         {charges.map((c) => (
+//           <tr key={c.id}>
+//             <td>
+//               <span className={styles.claimId}>{c.id}</span>
+//             </td>
+//             <td>{c.patientName}</td>
+//             <td>
+//               <code className={styles.codeChip}>{c.cptCode}</code>
+//             </td>
+//             <td>{c.description}</td>
+//             <td>{c.units}</td>
+//             <td>{fmt(c.chargeAmount)}</td>
+//             <td>{fmt(c.allowedAmount)}</td>
+//             <td
+//               className={
+//                 c.chargeAmount - c.allowedAmount > 0
+//                   ? styles.varNeg
+//                   : styles.varPos
+//               }
+//             >
+//               {c.chargeAmount > c.allowedAmount
+//                 ? `-${fmt(c.chargeAmount - c.allowedAmount)}`
+//                 : `+${fmt(c.allowedAmount - c.chargeAmount)}`}
+//             </td>
+//             <td>{c.date}</td>
+//             <td>{c.provider}</td>
+//           </tr>
+//         ))}
+//       </tbody>
+//     </table>
+//   </div>
+// );
 
 // ─── Analytics Banner ─────────────────────────────────────────────────────────
 
-const AnalyticsBanner = () => (
-  <div className={styles.analyticsBanner}>
-    {[
-      {
-        label: "Total Claims",
-        value: "$12,480",
-        sub: "This month",
-        icon: Icon.file,
-        accent: styles.accentBlue,
-      },
-      {
-        label: "Collected Revenue",
-        value: "$8,940",
-        sub: "72% collection rate",
-        icon: Icon.dollar,
-        accent: styles.accentGreen,
-      },
-      {
-        label: "Outstanding Balance",
-        value: "$3,540",
-        sub: "Pending collection",
-        icon: Icon.alert,
-        accent: styles.accentYellow,
-      },
-      {
-        label: "Denial Rate",
-        value: "12%",
-        sub: "↓ 2% vs last month",
-        icon: Icon.trend,
-        accent: styles.accentRed,
-      },
-    ].map((a) => (
-      <div key={a.label} className={`${styles.analyticCard} ${a.accent}`}>
-        <div className={styles.analyticIcon}>{a.icon}</div>
-        <div>
-          <div className={styles.analyticValue}>{a.value}</div>
-          <div className={styles.analyticLabel}>{a.label}</div>
-          <div className={styles.analyticSub}>{a.sub}</div>
-        </div>
-      </div>
-    ))}
-  </div>
-);
+// const AnalyticsBanner = () => (
+//   <div className={styles.analyticsBanner}>
+//     {[
+//       {
+//         label: "Total Claims",
+//         value: "$12,480",
+//         sub: "This month",
+//         icon: Icon.file,
+//         accent: styles.accentBlue,
+//       },
+//       {
+//         label: "Collected Revenue",
+//         value: "$8,940",
+//         sub: "72% collection rate",
+//         icon: Icon.dollar,
+//         accent: styles.accentGreen,
+//       },
+//       {
+//         label: "Outstanding Balance",
+//         value: "$3,540",
+//         sub: "Pending collection",
+//         icon: Icon.alert,
+//         accent: styles.accentYellow,
+//       },
+//       {
+//         label: "Denial Rate",
+//         value: "12%",
+//         sub: "↓ 2% vs last month",
+//         icon: Icon.trend,
+//         accent: styles.accentRed,
+//       },
+//     ].map((a) => (
+//       <div key={a.label} className={`${styles.analyticCard} ${a.accent}`}>
+//         <div className={styles.analyticIcon}>{a.icon}</div>
+//         <div>
+//           <div className={styles.analyticValue}>{a.value}</div>
+//           <div className={styles.analyticLabel}>{a.label}</div>
+//           <div className={styles.analyticSub}>{a.sub}</div>
+//         </div>
+//       </div>
+//     ))}
+//   </div>
+// );
 
 // ─── Main Component ───────────────────────────────────────────────────────────
 
 export default function BillingClaims() {
   const [activeTab, setActiveTab] = useState<ActiveTab>("claims");
   const [claimsSubTab, setClaimsSubTab] = useState<ClaimsSubTab>("all-claims");
-  const [billingSubTab, setBillingSubTab] = useState<BillingSubTab>("invoices");
+ // const [billingSubTab, setBillingSubTab] = useState<BillingSubTab>("invoices");
   const [searchTerm, setSearchTerm] = useState("");
   const [statusFilter, setStatusFilter] = useState("All");
   const [dateRange, setDateRange] = useState("");
   const [claims] = useState<Claim[]>(mockClaims);
   const [invoices] = useState<Invoice[]>(mockInvoices);
-  const [charges] = useState<Charge[]>(mockCharges);
+ // const [charges] = useState<Charge[]>(mockCharges);
   const [selectedInvoice, setSelectedInvoice] = useState<Invoice | null>(null);
   const [isClaimModalOpen, setIsClaimModalOpen] = useState(false);
   const [isPaymentModalOpen, setIsPaymentModalOpen] = useState(false);
@@ -1482,7 +1489,7 @@ export default function BillingClaims() {
       </header>
 
       {/* Analytics Strip */}
-      <AnalyticsBanner />
+      {/* <AnalyticsBanner /> */}
 
       {/* Main Tabs */}
       <div className={styles.mainTabs}>
@@ -1540,11 +1547,11 @@ export default function BillingClaims() {
             <div className={styles.subTabs}>
               {(
                 [
-                  "all-claims",
-                  "claim-queue",
-                  "status-tracker",
+                  // "all-claims",
+                  // "claim-queue",
+                  // "status-tracker",
                   // "eob-remittance",
-                  "denial-mgmt",
+                  //"denial-mgmt",
                 ] as ClaimsSubTab[]
               ).map((t) => (
                 <button
@@ -1574,7 +1581,7 @@ export default function BillingClaims() {
                           <th>Claim ID</th>
                           <th>Patient Name</th>
                           <th>Provider</th>
-                          <th>Appt. ID</th>
+                          <th>Appoinment ID</th>
                           <th>Visit Date</th>
                           <th>Service Type</th>
                           <th>Amount</th>
@@ -1704,25 +1711,25 @@ export default function BillingClaims() {
                   </div>
                 </>
               )}
-              {claimsSubTab === "claim-queue" && <ClaimQueue claims={claims} />}
+              {/* {claimsSubTab === "claim-queue" && <ClaimQueue claims={claims} />}
               {claimsSubTab === "status-tracker" && (
                 <StatusTracker claims={claims} />
               )}
-              {/* {claimsSubTab === "eob-remittance" && <EOBRemittance />} */}
-              {claimsSubTab === "denial-mgmt" && <DenialManagement />}
+              {claimsSubTab === "eob-remittance" && <EOBRemittance />}
+              {claimsSubTab === "denial-mgmt" && <DenialManagement />} */}
             </div>
           </>
         )}
 
         {activeTab === "billing" && (
           <>
-            <div className={styles.subTabs}>
+            {/* <div className={styles.subTabs}>
               {(
                 [
                   "invoices",
-                  "charges",
-                  "payment-posting",
-                  "adjustments",
+                  //"charges",
+                 // "payment-posting",
+                 // "adjustments",
                 ] as BillingSubTab[]
               ).map((t) => (
                 <button
@@ -1740,19 +1747,20 @@ export default function BillingClaims() {
                   }
                 </button>
               ))}
-            </div>
+            </div> */}
             <div className={styles.panel}>
-              {billingSubTab === "invoices" && (
                 <>
                   <div className={styles.tableWrap}>
                     <table className={styles.table}>
                       <thead>
                         <tr>
+                          <th>Appointment ID</th>
                           <th>Invoice ID</th>
                           <th>Patient Name</th>
                           <th>Provider</th>
-                          <th>Appt. ID</th>
+                          <th>CPT CODE</th>
                           <th>Service</th>
+                          <th>Payment Method</th>
                           <th>Amount</th>
                           <th>Paid</th>
                           <th>Balance</th>
@@ -1770,16 +1778,18 @@ export default function BillingClaims() {
                           .map((inv) => (
                             <tr key={inv.id}>
                               <td>
-                                <span className={styles.claimId}>{inv.id}</span>
-                              </td>
-                              <td>{inv.patientName}</td>
-                              <td>{inv.providerName}</td>
-                              <td>
                                 <span className={styles.apptId}>
                                   {inv.appointmentId}
                                 </span>
                               </td>
+                              <td>
+                                <span className={styles.claimId}>{inv.id}</span>
+                              </td>
+                              <td>{inv.patientName}</td>
+                              <td>{inv.providerName}</td>
+                              <td>{inv.cptCode}</td>
                               <td>{inv.service}</td>
+                              <td>{inv.paymentMethod}</td>
                               <td className={styles.amount}>
                                 {fmt(inv.amount)}
                               </td>
@@ -1801,19 +1811,19 @@ export default function BillingClaims() {
                               <td>{inv.dueDate}</td>
                               <td>
                                 <div className={styles.actionGroup}>
-                                  <button
+                                  {/* <button
                                     className={styles.actionBtn}
                                     title="View"
                                   >
                                     {Icon.eye}
-                                  </button>
-                                  <button
-                                    className={styles.actionBtn}
-                                    title="Edit"
-                                  >
-                                    {Icon.edit}
-                                  </button>
-                                  <button
+                                  </button> */}
+                                    {/* <button
+                                      className={styles.actionBtn}
+                                      title="Edit"
+                                    >
+                                      {Icon.edit}
+                                    </button> */}
+                                  {/* <button
                                     className={styles.actionBtn}
                                     title="Post Payment"
                                     onClick={() => {
@@ -1822,8 +1832,8 @@ export default function BillingClaims() {
                                     }}
                                   >
                                     {Icon.payment}
-                                  </button>
-                                  <button
+                                  </button> */}
+                                  {/* <button
                                     className={styles.actionBtn}
                                     title="Adjustment"
                                     onClick={() => {
@@ -1832,10 +1842,13 @@ export default function BillingClaims() {
                                     }}
                                   >
                                     {Icon.adjust}
-                                  </button>
+                                  </button> */}
                                   <button
                                     className={styles.actionBtn}
                                     title="Download"
+                                    onClick={()=>{
+                                      setSelectedInvoice(inv)
+                                    }}
                                   >
                                     {Icon.download}
                                   </button>
@@ -1898,8 +1911,8 @@ export default function BillingClaims() {
                     </div>
                   </div>
                 </>
-              )}
-              {billingSubTab === "charges" && (
+              
+              {/* {billingSubTab === "charges" && (
                 <ChargesPanel charges={charges} />
               )}
               {billingSubTab === "payment-posting" && (
@@ -2054,7 +2067,7 @@ export default function BillingClaims() {
                     </tbody>
                   </table>
                 </div>
-              )}
+              )} */}
             </div>
           </>
         )}

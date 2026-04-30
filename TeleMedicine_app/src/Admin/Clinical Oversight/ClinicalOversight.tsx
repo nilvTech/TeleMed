@@ -1005,7 +1005,7 @@ const ClinicalOversight: React.FC = () => {
                   <th>Diagnosis</th>
                   <th>Risk</th>
                   <th>Status</th>
-                  <th>Flags</th>
+                  {/* <th>Flags</th> */}
                   <th>Actions</th>
                 </tr>
               </thead>
@@ -1031,7 +1031,7 @@ const ClinicalOversight: React.FC = () => {
                           {encounter.status.replace("_", " ").toUpperCase()}
                         </span>
                       </td>
-                      <td>
+                      {/* <td>
                         {encounter.flags.length > 0 ? (
                           <span className={styles.badgeWarning}>
                             {encounter.flags.length}
@@ -1039,7 +1039,7 @@ const ClinicalOversight: React.FC = () => {
                         ) : (
                           <span className={styles.badgeSecondary}>0</span>
                         )}
-                      </td>
+                      </td> */}
                       <td>
                         <div className={styles.actionButtons}>
                           <button
