@@ -1393,8 +1393,8 @@ export default function BillingClaims() {
       c.id.toLowerCase().includes(searchTerm.toLowerCase()) ||
       c.providerName.toLowerCase().includes(searchTerm.toLowerCase());
     const matchStatus = statusFilter === "All" || c.status === statusFilter;
-    
-    return matchSearch && matchStatus;
+    const matchDate = dateRange === "" || c.createdDate === dateRange;
+    return matchSearch && matchStatus && matchDate;
   });
 
   const filteredInvoices = invoices.filter((inv) => {
@@ -1402,7 +1402,9 @@ export default function BillingClaims() {
       inv.patientName.toLowerCase().includes(searchTerm.toLowerCase()) ||
       inv.id.toLowerCase().includes(searchTerm.toLowerCase());
     const matchStatus = statusFilter === "All" || inv.status === statusFilter;
-    return matchSearch && matchStatus;
+    const matchBillingDueDate = dateRange === "" || inv.dueDate === dateRange;
+
+    return matchSearch && matchStatus && matchBillingDueDate;
   });
 
   const totalPages = Math.ceil(

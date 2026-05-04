@@ -2474,11 +2474,11 @@ const ClinicalOversight: React.FC = () => {
   return (
     <div className={styles.container}>
       <div className={styles.header}>
-        <h1>Clinical Oversight</h1>
-        <p>
-          Ensure clinical quality, safety, and compliance across all
-          telemedicine encounters
-        </p>
+         
+            <h1 className={styles.pageTitle}>Clinical Oversight</h1>
+            <p className={styles.pageSubtitle}>Ensure clinical quality, safety, and compliance across all
+          telemedicine encounters</p>
+          
       </div>
 
       <div className={styles.tabs}>

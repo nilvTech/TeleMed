@@ -5,30 +5,35 @@
   padding: 24px;
   background-color: #f8f9fa;
   min-height: 100vh;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+  font-family:
+    -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu",
+    "Cantarell", sans-serif;
 }
 
 /* ==================== HEADER ==================== */
 .header {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: white;
-  padding: 32px;
-  border-radius: 12px;
+  padding: 1px;
+
   margin-bottom: 24px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.header h1 {
-  margin: 0 0 8px 0;
-  font-size: 32px;
+.pageTitle {
+  font-size: 26px;
   font-weight: 700;
+  color: var(--blue-900);
+  letter-spacing: -0.5px;
+  margin: 0 0 4px;
+  line-height: 1.2;
 }
 
-.header p {
+.pageSubtitle {
+  font-size: 13.5px;
+  color: #6b7a99;
   margin: 0;
-  font-size: 16px;
-  opacity: 0.95;
 }
+
+
 
 /* ==================== TABS ==================== */
 .tabs {
@@ -367,7 +372,9 @@
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  box-shadow:
+    0 20px 25px -5px rgba(0, 0, 0, 0.1),
+    0 10px 10px -5px rgba(0, 0, 0, 0.04);
 }
 
 .modalHeader {
@@ -589,7 +596,7 @@
 
 /* ==================== UTILITY ==================== */
 .code {
-  font-family: 'Courier New', monospace;
+  font-family: "Courier New", monospace;
   background: #f3f4f6;
   padding: 2px 6px;
   border-radius: 4px;
@@ -602,38 +609,38 @@
   .container {
     padding: 16px;
   }
-  
+
   .header {
     padding: 24px;
   }
-  
+
   .header h1 {
     font-size: 24px;
   }
-  
+
   .tabs {
     overflow-x: auto;
   }
-  
+
   .filters {
     flex-direction: column;
     align-items: stretch;
   }
-  
+
   .searchInput,
   .filterSelect {
     width: 100%;
   }
-  
+
   .tableContainer {
     overflow-x: scroll;
   }
-  
+
   .table {
     min-width: 800px;
     white-space: nowrap;
   }
-  
+
   .modal {
     margin: 0;
     max-height: 100vh;
@@ -645,24 +652,24 @@
   .header h1 {
     font-size: 20px;
   }
-  
+
   .tab {
     padding: 10px 16px;
     font-size: 13px;
   }
-  
+
   .actionButtons {
     flex-direction: column;
   }
-  
+
   .actionButtons button {
     width: 100%;
   }
-  
+
   .detailGrid {
     grid-template-columns: 1fr;
   }
-  
+
   .metricsGrid {
     grid-template-columns: 1fr;
   }
@@ -675,23 +682,22 @@
     color: black;
     box-shadow: none;
   }
-  
+
   .tabs,
   .filters,
   .actionButtons,
   .modalClose {
     display: none;
   }
-  
+
   .table {
     font-size: 10px;
   }
-  
+
   .badge {
     border: 1px solid currentColor;
   }
 }
-
 
 /* Pagination */
 .pagination {
@@ -728,6 +734,16 @@
   justify-content: center;
   font-family: var(--font-body);
 }
-.pageBtn:hover:not(:disabled) { border-color: var(--blue-400); color: var(--blue-600); }
-.pageBtn:disabled { opacity: 0.4; cursor: not-allowed; }
-.pageBtnActive { background: var(--blue-600); color: #fff; border-color: var(--blue-600); }
+.pageBtn:hover:not(:disabled) {
+  border-color: var(--blue-400);
+  color: var(--blue-600);
+}
+.pageBtn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+.pageBtnActive {
+  background: var(--blue-600);
+  color: #fff;
+  border-color: var(--blue-600);
+}

@@ -92,10 +92,9 @@
 }
 
 .pageSubtitle {
-  font-size: 13px;
-  color: var(--gray-500);
+  font-size: 13.5px;
+  color: #6b7a99;
   margin: 0;
-  font-weight: 400;
 }
 
 .headerControls {

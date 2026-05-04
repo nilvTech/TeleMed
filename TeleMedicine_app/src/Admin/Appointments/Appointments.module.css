@@ -39,9 +39,10 @@
 .pageTitle {
   font-size: 26px;
   font-weight: 700;
-  color: #0f1f3d;
-  margin: 0 0 4px 0;
-  letter-spacing: -0.4px;
+  color: var(--blue-900);
+  letter-spacing: -0.5px;
+  margin: 0 0 4px;
+  line-height: 1.2;
 }
 
 .pageSubtitle {
@@ -49,6 +50,7 @@
   color: #6b7a99;
   margin: 0;
 }
+
 
 .controlsRow {
   display: flex;
