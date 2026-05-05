@@ -1,0 +1,153 @@
+/* ReportsAnalytics.module.css */
+
+/* 1. Container & Layout */
+.className {
+  padding: 2.5rem;
+  background-color: #f8fafc; /* Very light slate gray */
+  min-height: 100vh;
+  color: #1e293b; /* Slate 800 */
+  font-family: 'Inter', -apple-system, sans-serif;
+}
+
+.section {
+  max-width: 1440px;
+  margin: 0 auto;
+}
+
+/* 2. Typography */
+.sectionTitle {
+  font-size: 1.75rem;
+  font-weight: 800;
+  margin-bottom: 2rem;
+  color: #0f172a;
+  letter-spacing: -0.02em;
+}
+
+.sectionSubtitle {
+  color: #64748b;
+  font-size: 0.875rem;
+  font-weight: 400;
+  margin-top: 0.25rem;
+}
+
+/* 3. Section Containers (Leaderboard Wrapper) */
+.sectionContainer {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  padding: 2rem;
+  margin-bottom: 2.5rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+}
+
+.sectionHeader {
+  margin-bottom: 2rem;
+}
+
+.sectionTitleSmall {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #334155;
+}
+
+/* 4. Charts Grid Layout */
+.chartsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+  gap: 2rem;
+}
+
+.providerActivity{
+    margin-top: 2rem;
+}
+
+/* 5. Professional Table Styling */
+.tableWrapper {
+  width: 100%;
+}
+
+.tableScroll {
+  overflow-x: auto;
+  border-radius: 12px;
+  border: 1px solid #f1f5f9;
+}
+
+.dataTable {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.925rem;
+  background-color: #ffffff;
+}
+
+.dataTable thead {
+  background-color: #f8fafc;
+  border-bottom: 2px solid #e2e8f0;
+}
+
+.dataTable th {
+  padding: 16px;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
+  color: #64748b;
+  font-weight: 700;
+}
+
+.dataTable td {
+  padding: 16px;
+  border-bottom: 1px solid #f1f5f9;
+  color: #334155;
+  transition: background-color 0.2s ease;
+}
+
+.dataTable tr:last-child td {
+  border-bottom: none;
+}
+
+.dataTable tr:hover td {
+  background-color: #f0f9ff; /* Very light sky blue on hover */
+}
+
+.rankBadge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  background: #f1f5f9;
+  border-radius: 50%;
+  font-weight: 700;
+  font-size: 0.75rem;
+  color: #475569;
+}
+
+/* 6. Chart Cards Appearance */
+/* Note: Wrap your individual Chart components in a div with this class if needed */
+.chartCard {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  padding: 1.5rem;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+/* Scrollbar Customization for a cleaner look */
+.tableScroll::-webkit-scrollbar {
+  height: 8px;
+}
+.tableScroll::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+.tableScroll::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 10px;
+}
+
+@media (max-width: 768px) {
+  .chartsGrid {
+    grid-template-columns: 1fr;
+  }
+  .className {
+    padding: 1.5rem;
+  }
+}

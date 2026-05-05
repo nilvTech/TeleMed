@@ -345,7 +345,7 @@ const AdminDashboard: React.FC = () => {
         </section>
 
         {/* Charts Section */}
-        <section className={styles.section}>
+        {/* <section className={styles.section}>
           <h2 className={styles.sectionTitle}>Analytics & Trends</h2>
           <div className={styles.chartsGrid}>
             <AppointmentsTrendChart data={appointmentsTrendData} />
@@ -353,7 +353,7 @@ const AdminDashboard: React.FC = () => {
             <AppointmentStatusChart data={appointmentStatusData} />
             <ProviderActivityChart data={providerActivityData} />
           </div>
-        </section>
+        </section> */}
 
         {/* Bottom Row: Alerts and Activity */}
         <section className={styles.bottomSection}>

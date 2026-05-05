@@ -52,9 +52,12 @@ function SideBar() {
             <MdCalendarToday className={styles.SectionIcon} />
             Users & Access Control
           </NavLink>
-          <NavLink to="#">
+          <NavLink
+            to="/Admin/Reports&Analytics"
+            className={({ isActive }) => ` ${isActive ? styles.active : ""}`}
+          >
             <MdCalendarToday className={styles.SectionIcon} />
-            Reports & Analytics
+            Analytics
           </NavLink>
           <NavLink to="#">
             <MdCalendarToday className={styles.SectionIcon} />

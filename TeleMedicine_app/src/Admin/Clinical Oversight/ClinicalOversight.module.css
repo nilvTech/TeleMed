@@ -1,6 +1,5 @@
 /* ==================== CONTAINER & LAYOUT ==================== */
 .container {
-  max-width: 1600px;
   margin: 0 auto;
   padding: 24px;
   background-color: #f8f9fa;
