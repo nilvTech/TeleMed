@@ -59,7 +59,7 @@ function SideBar() {
             <MdCalendarToday className={styles.SectionIcon} />
             Analytics
           </NavLink>
-          <NavLink to="#">
+          {/* <NavLink to="#">
             <MdCalendarToday className={styles.SectionIcon} />
             Notifications
           </NavLink>
@@ -70,8 +70,8 @@ function SideBar() {
           <NavLink to="#">
             <MdCalendarToday className={styles.SectionIcon} />
             Compliance & Security
-          </NavLink>
-          <NavLink to="#">
+          </NavLink> */}
+          <NavLink to="/Admin/Settings"  className={({ isActive }) => ` ${isActive ? styles.active : ""}`}>
             <MdCalendarToday className={styles.SectionIcon} />
             System Settings
           </NavLink>

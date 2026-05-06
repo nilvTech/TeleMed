@@ -5,10 +5,10 @@ import AppointmentsOverview from "./Components/AppointmentsOverview.tsx";
 import RecentActivity from "./Components/RecentActivity.tsx";
 import SystemAlerts from "./Components/SystemAlerts.tsx";
 //import RevenueOverview from "./Components/RevenueOverview.tsx";
-import AppointmentsTrendChart from "./Components/charts/AppointmentsTrendChart.tsx";
-import RevenueTrendChart from "./Components/charts/RevenueTrendChart.tsx";
-import AppointmentStatusChart from "./Components/charts/AppointmentStatusChart.tsx";
-import ProviderActivityChart from "./Components/charts/ProviderActivityChart.tsx";
+// import AppointmentsTrendChart from "./Components/charts/AppointmentsTrendChart.tsx";
+// import RevenueTrendChart from "./Components/charts/RevenueTrendChart.tsx";
+// import AppointmentStatusChart from "./Components/charts/AppointmentStatusChart.tsx";
+// import ProviderActivityChart from "./Components/charts/ProviderActivityChart.tsx";
 //import { Icon } from "lucide-react";
 
 // Mock Data Types
@@ -150,41 +150,41 @@ const systemAlertsData: SystemAlert[] = [
   },
 ];
 
-const appointmentsTrendData = [
-  { date: "Mon", scheduled: 32, completed: 28, cancelled: 4 },
-  { date: "Tue", scheduled: 38, completed: 15, cancelled: 3 },
-  { date: "Wed", scheduled: 45, completed: 22, cancelled: 4 },
-  { date: "Thu", scheduled: 42, completed: 39, cancelled: 3 },
-  { date: "Fri", scheduled: 48, completed: 45, cancelled: 3 },
-  { date: "Sat", scheduled: 28, completed: 26, cancelled: 2 },
-  { date: "Sun", scheduled: 22, completed: 20, cancelled: 2 },
-];
+// const appointmentsTrendData = [
+//   { date: "Mon", scheduled: 32, completed: 28, cancelled: 4 },
+//   { date: "Tue", scheduled: 38, completed: 15, cancelled: 3 },
+//   { date: "Wed", scheduled: 45, completed: 22, cancelled: 4 },
+//   { date: "Thu", scheduled: 42, completed: 39, cancelled: 3 },
+//   { date: "Fri", scheduled: 48, completed: 45, cancelled: 3 },
+//   { date: "Sat", scheduled: 28, completed: 26, cancelled: 2 },
+//   { date: "Sun", scheduled: 22, completed: 20, cancelled: 2 },
+// ];
 
-const revenueTrendData = [
-  { date: "Mon", daily: 15200, weekly: 50200, monthly: 100200 },
-  { date: "Tue", daily: 16800, weekly: 70300, monthly: 120300 },
-  { date: "Wed", daily: 18500, weekly: 80500, monthly: 95500 },
-  { date: "Thu", daily: 17200, weekly: 67700, monthly: 110700 },
-  { date: "Fri", daily: 19300, weekly: 87000, monthly: 164000 },
-  { date: "Sat", daily: 12400, weekly: 99400, monthly: 114400 },
-  { date: "Sun", daily: 10800, weekly: 110200, monthly: 150200 },
-];
+// const revenueTrendData = [
+//   { date: "Mon", daily: 15200, weekly: 50200, monthly: 100200 },
+//   { date: "Tue", daily: 16800, weekly: 70300, monthly: 120300 },
+//   { date: "Wed", daily: 18500, weekly: 80500, monthly: 95500 },
+//   { date: "Thu", daily: 17200, weekly: 67700, monthly: 110700 },
+//   { date: "Fri", daily: 19300, weekly: 87000, monthly: 164000 },
+//   { date: "Sat", daily: 12400, weekly: 99400, monthly: 114400 },
+//   { date: "Sun", daily: 10800, weekly: 110200, monthly: 150200 },
+// ];
 
-const appointmentStatusData = [
-  { name: "Scheduled", value: 487, color: "#3B82F6" },
-  { name: "Completed", value: 1243, color: "#10B981" },
-  { name: "Cancelled", value: 156, color: "#F59E0B" },
-  { name: "No-Show", value: 92, color: "#EF4444" },
-];
+// const appointmentStatusData = [
+//   { name: "Scheduled", value: 487, color: "#3B82F6" },
+//   { name: "Completed", value: 1243, color: "#10B981" },
+//   { name: "Cancelled", value: 156, color: "#F59E0B" },
+//   { name: "No-Show", value: 92, color: "#EF4444" },
+// ];
 
-const providerActivityData = [
-  { name: "Dr. Sarah Mitchell", appointments: 42, color: "#3B82F6" },
-  { name: "Dr. James Wilson", appointments: 38, color: "#8B5CF6" },
-  { name: "Dr. Emily Chen", appointments: 35, color: "#EC4899" },
-  { name: "Dr. Michael Rodriguez", appointments: 31, color: "#14B8A6" },
-  { name: "Dr. Patricia Brown", appointments: 28, color: "#F59E0B" },
-  { name: "Dr. David Lee", appointments: 24, color: "#06B6D4" },
-];
+// const providerActivityData = [
+//   { name: "Dr. Sarah Mitchell", appointments: 42, color: "#3B82F6" },
+//   { name: "Dr. James Wilson", appointments: 38, color: "#8B5CF6" },
+//   { name: "Dr. Emily Chen", appointments: 35, color: "#EC4899" },
+//   { name: "Dr. Michael Rodriguez", appointments: 31, color: "#14B8A6" },
+//   { name: "Dr. Patricia Brown", appointments: 28, color: "#F59E0B" },
+//   { name: "Dr. David Lee", appointments: 24, color: "#06B6D4" },
+// ];
 
 const AdminDashboard: React.FC = () => {
   const currentDateTime = useMemo(() => {
