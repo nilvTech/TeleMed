@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "./PatientAppointments.module.css";
 import { RxCross1 } from "react-icons/rx";
 
@@ -21,7 +21,7 @@ const Appointments: Booking[] = [
     SelectedTimeSlots: "10:30 AM",
     Provider: "Dr. Sharma",
     VisitType: "Video Visit",
-    Status: "Upcoming", 
+    Status: "Upcoming",
     Speciality: "General Medicine",
     ReasonForVisit: "",
     PreferredPharmacy: "",
@@ -164,6 +164,23 @@ function PatientAppointments() {
     }
   };
 
+  const [showConfirm, setShowConfirm] = useState(false);
+  const [apptProviderName,setApptProviderName] = useState<string>("");
+  const [cancelId, setCancelId] = useState<number | null>(null);
+ 
+
+  const handleApptCancel = (appointment:Booking) => {
+    setCancelId(appointment.id);
+    setApptProviderName(appointment.Provider)
+    setShowConfirm(true);
+  };
+
+  const confirmApptCancel = () => {
+    setAppointments((prev)=> prev.filter((item)=> item.id !== cancelId));
+    setShowConfirm(false);
+    setCancelId(null);
+  };
+
   const handleConfirmReschedule = () => {
     if (!BookingForm.VisitDate || !BookingForm.SelectedTimeSlots) {
       return;
@@ -206,7 +223,7 @@ function PatientAppointments() {
       </div>
       {/* Filter / Tabs Section  */}
       <div className={styles.tabsContainer}>
-        {tabs.map((tab,index) => (
+        {tabs.map((tab, index) => (
           <button
             className={`${styles.tab} ${activeTab === tab ? styles.tabActive : ""}`}
             onClick={() => setActiveTab(tab)}
@@ -222,7 +239,7 @@ function PatientAppointments() {
           .filter((item) =>
             activeTab === "All" ? true : item.Status === activeTab,
           )
-          .map((appointment,index) => (
+          .map((appointment, index) => (
             <div className={styles.card} key={index}>
               <div className={styles.cardLeft}>
                 <span className={styles.date}>
@@ -255,12 +272,43 @@ function PatientAppointments() {
                     Reschedule
                   </button>
 
-                  <button className={styles.dangerAction}>Cancel</button>
+                  <button
+                    className={styles.dangerAction}
+                    onClick={() => handleApptCancel(appointment)}
+                  >
+                    Cancel
+                  </button>
                 </div>
               </div>
             </div>
           ))}
       </div>
+
+      {showConfirm && (
+        <div className={styles.modalOverlay}>
+          <div className={styles.modal}>
+            <h3>Confirm Cancel Appointment</h3>
+
+            <p>Are you sure you want to cancel <strong>{apptProviderName}</strong> appointment?</p>
+
+            <div className={styles.modalActions}>
+              <button
+                className={styles.cancelBtn}
+                onClick={() => setShowConfirm(false)}
+              >
+                Cancel
+              </button>
+
+              <button
+                className={styles.confirmBtn}
+                onClick={confirmApptCancel}
+              >
+                Cancel Appointment
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* 
       Booking Modal
@@ -372,28 +420,28 @@ function PatientAppointments() {
 
                   <div className={styles.timeSlots}>
                     <button
-                      className={styles.timeSlot}
+                      className={`${BookingForm.SelectedTimeSlots === "09:00 AM" ? styles.timeSlotSelected : styles.timeSlot}`}
                       onClick={() => handleTimeSlot("09:00 AM")}
                     >
                       09:00 AM
                     </button>
 
                     <button
-                      className={styles.timeSlot}
+                      className={`${BookingForm.SelectedTimeSlots === "10:30 AM" ? styles.timeSlotSelected : styles.timeSlot}`}
                       onClick={() => handleTimeSlot("10:30 AM")}
                     >
                       10:30 AM
                     </button>
 
                     <button
-                      className={styles.timeSlot}
+                      className={`${BookingForm.SelectedTimeSlots === "01:00 PM" ? styles.timeSlotSelected : styles.timeSlot}`}
                       onClick={() => handleTimeSlot("01:00 PM")}
                     >
                       01:00 PM
                     </button>
 
                     <button
-                      className={styles.timeSlot}
+                      className={`${BookingForm.SelectedTimeSlots === "03:30 PM" ? styles.timeSlotSelected : styles.timeSlot}`}
                       onClick={() => handleTimeSlot("03:30 PM")}
                     >
                       03:30 PM

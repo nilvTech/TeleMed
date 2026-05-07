@@ -270,7 +270,7 @@ export default function ReportsAnalytics() {
     <div className={styles.className}>
       {/* Charts Section */}
       <section className={styles.section}>
-        <h2 className={styles.sectionTitle}>Analytics</h2>
+        <h2 className={styles.Title}>Analytics</h2>
 
         <div className={styles.leaderboardSection}>
           <SectionContainer

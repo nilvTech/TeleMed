@@ -173,6 +173,8 @@
   transition: 0.2s;
 }
 
+
+
 .primaryAction {
   background-color: var(--primary);
   color: white;
@@ -195,6 +197,105 @@
 
 .dangerAction:hover {
   background-color: var(--danger-bg);
+}
+
+
+/* ── Overlay ── */
+.modalOverlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+/* ── Modal Box ── */
+.modal {
+  background-color: #ffffff;
+  border-radius: 12px;
+  padding: 32px 28px;
+  width: 100%;
+  max-width: 420px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  animation: slideUp 0.2s ease-out;
+}
+
+.modal h3 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #1a1a2e;
+  margin: 0;
+}
+
+.modal p {
+  font-size: 0.95rem;
+  color: #555e6d;
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* ── Action Buttons Row ── */
+.modalActions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+/* ── Back / Dismiss Button ── */
+.cancelBtn {
+  padding: 9px 20px;
+  border-radius: 8px;
+  border: 1px solid #d1d5db;
+  background-color: #f9fafb;
+  color: #374151;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.15s ease, border-color 0.15s ease;
+}
+
+.cancelBtn:hover {
+  background-color: #f3f4f6;
+  border-color: #9ca3af;
+}
+
+/* ── Confirm / Destructive Button ── */
+.confirmBtn {
+  padding: 9px 20px;
+  border-radius: 8px;
+  border: none;
+  background-color: #ef4444;
+  color: #ffffff;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.15s ease, transform 0.1s ease;
+}
+
+.confirmBtn:hover {
+  background-color: #dc2626;
+}
+
+.confirmBtn:active {
+  transform: scale(0.97);
+}
+
+/* ── Slide-up animation ── */
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* Mobile Responsiveness */
@@ -262,7 +363,7 @@
   font-size: 22px;
   cursor: pointer;
 }
-.closeButton:active{
+.closeButton:active {
   outline: none;
 }
 
@@ -357,6 +458,8 @@
   border-radius: 8px;
   border: 1px solid #d1d5db;
   font-size: 14px;
+  background-color: aliceblue;
+  color: #111827;
 }
 
 .modalFooter {
@@ -417,7 +520,17 @@
 }
 
 /* Selected state: should match your primary blue theme */
-.selectedTimeSlot {
+.timeSlotSelected {
+  padding: 12px 8px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #374151;
+  background-color: #ffffff;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: center;
   background-color: #2563eb;
   border-color: #2563eb;
   color: #ffffff;
@@ -440,6 +553,8 @@
   min-height: 100px;
   resize: none;
   font-size: 14px;
+  background-color: aliceblue;
+  color: #111827;
 }
 
 /* Confirm Appt Screen CSS */

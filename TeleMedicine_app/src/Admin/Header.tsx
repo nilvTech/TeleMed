@@ -4,8 +4,6 @@ import styles from "../Provider/DashboardContent/Header.module.css";
 import { MdAccountCircle, MdNotificationsNone } from "react-icons/md";
 
 function Header() {
-
-
   return (
     <header>
       <div className={styles.header}>

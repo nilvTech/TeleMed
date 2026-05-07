@@ -13,11 +13,10 @@ import AdminLayout from "./Layout/AdminLayout";
 import AdminDashboard from "./Admin/Dashboard/AdminDashboard";
 import PatientLayout from "./Layout/PatientLayout";
 import PatientDashboard from "./Patients/Dashboard/PatientDashboard";
-import Documents from "./Provider/Patients/PatientDetailsTab/Documents";
+// import Documents from "./Provider/Patients/Not Needed/Documents";
 import Orders from "./Provider/Patients/PatientDetailsTab/Orders";
-import DocumentList from "./Provider/Patients/PatientDetailsTab/DocumentList";
+// import DocumentList from "./Provider/Patients/Not Needed/DocumentList";
 import Payments from "./Provider/Patients/PatientDetailsTab/Payment/Payments";
-import PatientForm from "./Provider/Patients/PatientForm";
 import MessagesPage from "./Provider/Messages/MessagesPage";
 import BillingDashboard from "./Provider/Billing/BillingDashboard";
 import ChargesPage from "./Provider/Billing/ChargesPage";
@@ -44,8 +43,8 @@ import BillingClaims from "./Admin/Billing&Claims/Billing&Claims";
 import ClinicalOversight from "./Admin/Clinical Oversight/ClinicalOversight";
 import AccessControl from "./Admin/Users & Access Control/User&Access";
 import ReportsAnalytics from "./Admin/Reports & Analytics/Reports&Analytics";
-import AdminPortal from "./Admin/Settings/Setting";
-import { Settings } from "lucide-react";
+// import AdminPortal from "./Admin/Settings/Setting";
+// import { Settings } from "lucide-react";
 import AdminSettings from "./Admin/Settings/Setting";
 
 //import MainContent from "./DashboardContent/Maincontent";
@@ -80,11 +79,9 @@ function App() {
             <Route path="/VideoCall" element={<VideoCallPreview />} />
             <Route path="/Patients" element={<PatientsPage />} />
             <Route path="/Patients/:id" element={<PatientDetailsPage />} />
-            <Route path="/Patients/documents" element={<Documents />} />
             <Route path="/Patients/Orders" element={<Orders />} />
-            <Route path="/document-list" element={<DocumentList />} />
+            {/* <Route path="/document-list" element={<DocumentList />} /> */}
             <Route path="/Patients/payments" element={<Payments />} />
-            <Route path="/Patients/Form" element={<PatientForm />} />
             <Route path="/Message" element={<MessagesPage />} />
             <Route path="/Billing" element={<BillingDashboard />} />
             <Route path="/Charges" element={<ChargesPage />} />

@@ -1,5 +1,5 @@
 import { useEffect, useState, useRef } from "react";
-import styles from "./CSS/DocumentList.module.css";
+import styles from "./DocumentList.module.css";
 
 type Props = {
   documents: any[];

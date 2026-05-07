@@ -1,3 +1,8 @@
+// ------------------------ Settings.tsx ------------------------
+// This component provides a comprehensive settings page for patients to manage their profile information, password, notification preferences, communication preferences, privacy settings, and insurance information. It includes form handling, validation, toast notifications for feedback, and a confirmation modal for account deactivation. The component is designed with accessibility in mind and uses mock data for demonstration purposes.
+// --------------------------------------------------------------
+
+
 import React, { useState, useEffect, useRef } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 

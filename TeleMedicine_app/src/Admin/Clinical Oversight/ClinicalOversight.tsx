@@ -933,6 +933,7 @@ const ClinicalOversight: React.FC = () => {
     <div className={styles.tabContent}>
       <div className={styles.filters}>
         <input
+          name="EncounterSearch"
           type="text"
           placeholder="Search patient or diagnosis..."
           className={styles.searchInput}
@@ -942,6 +943,7 @@ const ClinicalOversight: React.FC = () => {
           }
         />
         <select
+          name="EncounterStatusFilter"
           value={encounterFilters.status}
           onChange={(e) =>
             setEncounterFilters({ ...encounterFilters, status: e.target.value })
@@ -955,6 +957,7 @@ const ClinicalOversight: React.FC = () => {
           <option value="escalated">Escalated</option>
         </select>
         <select
+          name="EncounterRiskLevelFilter"
           value={encounterFilters.riskLevel}
           onChange={(e) =>
             setEncounterFilters({
@@ -970,6 +973,7 @@ const ClinicalOversight: React.FC = () => {
           <option value="low">Low Risk</option>
         </select>
         <select
+          name="EncountersFilterByProviderName"
           value={encounterFilters.provider}
           onChange={(e) =>
             setEncounterFilters({
@@ -1190,87 +1194,86 @@ const ClinicalOversight: React.FC = () => {
         </div>
       ) : (
         <>
-        <div className={styles.tableContainer}>
-          <table className={styles.table}>
-            <thead>
-              <tr>
-                <th>ID</th>
-                <th>Type</th>
-                <th>Severity</th>
-                <th>Description</th>
-                <th>Provider</th>
-                <th>Patient</th>
-                <th>Timestamp</th>
-                <th>Status</th>
-                <th>Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-              {filteredAlerts.slice((currentPage -1) * perPage, currentPage * perPage).map((alert) => (
-                <tr key={alert.id}>
-                  <td>{alert.id}</td>
-                  <td>{alert.type}</td>
-                  <td>
-                    <span className={getRiskBadgeClass(alert.severity)}>
-                      {alert.severity.toUpperCase()}
-                    </span>
-                  </td>
-                  <td>{alert.description}</td>
-                  <td>{alert.providerName}</td>
-                  <td>{alert.patientName}</td>
-                  <td>{formatDate(alert.timestamp)}</td>
-                  <td>
-                    <span className={getStatusBadgeClass(alert.status)}>
-                      {alert.status.toUpperCase()}
-                    </span>
-                  </td>
-                  <td>
-                    <div className={styles.actionButtons}>
-                      <button
-                        className={styles.buttonSmall}
-                        onClick={() => setSelectedAlert(alert)}
-                      >
-                        View
-                      </button>
-                      {alert.status === "active" && (
-                        <>
-                          <button
-                            className={styles.buttonWarning}
-                            onClick={() => handleAcknowledgeAlert(alert.id)}
-                            disabled={loading}
-                          >
-                            Acknowledge
-                          </button>
-                          <button
-                            className={styles.buttonSuccess}
-                            onClick={() => handleResolveAlert(alert.id)}
-                            disabled={loading}
-                          >
-                            Resolve
-                          </button>
-                          <button
-                            className={styles.buttonSecondary}
-                            onClick={() => handleDismissAlert(alert.id)}
-                            disabled={loading}
-                          >
-                            Dismiss
-                          </button>
-                        </>
-                      )}
-                    </div>
-                  </td>
+          <div className={styles.tableContainer}>
+            <table className={styles.table}>
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Type</th>
+                  <th>Severity</th>
+                  <th>Description</th>
+                  <th>Provider</th>
+                  <th>Patient</th>
+                  <th>Timestamp</th>
+                  <th>Status</th>
+                  <th>Actions</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+              </thead>
+              <tbody>
+                {filteredAlerts
+                  .slice((currentPage - 1) * perPage, currentPage * perPage)
+                  .map((alert) => (
+                    <tr key={alert.id}>
+                      <td>{alert.id}</td>
+                      <td>{alert.type}</td>
+                      <td>
+                        <span className={getRiskBadgeClass(alert.severity)}>
+                          {alert.severity.toUpperCase()}
+                        </span>
+                      </td>
+                      <td>{alert.description}</td>
+                      <td>{alert.providerName}</td>
+                      <td>{alert.patientName}</td>
+                      <td>{formatDate(alert.timestamp)}</td>
+                      <td>
+                        <span className={getStatusBadgeClass(alert.status)}>
+                          {alert.status.toUpperCase()}
+                        </span>
+                      </td>
+                      <td>
+                        <div className={styles.actionButtons}>
+                          <button
+                            className={styles.buttonSmall}
+                            onClick={() => setSelectedAlert(alert)}
+                          >
+                            View
+                          </button>
+                          {alert.status === "active" && (
+                            <>
+                              <button
+                                className={styles.buttonWarning}
+                                onClick={() => handleAcknowledgeAlert(alert.id)}
+                                disabled={loading}
+                              >
+                                Acknowledge
+                              </button>
+                              <button
+                                className={styles.buttonSuccess}
+                                onClick={() => handleResolveAlert(alert.id)}
+                                disabled={loading}
+                              >
+                                Resolve
+                              </button>
+                              <button
+                                className={styles.buttonSecondary}
+                                onClick={() => handleDismissAlert(alert.id)}
+                                disabled={loading}
+                              >
+                                Dismiss
+                              </button>
+                            </>
+                          )}
+                        </div>
+                      </td>
+                    </tr>
+                  ))}
+              </tbody>
+            </table>
+          </div>
           <div className={styles.pagination}>
             <span className={styles.paginationInfo}>
               Showing{" "}
-              {Math.min(
-                (currentPage - 1) * perPage + 1,
-                filteredAlerts.length,
-              )}
+              {Math.min((currentPage - 1) * perPage + 1, filteredAlerts.length)}
               –{Math.min(currentPage * perPage, filteredAlerts.length)} of{" "}
               {filteredAlerts.length}
             </span>
@@ -1356,74 +1359,75 @@ const ClinicalOversight: React.FC = () => {
           <p>No providers match your filters</p>
         </div>
       ) : (
-
         <>
-        <div className={styles.tableContainer}>
-          <table className={styles.table}>
-            <thead>
-              <tr>
-                <th>ID</th>
-                <th>Name</th>
-                <th>Specialty</th>
-                <th>Quality Score</th>
-                <th>Completion Rate</th>
-                <th>Avg Response (min)</th>
-                <th>Flagged Encounters</th>
-                <th>Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-              {filteredProviders.slice((currentPage - 1)*perPage, currentPage*perPage).map((provider) => (
-                <tr key={provider.id}>
-                  <td>{provider.id}</td>
-                  <td>{provider.name}</td>
-                  <td>{provider.specialty}</td>
-                  <td>
-                    <div className={styles.scoreContainer}>
-                      <span
-                        className={
-                          provider.qualityScore >= 90
-                            ? styles.scoreHigh
-                            : provider.qualityScore >= 80
-                              ? styles.scoreMedium
-                              : styles.scoreLow
-                        }
-                      >
-                        {provider.qualityScore}%
-                      </span>
-                      <div className={styles.progressBar}>
-                        <div
-                          className={styles.progressFill}
-                          style={{ width: `${provider.qualityScore}%` }}
-                        ></div>
-                      </div>
-                    </div>
-                  </td>
-                  <td>{provider.completionRate}%</td>
-                  <td>{provider.avgResponseTime}</td>
-                  <td>
-                    {provider.flaggedEncounters > 0 ? (
-                      <span className={styles.badgeWarning}>
-                        {provider.flaggedEncounters}
-                      </span>
-                    ) : (
-                      <span className={styles.badgeSuccess}>0</span>
-                    )}
-                  </td>
-                  <td>
-                    <button
-                      className={styles.buttonPrimary}
-                      onClick={() => setSelectedProvider(provider)}
-                    >
-                      View Details
-                    </button>
-                  </td>
+          <div className={styles.tableContainer}>
+            <table className={styles.table}>
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Name</th>
+                  <th>Specialty</th>
+                  <th>Quality Score</th>
+                  <th>Completion Rate</th>
+                  <th>Avg Response (min)</th>
+                  <th>Flagged Encounters</th>
+                  <th>Actions</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-        <div className={styles.pagination}>
+              </thead>
+              <tbody>
+                {filteredProviders
+                  .slice((currentPage - 1) * perPage, currentPage * perPage)
+                  .map((provider) => (
+                    <tr key={provider.id}>
+                      <td>{provider.id}</td>
+                      <td>{provider.name}</td>
+                      <td>{provider.specialty}</td>
+                      <td>
+                        <div className={styles.scoreContainer}>
+                          <span
+                            className={
+                              provider.qualityScore >= 90
+                                ? styles.scoreHigh
+                                : provider.qualityScore >= 80
+                                  ? styles.scoreMedium
+                                  : styles.scoreLow
+                            }
+                          >
+                            {provider.qualityScore}%
+                          </span>
+                          <div className={styles.progressBar}>
+                            <div
+                              className={styles.progressFill}
+                              style={{ width: `${provider.qualityScore}%` }}
+                            ></div>
+                          </div>
+                        </div>
+                      </td>
+                      <td>{provider.completionRate}%</td>
+                      <td>{provider.avgResponseTime}</td>
+                      <td>
+                        {provider.flaggedEncounters > 0 ? (
+                          <span className={styles.badgeWarning}>
+                            {provider.flaggedEncounters}
+                          </span>
+                        ) : (
+                          <span className={styles.badgeSuccess}>0</span>
+                        )}
+                      </td>
+                      <td>
+                        <button
+                          className={styles.buttonPrimary}
+                          onClick={() => setSelectedProvider(provider)}
+                        >
+                          View Details
+                        </button>
+                      </td>
+                    </tr>
+                  ))}
+              </tbody>
+            </table>
+          </div>
+          <div className={styles.pagination}>
             <span className={styles.paginationInfo}>
               Showing{" "}
               {Math.min(
@@ -1499,76 +1503,78 @@ const ClinicalOversight: React.FC = () => {
         </div>
       ) : (
         <>
-        <div className={styles.tableContainer}>
-          <table className={styles.table}>
-            <thead>
-              <tr>
-                <th>ID</th>
-                <th>Name</th>
-                <th>Category</th>
-                <th>Version</th>
-                <th>Adherence Rate</th>
-                <th>Violations</th>
-                <th>Last Updated</th>
-                <th>Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-              {filteredProtocols.slice((currentPage-1)*perPage,currentPage*perPage).map((protocol) => (
-                <tr key={protocol.id}>
-                  <td>{protocol.id}</td>
-                  <td>{protocol.name}</td>
-                  <td>{protocol.category}</td>
-                  <td>
-                    <span className={styles.badgeSecondary}>
-                      v{protocol.version}
-                    </span>
-                  </td>
-                  <td>
-                    <div className={styles.scoreContainer}>
-                      <span
-                        className={
-                          protocol.adherenceRate >= 90
-                            ? styles.scoreHigh
-                            : protocol.adherenceRate >= 80
-                              ? styles.scoreMedium
-                              : styles.scoreLow
-                        }
-                      >
-                        {protocol.adherenceRate}%
-                      </span>
-                      <div className={styles.progressBar}>
-                        <div
-                          className={styles.progressFill}
-                          style={{ width: `${protocol.adherenceRate}%` }}
-                        ></div>
-                      </div>
-                    </div>
-                  </td>
-                  <td>
-                    {protocol.violations > 0 ? (
-                      <span className={styles.badgeWarning}>
-                        {protocol.violations}
-                      </span>
-                    ) : (
-                      <span className={styles.badgeSuccess}>0</span>
-                    )}
-                  </td>
-                  <td>{protocol.lastUpdated}</td>
-                  <td>
-                    <button
-                      className={styles.buttonPrimary}
-                      onClick={() => setSelectedProtocol(protocol)}
-                    >
-                      View Details
-                    </button>
-                  </td>
+          <div className={styles.tableContainer}>
+            <table className={styles.table}>
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Name</th>
+                  <th>Category</th>
+                  <th>Version</th>
+                  <th>Adherence Rate</th>
+                  <th>Violations</th>
+                  <th>Last Updated</th>
+                  <th>Actions</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-        <div className={styles.pagination}>
+              </thead>
+              <tbody>
+                {filteredProtocols
+                  .slice((currentPage - 1) * perPage, currentPage * perPage)
+                  .map((protocol) => (
+                    <tr key={protocol.id}>
+                      <td>{protocol.id}</td>
+                      <td>{protocol.name}</td>
+                      <td>{protocol.category}</td>
+                      <td>
+                        <span className={styles.badgeSecondary}>
+                          v{protocol.version}
+                        </span>
+                      </td>
+                      <td>
+                        <div className={styles.scoreContainer}>
+                          <span
+                            className={
+                              protocol.adherenceRate >= 90
+                                ? styles.scoreHigh
+                                : protocol.adherenceRate >= 80
+                                  ? styles.scoreMedium
+                                  : styles.scoreLow
+                            }
+                          >
+                            {protocol.adherenceRate}%
+                          </span>
+                          <div className={styles.progressBar}>
+                            <div
+                              className={styles.progressFill}
+                              style={{ width: `${protocol.adherenceRate}%` }}
+                            ></div>
+                          </div>
+                        </div>
+                      </td>
+                      <td>
+                        {protocol.violations > 0 ? (
+                          <span className={styles.badgeWarning}>
+                            {protocol.violations}
+                          </span>
+                        ) : (
+                          <span className={styles.badgeSuccess}>0</span>
+                        )}
+                      </td>
+                      <td>{protocol.lastUpdated}</td>
+                      <td>
+                        <button
+                          className={styles.buttonPrimary}
+                          onClick={() => setSelectedProtocol(protocol)}
+                        >
+                          View Details
+                        </button>
+                      </td>
+                    </tr>
+                  ))}
+              </tbody>
+            </table>
+          </div>
+          <div className={styles.pagination}>
             <span className={styles.paginationInfo}>
               Showing{" "}
               {Math.min(
@@ -1658,41 +1664,45 @@ const ClinicalOversight: React.FC = () => {
         </div>
       ) : (
         <>
-        <div className={styles.tableContainer}>
-          <table className={styles.table}>
-            <thead>
-              <tr>
-                <th>ID</th>
-                <th>Action</th>
-                <th>Performed By</th>
-                <th>Target Type</th>
-                <th>Target ID</th>
-                <th>Timestamp</th>
-                <th>IP Address</th>
-                <th>Details</th>
-              </tr>
-            </thead>
-            <tbody>
-              {filteredAuditLogs.slice((currentPage-1)*perPage,currentPage*perPage).map((log) => (
-                <tr key={log.id}>
-                  <td>{log.id}</td>
-                  <td>
-                    <span className={styles.badgePrimary}>{log.action}</span>
-                  </td>
-                  <td>{log.performedBy}</td>
-                  <td>{log.targetType}</td>
-                  <td>{log.targetId}</td>
-                  <td>{formatDate(log.timestamp)}</td>
-                  <td>
-                    <code className={styles.code}>{log.ipAddress}</code>
-                  </td>
-                  <td>{log.details}</td>
+          <div className={styles.tableContainer}>
+            <table className={styles.table}>
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Action</th>
+                  <th>Performed By</th>
+                  <th>Target Type</th>
+                  <th>Target ID</th>
+                  <th>Timestamp</th>
+                  <th>IP Address</th>
+                  <th>Details</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-        <div className={styles.pagination}>
+              </thead>
+              <tbody>
+                {filteredAuditLogs
+                  .slice((currentPage - 1) * perPage, currentPage * perPage)
+                  .map((log) => (
+                    <tr key={log.id}>
+                      <td>{log.id}</td>
+                      <td>
+                        <span className={styles.badgePrimary}>
+                          {log.action}
+                        </span>
+                      </td>
+                      <td>{log.performedBy}</td>
+                      <td>{log.targetType}</td>
+                      <td>{log.targetId}</td>
+                      <td>{formatDate(log.timestamp)}</td>
+                      <td>
+                        <code className={styles.code}>{log.ipAddress}</code>
+                      </td>
+                      <td>{log.details}</td>
+                    </tr>
+                  ))}
+              </tbody>
+            </table>
+          </div>
+          <div className={styles.pagination}>
             <span className={styles.paginationInfo}>
               Showing{" "}
               {Math.min(
@@ -1793,81 +1803,87 @@ const ClinicalOversight: React.FC = () => {
         </div>
       ) : (
         <>
-        <div className={styles.tableContainer}>
-          <table className={styles.table}>
-            <thead>
-              <tr>
-                <th>ID</th>
-                <th>Title</th>
-                <th>Severity</th>
-                <th>Status</th>
-                <th>Category</th>
-                <th>Reported By</th>
-                <th>Reported Date</th>
-                <th>Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-              {filteredIncidents.slice((currentPage-1)*perPage,currentPage*perPage).map((incident) => (
-                <tr key={incident.id}>
-                  <td>{incident.id}</td>
-                  <td>{incident.title}</td>
-                  <td>
-                    <span className={getStatusBadgeClass(incident.severity)}>
-                      {incident.severity.toUpperCase()}
-                    </span>
-                  </td>
-                  <td>
-                    <span className={getStatusBadgeClass(incident.status)}>
-                      {incident.status.replace("_", " ").toUpperCase()}
-                    </span>
-                  </td>
-                  <td>{incident.category}</td>
-                  <td>{incident.reportedBy}</td>
-                  <td>{formatDate(incident.reportedDate)}</td>
-                  <td>
-                    <div className={styles.actionButtons}>
-                      <button
-                        className={styles.buttonSmall}
-                        onClick={() => setSelectedIncident(incident)}
-                      >
-                        View
-                      </button>
-                      {incident.status === "reported" && (
-                        <button
-                          className={styles.buttonWarning}
-                          onClick={() => handleInvestigateIncident(incident.id)}
-                          disabled={loading}
-                        >
-                          Investigate
-                        </button>
-                      )}
-                      {incident.status === "under_investigation" && (
-                        <button
-                          className={styles.buttonSuccess}
-                          onClick={() => handleResolveIncident(incident.id)}
-                          disabled={loading}
-                        >
-                          Resolve
-                        </button>
-                      )}
-                      {incident.status === "resolved" && (
-                        <button
-                          className={styles.buttonSecondary}
-                          onClick={() => handleCloseIncident(incident.id)}
-                          disabled={loading}
-                        >
-                          Close
-                        </button>
-                      )}
-                    </div>
-                  </td>
+          <div className={styles.tableContainer}>
+            <table className={styles.table}>
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Title</th>
+                  <th>Severity</th>
+                  <th>Status</th>
+                  <th>Category</th>
+                  <th>Reported By</th>
+                  <th>Reported Date</th>
+                  <th>Actions</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-        <div className={styles.pagination}>
+              </thead>
+              <tbody>
+                {filteredIncidents
+                  .slice((currentPage - 1) * perPage, currentPage * perPage)
+                  .map((incident) => (
+                    <tr key={incident.id}>
+                      <td>{incident.id}</td>
+                      <td>{incident.title}</td>
+                      <td>
+                        <span
+                          className={getStatusBadgeClass(incident.severity)}
+                        >
+                          {incident.severity.toUpperCase()}
+                        </span>
+                      </td>
+                      <td>
+                        <span className={getStatusBadgeClass(incident.status)}>
+                          {incident.status.replace("_", " ").toUpperCase()}
+                        </span>
+                      </td>
+                      <td>{incident.category}</td>
+                      <td>{incident.reportedBy}</td>
+                      <td>{formatDate(incident.reportedDate)}</td>
+                      <td>
+                        <div className={styles.actionButtons}>
+                          <button
+                            className={styles.buttonSmall}
+                            onClick={() => setSelectedIncident(incident)}
+                          >
+                            View
+                          </button>
+                          {incident.status === "reported" && (
+                            <button
+                              className={styles.buttonWarning}
+                              onClick={() =>
+                                handleInvestigateIncident(incident.id)
+                              }
+                              disabled={loading}
+                            >
+                              Investigate
+                            </button>
+                          )}
+                          {incident.status === "under_investigation" && (
+                            <button
+                              className={styles.buttonSuccess}
+                              onClick={() => handleResolveIncident(incident.id)}
+                              disabled={loading}
+                            >
+                              Resolve
+                            </button>
+                          )}
+                          {incident.status === "resolved" && (
+                            <button
+                              className={styles.buttonSecondary}
+                              onClick={() => handleCloseIncident(incident.id)}
+                              disabled={loading}
+                            >
+                              Close
+                            </button>
+                          )}
+                        </div>
+                      </td>
+                    </tr>
+                  ))}
+              </tbody>
+            </table>
+          </div>
+          <div className={styles.pagination}>
             <span className={styles.paginationInfo}>
               Showing{" "}
               {Math.min(
@@ -2474,11 +2490,11 @@ const ClinicalOversight: React.FC = () => {
   return (
     <div className={styles.container}>
       <div className={styles.header}>
-         
-            <h1 className={styles.pageTitle}>Clinical Oversight</h1>
-            <p className={styles.pageSubtitle}>Ensure clinical quality, safety, and compliance across all
-          telemedicine encounters</p>
-          
+        <h1 className={styles.pageTitle}>Clinical Oversight</h1>
+        <p className={styles.pageSubtitle}>
+          Ensure clinical quality, safety, and compliance across all
+          telemedicine encounters
+        </p>
       </div>
 
       <div className={styles.tabs}>
