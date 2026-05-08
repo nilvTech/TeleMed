@@ -3,8 +3,6 @@
     "Inter",
     -apple-system,
     sans-serif;
-  background-color: #f1f5f9;
-
   color: #1e293b;
 }
 
@@ -74,9 +72,9 @@
 
 /* Layout Content */
 .content {
-  max-width: 1100px;
   margin: 0 auto;
   padding: 2rem;
+  height: 550px;
 }
 
 .patientCard {
@@ -119,21 +117,44 @@
 .table {
   width: 100%;
   border-collapse: collapse;
-  font-size: 0.9rem;
+  display: block; /* Required to allow tbody scrolling */
+  font-size: 14px;
 }
 
-.table th {
-  text-align: left;
-  padding: 0.75rem 1rem;
-  background: #f8fafc;
-  color: #64748b;
-  font-weight: 600;
-  border-bottom: 2px solid #f1f5f9;
+/* Sticky Header */
+
+.table thead {
+  background: #f1f5f9;
+  display: block;
+  width: 100%;
 }
 
+.table th,
 .table td {
-  padding: 1rem;
-  border-bottom: 1px solid #f1f5f9;
+  padding: 14px;
+  text-align: left;
+  color: #334155;
+  border-bottom: 1px solid #e2e8f0;
+  white-space: nowrap; /* Prevents text from wrapping to the next line */
+  overflow: hidden; /* Hides content that exceeds cell width */
+}
+
+.table tbody {
+  display: block;
+  width: 100%;
+  max-height: 250px; /* Adjust this height to your preference */
+  overflow-y: auto; /* Enables the vertical scroll */
+}
+.table tr {
+  display: table; /* Makes the row behave like a table for cell alignment */
+  width: 100%;
+  table-layout: fixed; /* Ensures columns align between head and body */
+}
+
+/* Row Hover */
+
+.table tbody tr:hover {
+  background: #f8fafc;
 }
 
 .viewButton {

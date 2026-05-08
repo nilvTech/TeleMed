@@ -135,7 +135,7 @@ const MedicalHistory = () => {
           <div className={styles.patientSelector}>
             <label>Select Patient</label>
             <select value={selectedPatientId} onChange={handlePatientChange}>
-              <option value="">-- Select Patient --</option>
+              <option value="">Select Patient</option>
               {patients.map((p) => (
                 <option key={p.id} value={p.id}>
                   {p.name}
@@ -156,7 +156,7 @@ const MedicalHistory = () => {
   }
 
   return (
-    <div className={styles.container}>
+    <div className={styles.container}>  
       <div className={styles.header}>
         <h2 className={styles.title}>Medical Records</h2>
 

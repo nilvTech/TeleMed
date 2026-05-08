@@ -72,13 +72,13 @@ function QuickStats() {
       theme: styles.blue,
     },
     {
-      label: "Completed",
+      label: "Appointment(s) Completed",
       value: 10,
       icon: <CheckCircle size={24} />,
       theme: styles.green,
     },
     {
-      label: "Pending",
+      label: "Appointment(s) Pending",
       value: 4,
       icon: <Clock size={24} />,
       theme: styles.orange,

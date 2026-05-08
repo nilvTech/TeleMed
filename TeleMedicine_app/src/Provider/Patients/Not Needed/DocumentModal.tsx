@@ -5,6 +5,7 @@ type props = {
   onClose: () => void;
   setDocuments: React.Dispatch<React.SetStateAction<any[]>>;
 };
+
 function DocumentFormModal({ onClose, setDocuments }: props) {
   const [title, setTitle] = useState("");
   const [speciality, setSpeciality] = useState("");

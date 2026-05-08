@@ -290,7 +290,7 @@ export default function VisitNotes() {
       status: "Completed",
     },
   ]);
-  const [selectedPatientId, setSelectedPatientId] = useState(patients[0].id);
+  const [selectedPatientId, setSelectedPatientId] = useState("");
 
   const [selectedNoteId, setSelectedNoteId] = useState<string | null>(null);
 
@@ -370,6 +370,7 @@ export default function VisitNotes() {
               value={selectedPatientId}
               onChange={handlePatientChange}
             >
+              <option value="">Select Patient</option>
               {patients.map((p) => (
                 <option key={p.id} value={p.id}>
                   {p.name}
@@ -416,6 +417,7 @@ export default function VisitNotes() {
           {patientNotes?.length === 0 ? (
             <div className={styles.empty}>No visits found</div>
           ) : (
+            <div className={styles.tableContainer}> 
             <table className={styles.table}>
               <thead>
                 <tr>
@@ -483,6 +485,7 @@ export default function VisitNotes() {
                 ))}
               </tbody>
             </table>
+            </div>
           )}
         </div>
 

@@ -256,8 +256,8 @@ const ChargesTable = ({ data }: any) => {
                 </span>
               </td>
               <td>
-                <button className={styles.actionButton}>View</button>
-                <button className={styles.actionButton}>Edit</button>
+                {/* <button className={styles.actionButton}>View</button> */}
+                {charge.status !== "Paid"?<button className={styles.actionButton}>Edit</button>:""}
               </td>
             </tr>
           ))}

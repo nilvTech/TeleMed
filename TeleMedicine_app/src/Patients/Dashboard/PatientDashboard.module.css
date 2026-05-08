@@ -31,7 +31,9 @@
   border-radius: 10px;
   padding: 18px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
 .card:hover {
@@ -58,7 +60,7 @@
   color: #6b7280;
 }
 
-.className{
+.className {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -104,12 +106,6 @@
   color: #6b7280;
 }
 
-
-
-
-
-
-
 .quickActionsSection {
   margin-bottom: 32px;
   background-color: #ffffff;
@@ -133,9 +129,10 @@
   font-size: 14px;
   font-weight: 500;
   cursor: pointer;
-  transition: background-color 0.2s ease, transform 0.15s ease;
+  transition:
+    background-color 0.2s ease,
+    transform 0.15s ease;
 }
-
 
 .actionButton:hover {
   background-color: #1d4ed8;
@@ -217,12 +214,14 @@
   color: #92400e;
 }
 
-
 /* Upcoming Appointment Section */
 /* Container and Title */
 .upcomingSection {
   margin: 2rem 0;
-  font-family: system-ui, -apple-system, sans-serif;
+  font-family:
+    system-ui,
+    -apple-system,
+    sans-serif;
 }
 
 .sectionTitle {
@@ -269,7 +268,7 @@
 }
 
 /* Buttons */
-.joinButton, 
+
 .secondaryButton {
   padding: 0.6rem 1.2rem;
   border-radius: 8px;
@@ -279,14 +278,38 @@
   border: none;
 }
 
+
 .joinButton {
-  background-color: #3182ce;
+  background-color: #007bff; /* Vibrant Blue */
   color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background-color 0.2s ease, transform 0.1s ease;
 }
 
 .joinButton:hover {
-  background-color: #2b6cb0;
+  background-color: #0056b3; /* Darker Blue */
 }
+
+.joinButton:active {
+  transform: scale(0.98); /* Subtle "press" effect */
+}
+
+.disabledAction {
+  background-color: #e9ecef; /* Light Grey */
+  color: #adb5bd; /* Muted Text */
+  padding: 10px 20px;
+  border: 1px solid #dee2e6;
+  border-radius: 6px;
+  cursor: not-allowed; /* Shows the 'red circle' icon on hover */
+  font-weight: 600;
+  opacity: 0.7;
+}
+
+
 
 .secondaryButton {
   background-color: #edf2f7;
@@ -309,7 +332,7 @@
     width: 100%;
   }
 
-  .joinButton, 
+  .joinButton,
   .secondaryButton {
     flex: 1; /* Buttons grow to fill space on mobile */
     text-align: center;

@@ -289,7 +289,7 @@ const SupportPage = () => {
 
       case "Contact Support":
         return (
-          <div className={styles.section}>
+          <div className={styles.contactSupportSection}>
             <h2>Contact Support</h2>
 
             <div className={styles.contactBox}>
@@ -331,7 +331,7 @@ const SupportPage = () => {
         )}
       </div>
 
-      <div className={styles.content}>{renderContent()}</div>
+      <div className={activeTab !== "Contact Support"? styles.content:styles.SupportContent}>{renderContent()}</div>
     </div>
   );
 };

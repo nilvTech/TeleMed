@@ -161,7 +161,7 @@
   gap: 0.5rem;
 }
 
-.primaryAction,
+
 .secondaryAction,
 .dangerAction {
   padding: 0.5rem 1rem;
@@ -175,9 +175,36 @@
 
 
 
+/* The active/primary state */
 .primaryAction {
-  background-color: var(--primary);
+  background-color: #007bff; /* Vibrant Blue */
   color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.primaryAction:hover {
+  background-color: #0056b3; /* Darker Blue */
+}
+
+.primaryAction:active {
+  transform: scale(0.98); /* Subtle "press" effect */
+}
+
+/* The disabled state */
+.disabledAction {
+  background-color: #e9ecef; /* Light Grey */
+  color: #adb5bd; /* Muted Text */
+  padding: 10px 20px;
+  border: 1px solid #dee2e6;
+  border-radius: 6px;
+  cursor: not-allowed; /* Shows the 'red circle' icon on hover */
+  font-weight: 600;
+  opacity: 0.7;
 }
 
 .secondaryAction {

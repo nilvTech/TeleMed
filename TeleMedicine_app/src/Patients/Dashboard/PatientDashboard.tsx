@@ -1,6 +1,12 @@
 import styles from "./PatientDashboard.module.css";
 
 function PatientDashboard() {
+  const TodayDate = new Date().toLocaleDateString("en-us", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
+  const nextApptDate = "April 12, 2026";
   return (
     <div className={styles.dashboardContainer}>
       {/* Header Section */}
@@ -47,14 +53,23 @@ function PatientDashboard() {
         <h2 className={styles.sectionTitle}>Upcoming Appointment</h2>
         <div className={styles.upcomingCard}>
           <div className={styles.upcomingInfo}>
-            <span className={styles.upcomingDate}>April 12, 2026</span>
+            <span className={styles.upcomingDate}>{nextApptDate}</span>
             <span className={styles.upcomingProvider}>
               Dr. Sharma — Video Visit
             </span>
           </div>
           <div className={styles.upcomingActions}>
-            <button className={styles.joinButton}>Join Visit</button>
-            <button className={styles.secondaryButton}>View Details</button>
+            <button
+              className={
+                nextApptDate === TodayDate
+                  ? styles.joinButton
+                  : styles.disabledAction
+              }
+              disabled={nextApptDate !== TodayDate}
+            >
+              Join Visit
+            </button>
+            {/* <button className={styles.secondaryButton}>View Details</button> */}
           </div>
         </div>
       </div>

@@ -97,7 +97,7 @@ const prescriptionsData: Prescription[] = [
 ];
 
 export default function Prescriptions() {
-  const [selectedPatientId, setSelectedPatientId] = useState(patients[0].id);
+  const [selectedPatientId, setSelectedPatientId] = useState("");
 
   const handlePatientChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setSelectedPatientId(e.target.value);
@@ -125,6 +125,7 @@ export default function Prescriptions() {
             <label>Select Patient:</label>
 
             <select value={selectedPatientId} onChange={handlePatientChange}>
+              <option value="">Select Patient</option>
               {patients.map((p) => (
                 <option key={p.id} value={p.id}>
                   {p.name}

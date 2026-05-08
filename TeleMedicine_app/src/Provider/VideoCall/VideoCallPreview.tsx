@@ -1,7 +1,5 @@
 import { useRef, useState, useEffect } from "react";
 import styles from "./VideoCallPreview.module.css";
-import Header from "../DashboardContent/Header";
-import SideBar from "../DashboardContent/SideBar";
 import { ZegoUIKitPrebuilt } from "@zegocloud/zego-uikit-prebuilt";
 import { useLocation } from "react-router-dom";
 function VideoCallPreview() {
@@ -13,7 +11,7 @@ function VideoCallPreview() {
 
   useEffect(() => {
     console.log(DocName);
-    if (!meetingStatus || !meetingRef.current) return;
+   // if (!meetingStatus || !meetingRef.current) return;
 
     const startMeeting = async () => {
       const appID = 257538249;
@@ -41,15 +39,13 @@ function VideoCallPreview() {
     };
 
     startMeeting();
-  }, [meetingStatus]);
+  }, []);
 
   return (
     <>
-      <Header />
-      <SideBar />
-
+     
       <div className={styles.Container}>
-        {!meetingStatus && (
+        {/* {!meetingStatus && (
           <MeetingPreview
             setMeetingStatus={setMeetingStatus}
             name={name}
@@ -57,11 +53,11 @@ function VideoCallPreview() {
             Day={Day}
             Time={Time}
           />
-        )}
+        )} */}
 
-        {meetingStatus && (
-          <div ref={meetingRef} style={{ width: "100%", height: "600px" }} />
-        )}
+<div ref={meetingRef} style={{ width: "100%", height: "600px" }} />
+        {/* {meetingStatus && (
+        )} */}
       </div>
     </>
   );

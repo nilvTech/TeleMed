@@ -1164,7 +1164,7 @@ const PaymentsTab: React.FC = () => {
                 <th>Provider</th>
                 <th>Visit Type</th>
                 <th>Total</th>
-                <th>Ins. Paid</th>
+                <th>Insurance Paid</th>
                 <th>You Paid</th>
                 <th>Method</th>
                 <th>Status</th>

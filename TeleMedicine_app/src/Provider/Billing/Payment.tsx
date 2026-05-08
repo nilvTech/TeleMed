@@ -21,7 +21,7 @@ const paymentData = [
     method: "Copay",
     date: "04/01/2026",
     status: "Pending",
-  },
+  }
 ];
 
 function PaymentPage() {
@@ -152,7 +152,7 @@ function PaymentPage() {
 
                 <td>
                   <div className={styles.actions}>
-                    <button className={styles.actionButton}>View</button>
+                    {/* <button className={styles.actionButton}>View</button> */}
 
                     <button className={styles.actionButton}>Receipt</button>
 

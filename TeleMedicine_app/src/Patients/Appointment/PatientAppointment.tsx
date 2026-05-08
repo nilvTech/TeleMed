@@ -165,18 +165,17 @@ function PatientAppointments() {
   };
 
   const [showConfirm, setShowConfirm] = useState(false);
-  const [apptProviderName,setApptProviderName] = useState<string>("");
+  const [apptProviderName, setApptProviderName] = useState<string>("");
   const [cancelId, setCancelId] = useState<number | null>(null);
- 
 
-  const handleApptCancel = (appointment:Booking) => {
+  const handleApptCancel = (appointment: Booking) => {
     setCancelId(appointment.id);
-    setApptProviderName(appointment.Provider)
+    setApptProviderName(appointment.Provider);
     setShowConfirm(true);
   };
 
   const confirmApptCancel = () => {
-    setAppointments((prev)=> prev.filter((item)=> item.id !== cancelId));
+    setAppointments((prev) => prev.filter((item) => item.id !== cancelId));
     setShowConfirm(false);
     setCancelId(null);
   };
@@ -209,6 +208,14 @@ function PatientAppointments() {
   maxDateObj.setMonth(maxDateObj.getMonth() + 3);
   const maxDate = maxDateObj.toISOString().split("T")[0];
 
+  const TodayDate = new Date().toLocaleDateString('en-us',{
+    year:'numeric',
+    month:'long',
+    day:'numeric'
+  })
+
+ 
+  
   return (
     <div className={styles.container}>
       {/* Header Section */}
@@ -263,21 +270,33 @@ function PatientAppointments() {
                 <span className={styles.status}>{appointment.Status}</span>
 
                 <div className={styles.actions}>
-                  <button className={styles.primaryAction}>Join Visit</button>
+                  {appointment.Status === "Upcoming" ? (
+                    <>
+                      
+                      <button 
+                      className={appointment.VisitDate === TodayDate ? styles.primaryAction : styles.disabledAction}
+                      disabled={appointment.VisitDate !== TodayDate}
+                      >
+                        Join Visit
+                      </button>
 
-                  <button
-                    className={styles.secondaryAction}
-                    onClick={() => handleReschedule(appointment.id)}
-                  >
-                    Reschedule
-                  </button>
+                      <button
+                        className={styles.secondaryAction}
+                        onClick={() => handleReschedule(appointment.id)}
+                      >
+                        Reschedule
+                      </button>
 
-                  <button
-                    className={styles.dangerAction}
-                    onClick={() => handleApptCancel(appointment)}
-                  >
-                    Cancel
-                  </button>
+                      <button
+                        className={styles.dangerAction}
+                        onClick={() => handleApptCancel(appointment)}
+                      >
+                        Cancel
+                      </button>
+                    </>
+                  ) : (
+                    ""
+                  )}
                 </div>
               </div>
             </div>
@@ -289,7 +308,10 @@ function PatientAppointments() {
           <div className={styles.modal}>
             <h3>Confirm Cancel Appointment</h3>
 
-            <p>Are you sure you want to cancel <strong>{apptProviderName}</strong> appointment?</p>
+            <p>
+              Are you sure you want to cancel{" "}
+              <strong>{apptProviderName}</strong> appointment?
+            </p>
 
             <div className={styles.modalActions}>
               <button
@@ -299,10 +321,7 @@ function PatientAppointments() {
                 Cancel
               </button>
 
-              <button
-                className={styles.confirmBtn}
-                onClick={confirmApptCancel}
-              >
+              <button className={styles.confirmBtn} onClick={confirmApptCancel}>
                 Cancel Appointment
               </button>
             </div>

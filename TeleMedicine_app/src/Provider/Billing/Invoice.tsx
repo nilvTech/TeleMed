@@ -176,9 +176,9 @@ function InvoicePage() {
 
                 <td>
                   <div className={styles.actions}>
-                    <button className={styles.actionButton} onClick={()=>handleViewInvoice(invoice,"View")}>
+                    {/* <button className={styles.actionButton} onClick={()=>handleViewInvoice(invoice,"View")}>
                       View
-                    </button>
+                    </button> */}
 
                     <button className={styles.actionButton} onClick={()=>handleViewInvoice(invoice,"Download")}>
                       Download
