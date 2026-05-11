@@ -1,6 +1,9 @@
 import { NavLink } from "react-router-dom";
 import styles from "../Provider/DashboardContent/SideBar.module.css";
-import { MdDashboard, MdCalendarToday, MdPeopleAlt } from "react-icons/md";
+import { MdDashboard, MdCalendarToday, MdPeopleAlt,MdReceiptLong,MdMedicalServices } from "react-icons/md";
+import { AiOutlineControl } from "react-icons/ai";
+import { IoMdAnalytics } from "react-icons/io";
+import { GrSystem } from "react-icons/gr";
 import {} from "react-icons/md";
 import {} from "react-icons/md";
 function SideBar() {
@@ -35,28 +38,28 @@ function SideBar() {
             to="/Admin/Billing&Claims"
             className={({ isActive }) => ` ${isActive ? styles.active : ""}`}
           >
-            <MdCalendarToday className={styles.SectionIcon} />
+            <MdReceiptLong className={styles.SectionIcon} />
             Billing & Claims
           </NavLink>
           <NavLink
             to="/Admin/ClinicalOverview"
             className={({ isActive }) => ` ${isActive ? styles.active : ""}`}
           >
-            <MdCalendarToday className={styles.SectionIcon} />
+            <MdMedicalServices className={styles.SectionIcon} />
             Clinical Oversight
           </NavLink>
           <NavLink
             to="/Admin/Users&AccessControl"
             className={({ isActive }) => ` ${isActive ? styles.active : ""}`}
           >
-            <MdCalendarToday className={styles.SectionIcon} />
+            <AiOutlineControl className={styles.SectionIcon} />
             Users & Access Control
           </NavLink>
           <NavLink
             to="/Admin/Reports&Analytics"
             className={({ isActive }) => ` ${isActive ? styles.active : ""}`}
           >
-            <MdCalendarToday className={styles.SectionIcon} />
+            <IoMdAnalytics className={styles.SectionIcon} />
             Analytics
           </NavLink>
           {/* <NavLink to="#">
@@ -72,7 +75,7 @@ function SideBar() {
             Compliance & Security
           </NavLink> */}
           <NavLink to="/Admin/Settings"  className={({ isActive }) => ` ${isActive ? styles.active : ""}`}>
-            <MdCalendarToday className={styles.SectionIcon} />
+            <GrSystem className={styles.SectionIcon} />
             System Settings
           </NavLink>
         </div>
