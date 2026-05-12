@@ -46,6 +46,7 @@ import ReportsAnalytics from "./Admin/Reports & Analytics/Reports&Analytics";
 // import AdminPortal from "./Admin/Settings/Setting";
 // import { Settings } from "lucide-react";
 import AdminSettings from "./Admin/Settings/Setting";
+import RPM from "./Provider/RPM/RPM";
 
 //import MainContent from "./DashboardContent/Maincontent";
 //import { Dashboard } from "@mui/icons-material";
@@ -83,6 +84,7 @@ function App() {
             {/* <Route path="/document-list" element={<DocumentList />} /> */}
             <Route path="/Patients/payments" element={<Payments />} />
             <Route path="/Message" element={<MessagesPage />} />
+            <Route path="/RPM" element = {<RPM/>}/>
             <Route path="/Billing" element={<BillingDashboard />} />
             <Route path="/Charges" element={<ChargesPage />} />
             <Route path="/Invoice" element={<InvoicePage />} />

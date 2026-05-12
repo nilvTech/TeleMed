@@ -66,6 +66,13 @@ function SideBar() {
             Messages
           </NavLink>
           <NavLink
+            to="/RPM"
+            className={({ isActive }) => `${isActive ? styles.active : ""}`}
+          >
+            <MdMonitorHeart  className={styles.SectionIcon} />
+            Remote Patient Monitoring
+          </NavLink>
+          <NavLink
             to="/Billing"
             className={({ isActive }) => `${isActive ? styles.active : ""}`}
           >

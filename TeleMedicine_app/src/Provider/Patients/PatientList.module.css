@@ -2,7 +2,7 @@
   padding: 2rem;
 
   margin: 0 auto;
-  font-family: 'Inter', system-ui, sans-serif;
+  font-family: "Inter", system-ui, sans-serif;
 }
 
 .header {
@@ -13,14 +13,17 @@
 }
 
 .header h1 {
-  margin: 0;
-  font-size: 1.75rem;
-  color: #1a202c;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--clr-text-primary);
+  margin: 0 0 2px;
+  letter-spacing: -0.3px;
 }
 
 .header p {
-  margin: 0.25rem 0 0;
-  color: #718096;
+  font-size: 13.5px;
+  color: var(--clr-text-secondary);
+  margin: 0;
 }
 
 .addBtn {
@@ -156,14 +159,18 @@
   text-transform: capitalize;
 }
 
-.active { background: #c6f6d5; color: #22543d; }
-.pending { background: #feebc8; color: #744210; }
-.discharged { background: #edf2f7; color: #4a5568; }
-
-
-
-
-
+.active {
+  background: #c6f6d5;
+  color: #22543d;
+}
+.pending {
+  background: #feebc8;
+  color: #744210;
+}
+.discharged {
+  background: #edf2f7;
+  color: #4a5568;
+}
 
 /* Patient form CSS */
 
@@ -278,7 +285,9 @@ select[multiple] {
   font-size: 15px;
   font-weight: 600;
   cursor: pointer;
-  transition: background-color 0.2s ease, transform 0.1s ease;
+  transition:
+    background-color 0.2s ease,
+    transform 0.1s ease;
   margin: 5px;
 }
 
@@ -329,10 +338,10 @@ select[multiple] {
   height: 16px;
   cursor: pointer;
 }
-.backButton{
-    margin: 0px 1px 2px 0px;
-     transition: transform 0.5s ease-in-out;
+.backButton {
+  margin: 0px 1px 2px 0px;
+  transition: transform 0.5s ease-in-out;
 }
-.backButton :hover{
-    transition: translateX(-50px);
+.backButton :hover {
+  transition: translateX(-50px);
 }

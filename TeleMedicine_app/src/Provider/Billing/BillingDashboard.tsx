@@ -17,7 +17,7 @@ import InsurancePage from "./Insurance";
 import ReportsPage from "./Reports";
 
 const tabs = [
-  { name: "Dashboard", icon: <LayoutDashboard size={18} /> },
+  { name: "Overview", icon: <LayoutDashboard size={18} /> },
   { name: "Charges", icon: <CreditCard size={18} /> },
   { name: "Invoices", icon: <Receipt size={18} /> },
   { name: "Payments", icon: <Wallet size={18} /> },
@@ -26,7 +26,7 @@ const tabs = [
 ];
 
 function BillingDashboard() {
-  const [activeTab, setActiveTab] = useState("Dashboard");
+  const [activeTab, setActiveTab] = useState("Overview");
 
   return (
     <>
@@ -59,7 +59,7 @@ function BillingDashboard() {
       <div className={styles.container}>
         {/* Main Content Area */}
         <main className={styles.dashboardContent}>
-          {activeTab === "Dashboard" ? (
+          {activeTab === "Overview" ? (
             <>
               <SummaryCards />
 
