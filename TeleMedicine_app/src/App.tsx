@@ -23,7 +23,7 @@ import ChargesPage from "./Provider/Billing/ChargesPage";
 import InvoicePage from "./Provider/Billing/Invoice";
 import MedicalHistory from "./Provider/Clinical/MedicalRecords";
 import Prescriptions from "./Provider/Clinical/Prescription";
-import VisitNotes from "./Provider/Clinical/VisitNotes";
+//import VisitNotes from "./Provider/Clinical/VisitNotes";
 import ProgressPage from "./Provider/Monitoring/Progress";
 // import FilesPage from "./Provider/Files/Files";
 import SettingPage from "./Provider/Setting/Setting";
@@ -47,6 +47,7 @@ import ReportsAnalytics from "./Admin/Reports & Analytics/Reports&Analytics";
 // import { Settings } from "lucide-react";
 import AdminSettings from "./Admin/Settings/Setting";
 import RPM from "./Provider/RPM/RPM";
+import Encounter from "./Provider/DashboardContent/Encounter/Encounter";
 
 //import MainContent from "./DashboardContent/Maincontent";
 //import { Dashboard } from "@mui/icons-material";
@@ -67,13 +68,24 @@ function App() {
             <Route path="/Admin/Dashboard" element={<AdminDashboard />} />
             <Route path="/Admin/Providers" element={<Providers />} />
             <Route path="/Admin/Appointments" element={<Appointments />} />
-            <Route path="/Admin/Billing&Claims" element={<BillingClaims/>} />
-            <Route path="/Admin/ClinicalOverview" element={<ClinicalOversight/>} />
-            <Route path="/Admin/Users&AccessControl" element={<AccessControl/>} />
-            <Route path="/Admin/Reports&Analytics" element={<ReportsAnalytics/>} />
-            <Route path="/Admin/Settings" element={<AdminSettings/>} />
+            <Route path="/Admin/Billing&Claims" element={<BillingClaims />} />
+            <Route
+              path="/Admin/ClinicalOverview"
+              element={<ClinicalOversight />}
+            />
+            <Route
+              path="/Admin/Users&AccessControl"
+              element={<AccessControl />}
+            />
+            <Route
+              path="/Admin/Reports&Analytics"
+              element={<ReportsAnalytics />}
+            />
+            <Route path="/Admin/Settings" element={<AdminSettings />} />
           </Route>
-
+          <Route>
+            <Route path="/Encounter" element={<Encounter />} />
+          </Route>
           <Route element={<ProviderLayout />}>
             <Route path="/Dashboard" element={<MainContent />} />
             <Route path="/Appointment" element={<Appointment />} />
@@ -84,7 +96,7 @@ function App() {
             {/* <Route path="/document-list" element={<DocumentList />} /> */}
             <Route path="/Patients/payments" element={<Payments />} />
             <Route path="/Message" element={<MessagesPage />} />
-            <Route path="/RPM" element = {<RPM/>}/>
+            <Route path="/RPM" element={<RPM />} />
             <Route path="/Billing" element={<BillingDashboard />} />
             <Route path="/Charges" element={<ChargesPage />} />
             <Route path="/Invoice" element={<InvoicePage />} />
@@ -93,7 +105,7 @@ function App() {
               element={<MedicalHistory />}
             />
             <Route path="/Clinical/Prescriptions" element={<Prescriptions />} />
-            <Route path="/Clinical/VisitNotes" element={<VisitNotes />} />
+            {/* <Route path="/Clinical/VisitNotes" element={<VisitNotes />} /> */}
             <Route path="/Monitoring/Progress" element={<ProgressPage />} />
             <Route path="/Setting/Profile" element={<SettingPage />} />
             <Route path="/Support" element={<SupportPage />} />
@@ -102,15 +114,27 @@ function App() {
 
           <Route element={<PatientLayout />}>
             <Route path="/Patient/Dasboard" element={<PatientDashboard />} />
-            <Route path="/Patient/Appointment" element={<PatientAppointments />} />
-            <Route path="/MedicalRecords/VisitNotes" element={<PatientVisitNotes/>} />
-            <Route path="/MedicalRecords/Prescription" element={<PatientPrescription/>} />
-            <Route path="/MedicalRecords/LabOrders" element={<PatientLabOrders/>} />
-            <Route path="/MedicalRecords/Files" element={<Files/>} />
-            <Route path="/Messages/Chat" element={<PatientMessage/>} />
-            <Route path="/Payments/Billing" element={<Billing/>} />
-            <Route path="/Patient/Setting" element={<Setting/>} />
-            <Route path="/Patient/Support" element={<Support/>} />
+            <Route
+              path="/Patient/Appointment"
+              element={<PatientAppointments />}
+            />
+            <Route
+              path="/MedicalRecords/VisitNotes"
+              element={<PatientVisitNotes />}
+            />
+            <Route
+              path="/MedicalRecords/Prescription"
+              element={<PatientPrescription />}
+            />
+            <Route
+              path="/MedicalRecords/LabOrders"
+              element={<PatientLabOrders />}
+            />
+            <Route path="/MedicalRecords/Files" element={<Files />} />
+            <Route path="/Messages/Chat" element={<PatientMessage />} />
+            <Route path="/Payments/Billing" element={<Billing />} />
+            <Route path="/Patient/Setting" element={<Setting />} />
+            <Route path="/Patient/Support" element={<Support />} />
           </Route>
         </Routes>
       </BrowserRouter>

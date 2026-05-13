@@ -85,6 +85,12 @@ import React, { useState } from "react";
 import styles from "./Appointment.module.css";
 import { FaPlus, FaSearch, FaEdit } from "react-icons/fa"; //FaTrash
 
+interface SoapNote {
+  subjective: string;
+  objective: string;
+  assessment: string;
+  plan: string;
+}
 interface Appointment {
   id: string;
   patient: string;
@@ -93,7 +99,7 @@ interface Appointment {
   time: string;
   type: string;
   status: "Scheduled" | "Completed" | "Cancelled";
-  note: string;
+  soapNote: SoapNote;
 }
 
 const dummyAppointments: Appointment[] = [
@@ -105,7 +111,14 @@ const dummyAppointments: Appointment[] = [
     time: "10:00 AM",
     type: "Video",
     status: "Scheduled",
-    note: "",
+    soapNote: {
+      subjective:
+        "Patient reports persistent dry cough and nasal congestion for 5 days. Denies fever or shortness of breath.",
+      objective:
+        "Visual assessment via video: Patient appears non-distressed. Mild erythematous throat noted on self-examination.",
+      assessment: "Acute Upper Respiratory Infection.",
+      plan: "Increase fluid intake. Over-the-counter decongestants. Follow up if symptoms worsen.",
+    },
   },
   {
     id: "APT-002",
@@ -115,7 +128,14 @@ const dummyAppointments: Appointment[] = [
     time: "02:30 PM",
     type: "Audio",
     status: "Completed",
-    note: "",
+    soapNote: {
+      subjective:
+        "Follow-up for hypertension management. Patient reports occasional dizziness when standing up quickly.",
+      objective:
+        "BP: 142/90 mmHg. Heart rate: 72 bpm. Lungs clear to auscultation.",
+      assessment: "Essential Hypertension, sub-optimally controlled.",
+      plan: "Adjust Lisinopril dosage to 20mg daily. Patient to maintain a BP log for 2 weeks.",
+    },
   },
   {
     id: "APT-003",
@@ -125,7 +145,14 @@ const dummyAppointments: Appointment[] = [
     time: "11:15 AM",
     type: "Video",
     status: "Cancelled",
-    note: "",
+    soapNote: {
+      subjective:
+        "Patient presents with sharp pain in the lower right back radiating to the hip. Started after lifting heavy boxes.",
+      objective:
+        "Positive straight leg raise on right side. Reduced range of motion in lumbar spine.",
+      assessment: "Acute Lumbar Strain.",
+      plan: "Prescribed NSAIDs and physical therapy referral. Advised on proper lifting techniques.",
+    },
   },
 ];
 
@@ -136,6 +163,11 @@ export default function Appointment() {
   const [search, setSearch] = useState("");
   const [statusFilter, setStatusFilter] = useState("All");
   const [showModal, setShowModal] = useState(false);
+  const [showSOAPNotesModal, setShowSOAPNotesModal] = useState(false);
+  const [selectedAppointment, setSelectedAppointment] = useState<
+    Appointment | undefined
+  >();
+
   const [showEditModal, setShowEditModal] = useState(false);
   const [editForm, setEditform] = useState<Appointment>({
     id: "",
@@ -203,6 +235,12 @@ export default function Appointment() {
       note: "",
     });
     setShowEditModal(false);
+  };
+
+  const handleViewNotes = (id: string) => {
+    setShowSOAPNotesModal(true);
+    const appt = appointments.find((n) => n.id === id);
+    setSelectedAppointment(appt);
   };
 
   // Replace above handleSaveEdit with following handleSaveEdit when we connect to backend (PUT API)
@@ -296,7 +334,16 @@ export default function Appointment() {
 
               <td className={styles.actions}>
                 <button
-                  className={styles.editBtn}
+                  className={styles.viewButton}
+                  disabled={appt.status !== "Completed"}
+                  hidden={appt.status !== "Completed"}
+                  onClick={() => handleViewNotes(appt.id)}
+                >
+                  View SOAP
+                </button>
+                {/* <button>Encounter Summary</button> */}
+                <button
+                  className={appt.status == "Scheduled"? styles.editBtn: styles.editBtnDisabled}
                   disabled={appt.status !== "Scheduled"}
                   onClick={() => handleEdit(appt.id)}
                 >
@@ -324,6 +371,74 @@ export default function Appointment() {
           onClose={() => setShowModal(false)}
           onSave={handleSaveAppointment}
         />
+      )}
+
+      {/* View Visit Note Modal Structure */}
+      {showSOAPNotesModal && selectedAppointment && (
+        <div className={styles.modalOverlay}>
+          <div className={styles.modalContainer}>
+            {/* Modal Header */}
+            <div className={styles.modalHeader}>
+              <h2 className={styles.modalTitle}>Visit Note Details</h2>
+              <button
+                className={styles.closeButton}
+                onClick={() => setShowSOAPNotesModal(false)}
+              >
+                ×
+              </button>
+            </div>
+
+            {/* SOAP Sections */}
+            <div className={styles.modalBody}>
+              <div className={styles.visitInfo}>
+                <span>
+                  <strong>Date: </strong> {selectedAppointment.date}
+                </span>
+
+                <span>
+                  <strong>Provider: </strong>
+                  {selectedAppointment.provider}
+                </span>
+              </div>
+
+              {/* Subjective */}
+              <div className={styles.soapSection}>
+                <h3 className={styles.soapTitle}>Subjective</h3>
+
+                <p className={styles.soapContent}>
+                  {selectedAppointment.soapNote.subjective}
+                </p>
+              </div>
+
+              {/* Objective */}
+              <div className={styles.soapSection}>
+                <h3 className={styles.soapTitle}>Objective</h3>
+
+                <p className={styles.soapContent}>
+                  {selectedAppointment.soapNote.objective}
+                </p>
+              </div>
+
+              {/* Assessment */}
+              <div className={styles.soapSection}>
+                <h3 className={styles.soapTitle}>Assessment</h3>
+
+                <p className={styles.soapContent}>
+                  {selectedAppointment.soapNote.assessment}
+                </p>
+              </div>
+
+              {/* Plan */}
+              <div className={styles.soapSection}>
+                <h3 className={styles.soapTitle}>Plan</h3>
+
+                <p className={styles.soapContent}>
+                  {selectedAppointment.soapNote.plan}
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
       )}
 
       {showEditModal && (

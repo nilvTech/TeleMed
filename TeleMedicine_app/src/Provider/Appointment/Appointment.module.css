@@ -205,15 +205,49 @@
 
 .actions {
   display: flex;
-  gap: 8px;
+  gap: 2px;
 }
 
-.editBtn {
-  background: #fff4e5;
-  border: none;
-  padding: 6px 8px;
-  border-radius: 6px;
+/* Base styles shared by both states */
+.editBtn, .editBtnDisabled {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  border: 1px solid transparent;
+  font-size: 1.1rem;
+  transition: all 0.2s ease;
   cursor: pointer;
+}
+
+/* Active State: Scheduled */
+.editBtn {
+  background-color: #f0f7ff;
+  color: #007bff;
+  border-color: #d0e3ff;
+}
+
+.editBtn:hover {
+  background-color: #007bff;
+  color: #ffffff;
+  border-color: #007bff;
+  transform: scale(1.05);
+}
+
+/* Disabled State: Not Scheduled */
+.editBtnDisabled {
+  background-color: #f5f5f5;
+  color: #bfbfbf;
+  border-color: #e8e8e8;
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+/* Ensure the icon scales nicely */
+.editBtn svg, .editBtnDisabled svg {
+  display: block;
 }
 
 .deleteBtn {
@@ -282,9 +316,8 @@
 
 .actions {
   display: flex;
-  justify-content: flex-end;
   gap: 10px;
-  margin-top: 18px;
+  margin-top: 12px;
 }
 
 .cancelBtn {
@@ -306,4 +339,127 @@
 
 .saveBtn:hover {
   background: #1558c0;
+}
+
+
+/* View SOAP Notes Button */
+.viewButton {
+  background-color: #007bff; /* Professional blue */
+  color: #ffffff;
+  padding: 8px 16px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Hover effect: slight darken and lift */
+.viewButton:hover {
+  background-color: #0056b3;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  transform: translateY(-1px);
+}
+
+/* Active/Click effect */
+.viewButton:active {
+  background-color: #004085;
+  transform: translateY(0);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Optional: Focus ring for accessibility */
+.viewButton:focus {
+  outline: 2px solid #80bdff;
+  outline-offset: 2px;
+}
+
+ /* Show SOAP Notes Modal */
+ .modalOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modalContainer {
+  background: #ffffff;
+  width: 100%;
+  max-width: 700px;
+  max-height: 90vh;
+  overflow-y: auto;
+  border-radius: 20px;
+}
+
+.modalHeader {
+  padding: 1.5rem 2rem;
+  border-bottom: 2px solid #f1f5f9;
+  display: flex;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  background: white;
+}
+
+.modalBody {
+  padding: 2rem;
+}
+.visitInfo span {
+  margin-right: 10px;   
+}
+
+.soapSection {
+  margin-bottom: 1.5rem;
+  margin-top: 1rem;
+}
+
+.soapTitle {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  color: #10b981;
+  font-weight: 800;
+  margin-bottom: 0.5rem;
+}
+
+.soapContent {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #334155;
+}
+
+.closeButton {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #333;
+  cursor: pointer;
+  padding: 0.5rem;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: background-color 0.2s ease, color 0.2s ease;
+  width: 32px;
+  height: 32px;
+}
+
+/* Hover and Active states for better UX */
+.closeButton:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+  color: #ff4d4f; /* Subtle red change on hover */
+}
+
+.closeButton:active {
+  background-color: rgba(0, 0, 0, 0.2);
+  transform: scale(0.95);
 }

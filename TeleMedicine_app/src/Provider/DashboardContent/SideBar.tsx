@@ -108,7 +108,7 @@ function SideBar() {
                   Prescriptions
                 </NavLink>
                 {/* <NavLink to="/Clinical/LabOrders"><MdScience className={styles.SubSectionIcon} />Lab Orders</NavLink> */}
-                <NavLink
+                {/* <NavLink
                   to="/Clinical/VisitNotes"
                   className={({ isActive }) =>
                     `${isActive ? styles.active : ""}`
@@ -116,7 +116,7 @@ function SideBar() {
                 >
                   <MdNotes className={styles.SubSectionIcon} />
                   Visit Notes
-                </NavLink>
+                </NavLink> */}
               </div>
             )}
 

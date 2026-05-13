@@ -145,17 +145,24 @@ function Grid2() {
     },
   ];
 
-  const NavToVideoCall = useNavigate();
+  //const NavToVideoCall = useNavigate();
+  const NavToEncounter = useNavigate();
   const handleonClick = (doc: any) => {
-    NavToVideoCall("/VideoCall", {
+    // NavToVideoCall("/VideoCall", {
+    //   state: {
+    //     name: doc.name,
+    //     Visit_Reason: doc.visitReason,
+    //     Day: doc.Day,
+    //     Time: doc.Time,
+    //     DocName: "Michael Chen",
+    //   },
+    // });
+    NavToEncounter("/Encounter",{
       state: {
-        name: doc.name,
-        Visit_Reason: doc.visitReason,
-        Day: doc.Day,
-        Time: doc.Time,
-        DocName: "Michael Chen",
-      },
-    });
+        appt:doc
+      }
+    })
+    
   };
   return (
     <>
@@ -182,7 +189,7 @@ function Grid2() {
                 className={styles.joinButton}
                 onClick={() => handleonClick(doc)}
               >
-                Join
+                Start
               </button>
             </div>
           ))}
