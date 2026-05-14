@@ -168,7 +168,7 @@ function Grid2() {
   return (
     <>
       <div className={styles.formContainer1}>
-        <h5>Today's Appointments</h5>
+        <h5>Upcoming Appointments</h5>
         <div className={styles.providerListContainer}>
           {Patients.map((doc, index) => (
             <div key={index} className={styles.providerList}>
