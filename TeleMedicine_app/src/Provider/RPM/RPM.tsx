@@ -699,7 +699,7 @@ const RPM: React.FC = () => {
       {/* Recent vitals table */}
       <div className={styles.tableCard}>
         <div className={styles.tableCardHeader}>
-          <h3 className={styles.tableCardTitle}>Recent Vitals</h3>
+          <h3 className={styles.tableCardTitle}>Recent Records</h3>
           <span className={styles.tableCardCount}>{getFilteredVitals().length} records</span>
         </div>
         <div className={styles.tableWrapper}>

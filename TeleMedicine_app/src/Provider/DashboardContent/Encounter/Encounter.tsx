@@ -1,6 +1,9 @@
 import React, { useState, useEffect, useRef } from "react";
 import styles from "./Encounter.module.css";
 import SideBar from "../SideBar";
+import { useNavigate } from "react-router-dom";
+
+import jsPDF from "jspdf";
 //import { useLocation } from "react-router-dom";
 
 // ─── Types ─────────────────────────────────────────────────────────────────
@@ -353,6 +356,204 @@ const Encounter: React.FC = () => {
   //const location = useLocation();
   //const {doc} = location.state || {};
 
+  // On Cancel/download encounter summary Navigate to Appointments
+  const navToAppt = useNavigate();
+
+  const handleEncounterSummaryEnd = (): void => {
+    try {
+      const pdf = new jsPDF({
+        orientation: "portrait",
+        unit: "mm",
+        format: "a4",
+      });
+      const W = pdf.internal.pageSize.getWidth(); // 210 mm
+      const H = pdf.internal.pageSize.getHeight(); // 297 mm
+      const LM = 15; // left margin
+      const RM = 15; // right margin
+      const CW = W - LM - RM; // usable content width = 180 mm
+      let y = 0;
+
+      // ── Helpers ─────────────────────────────────────────────────────────────
+      const newPage = (): void => {
+        pdf.addPage();
+        y = 22;
+      };
+
+      const guard = (needed: number): void => {
+        if (y + needed > H - 18) newPage();
+      };
+
+      const field = (label: string, value: string, labelW = 38): void => {
+        const text = value?.trim() || "—";
+        const lines = pdf.splitTextToSize(text, CW - labelW - 4);
+        guard(lines.length * 4.5 + 3);
+        pdf
+          .setFontSize(9)
+          .setFont("helvetica", "bold")
+          .setTextColor(74, 96, 116);
+        pdf.text(`${label}:`, LM + 2, y);
+        pdf.setFont("helvetica", "normal").setTextColor(15, 28, 46);
+        pdf.text(lines, LM + labelW, y);
+        y += lines.length * 4.5 + 2.5;
+      };
+
+      const sectionBar = (
+        letter: string,
+        title: string,
+        r: number,
+        g: number,
+        b: number,
+      ): void => {
+        guard(14);
+        pdf.setFillColor(r, g, b);
+        pdf.roundedRect(LM, y, CW, 9, 1.5, 1.5, "F");
+        pdf
+          .setFontSize(10.5)
+          .setFont("helvetica", "bold")
+          .setTextColor(255, 255, 255);
+        pdf.text(`${letter}   ${title}`, LM + 4, y + 6.2);
+        y += 13;
+      };
+
+      // ── Header bar ───────────────────────────────────────────────────────────
+      pdf.setFillColor(23, 121, 196);
+      pdf.rect(0, 0, W, 30, "F");
+
+      pdf
+        .setFontSize(15)
+        .setFont("helvetica", "bold")
+        .setTextColor(255, 255, 255);
+      pdf.text("ENCOUNTER SUMMARY", LM, 13);
+
+      pdf.setFontSize(8.5).setFont("helvetica", "normal");
+      pdf.text(
+        `${MOCK_PATIENT.name}  ·  ${MOCK_PATIENT.encounterId}  ·  ${encounterDate}`,
+        LM,
+        20,
+      );
+      pdf.text(
+        `Provider: ${MOCK_PROVIDER.name}  ·  Duration: ${formatTime(elapsed)}`,
+        LM,
+        26,
+      );
+
+      y = 38;
+
+      // ── Patient info strip ───────────────────────────────────────────────────
+      pdf.setFillColor(238, 244, 251);
+      pdf.roundedRect(LM, y, CW, 18, 2, 2, "F");
+      pdf.setFontSize(8.5).setTextColor(74, 96, 116);
+
+      const col2 = LM + CW / 3;
+      const col3 = LM + (CW / 3) * 2;
+
+      pdf.setFont("helvetica", "bold");
+      pdf.text("Patient", LM + 4, y + 6);
+      pdf.text("Encounter", col2, y + 6);
+      pdf.text("Provider", col3, y + 6);
+
+      pdf.setFont("helvetica", "normal").setTextColor(15, 28, 46);
+      pdf.text(`${MOCK_PATIENT.name}, ${MOCK_PATIENT.age} yrs`, LM + 4, y + 12);
+      pdf.text(`MRN: ${MOCK_PATIENT.mrn}`, LM + 4, y + 16.5);
+      pdf.text(MOCK_PATIENT.encounterId, col2, y + 12);
+      pdf.text(`Insurance: ${MOCK_PATIENT.insurance}`, col2, y + 16.5);
+      pdf.text(MOCK_PROVIDER.name, col3, y + 12);
+      pdf.text(MOCK_PROVIDER.specialty, col3, y + 16.5);
+
+      y += 24;
+
+      // ── S — Subjective ───────────────────────────────────────────────────────
+      sectionBar("S", "SUBJECTIVE", 23, 121, 196);
+      field("Condition", soapData.chiefCondition);
+      field("Symptoms", soapData.symptoms);
+      field("Onset", soapData.symptomDuration);
+      y += 4;
+
+      // ── O — Objective ────────────────────────────────────────────────────────
+      sectionBar("O", "OBJECTIVE", 8, 145, 178);
+
+      // Vitals in a 2-column grid
+      const vitals: [string, string][] = [
+        ["Blood Pressure", soapData.bp],
+        ["Temperature", soapData.temperature],
+        ["Pulse", soapData.pulse],
+        ["SpO₂", soapData.spo2],
+        ["Resp. Rate", soapData.respiratoryRate],
+        ["Weight", soapData.weight],
+      ];
+
+      const half = CW / 2;
+      vitals.forEach(([label, val], idx) => {
+        if (idx % 2 === 0) guard(7);
+        const xBase = idx % 2 === 0 ? LM + 2 : LM + half + 2;
+        pdf
+          .setFontSize(9)
+          .setFont("helvetica", "bold")
+          .setTextColor(74, 96, 116);
+        pdf.text(`${label}:`, xBase, y);
+        pdf.setFont("helvetica", "normal").setTextColor(15, 28, 46);
+        pdf.text(val?.trim() || "—", xBase + 28, y);
+        if (idx % 2 !== 0) y += 6.5;
+      });
+      if (vitals.length % 2 !== 0) y += 6.5;
+
+      if (soapData.clinicalObservations?.trim()) {
+        y += 2;
+        field("Observations", soapData.clinicalObservations, 30);
+      }
+      y += 4;
+
+      // ── A — Assessment ───────────────────────────────────────────────────────
+      sectionBar("A", "ASSESSMENT", 99, 102, 241);
+      field("Diagnosis", soapData.primaryDiagnosis);
+      field("ICD-10 Code", soapData.icd10Code);
+      field("Severity", soapData.severity);
+      y += 4;
+
+      // ── P — Plan ─────────────────────────────────────────────────────────────
+      sectionBar("P", "PLAN", 22, 163, 74);
+      field("Treatment", soapData.treatmentPlan);
+      field("Medications", soapData.medicationPlan);
+      field("Lab / Imaging", soapData.labOrders);
+      field("Follow-up", soapData.followUpDate);
+      field("Instructions", soapData.patientInstructions);
+      y += 6;
+
+      // ── Footer ───────────────────────────────────────────────────────────────
+      guard(14);
+      pdf.setDrawColor(214, 226, 239).setLineWidth(0.3);
+      pdf.line(LM, y, W - RM, y);
+      y += 5;
+      pdf
+        .setFontSize(7.5)
+        .setFont("helvetica", "italic")
+        .setTextColor(160, 180, 200);
+      pdf.text(
+        `Generated: ${new Date().toLocaleString("en-US")}  ·  ${MOCK_PROVIDER.name}  ·  ${MOCK_PROVIDER.npi}`,
+        LM,
+        y,
+      );
+      pdf.text(
+        "Confidential — for authorized clinical personnel only.",
+        LM,
+        y + 4.5,
+      );
+
+      // ── Save ─────────────────────────────────────────────────────────────────
+      pdf.save("Encounter_Summary.pdf");
+    } catch (err) {
+      console.error("PDF generation failed:", err);
+    }
+
+    setShowSOAPPreview(false);
+    navToAppt("/Appointment");
+  };
+
+
+  const handleEncounterSummaryCancel = ()=>{
+    setShowSOAPPreview(false);
+   navToAppt("/Appointment");
+  }
   // ── Render ───────────────────────────────────────────────────────────────
   return (
     <div>
@@ -1132,14 +1333,19 @@ const Encounter: React.FC = () => {
             </div>
           </div>
         )}
-       
+
+        {/* ══════════════════ END ENCOUNTER SUMMARY MODAL ══════════════════ */}
+
         {showSOAPPreview && (
           <div
-            className={styles.modalBackdrop}
+            className={styles.summaryModalBackdrop}
             onClick={() => setShowSOAPPreview(false)}
           >
-            <div className={styles.modal} onClick={(e) => e.stopPropagation()}>
-              <h3 className={styles.modalTitle}>Encounter Summary</h3>
+            <div
+              className={styles.summaryModal}
+              onClick={(e) => e.stopPropagation()}
+            >
+              <h3 className={styles.summaryModalTitle}>Encounter Summary</h3>
 
               <div className={styles.summaryFields}>
                 {/* SUBJECTIVE */}
@@ -1264,21 +1470,19 @@ const Encounter: React.FC = () => {
                 </div>
               </div>
 
-              <div className={styles.modalFooter}>
+              <div className={styles.summaryModalFooter}>
                 <button
-                  className={styles.modalBtnCancel}
-                  onClick={() => {
-                    setShowSOAPPreview(false);
-                  }}
+                  className={styles.summaryModalBtnCancel}
+                  onClick={handleEncounterSummaryCancel}
                 >
                   Cancel
                 </button>
 
                 <button
-                  className={styles.modalBtnPrimary}
-                  onClick={handleCompleteEncounter}
+                  className={styles.summaryModalBtnPrimary}
+                  onClick={handleEncounterSummaryEnd}
                 >
-                  Complete Encounter
+                  Download PDF
                 </button>
               </div>
             </div>

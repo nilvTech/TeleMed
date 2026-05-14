@@ -754,7 +754,9 @@ margin-left: 230px;
   transition: all 0.2s ease;
   position: relative;
 }
-
+.tab:focus{
+outline: none;
+}
 .tab:hover {
   background: rgba(23, 121, 196, 0.06);
 }
@@ -779,6 +781,7 @@ margin-left: 230px;
   background: var(--card);
   border-bottom-color: var(--primary);
 }
+
 
 .tabActive .tabLetter {
   color: var(--primary);
@@ -1680,7 +1683,7 @@ margin-left: 230px;
    MODAL BACKDROP
 ========================== */
 
-.modalBackdrop {
+.summaryModalBackdrop {
   position: fixed;
   inset: 0;
   background: rgba(15, 23, 42, 0.45);
@@ -1696,8 +1699,8 @@ margin-left: 230px;
    MODAL CONTAINER
 ========================== */
 
-.modal {
-  min-width: 60vw;
+.summaryModal {
+  width: 50vw;
   max-height: 90vh;
   background: #ffffff;
   border-radius: 28px;
@@ -1714,7 +1717,7 @@ margin-left: 230px;
    TITLE
 ========================== */
 
-.modalTitle {
+.summaryModalTitle {
   padding: 28px 32px;
   margin: 0;
   font-size: 1.5rem;
@@ -1843,7 +1846,7 @@ margin-left: 230px;
    FOOTER
 ========================== */
 
-.modalFooter {
+.summaryModalFooter {
   position: sticky;
   bottom: 0;
   background: #ffffff;
@@ -1858,7 +1861,7 @@ margin-left: 230px;
    BUTTONS
 ========================== */
 
-.modalBtnCancel {
+.summaryModalBtnCancel {
   border: none;
   background: #e2e8f0;
   color: #334155;
@@ -1870,11 +1873,11 @@ margin-left: 230px;
   transition: 0.2s ease;
 }
 
-.modalBtnCancel:hover {
+.summaryModalBtnCancel:hover {
   background: #cbd5e1;
 }
 
-.modalBtnPrimary {
+.summaryModalBtnPrimary {
   border: none;
   background: #0f766e;
   color: white;
@@ -1886,7 +1889,7 @@ margin-left: 230px;
   transition: 0.2s ease;
 }
 
-.modalBtnPrimary:hover {
+.summaryModalBtnPrimary:hover {
   transform: translateY(-1px);
   background: #115e59;
 }

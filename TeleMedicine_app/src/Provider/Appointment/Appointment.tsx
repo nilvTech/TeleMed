@@ -84,6 +84,7 @@
 import React, { useState } from "react";
 import styles from "./Appointment.module.css";
 import { FaPlus, FaSearch, FaEdit } from "react-icons/fa"; //FaTrash
+import { useNavigate } from "react-router-dom";
 
 interface SoapNote {
   subjective: string;
@@ -177,7 +178,12 @@ export default function Appointment() {
     time: "",
     type: "",
     status: "Scheduled",
-    note: "",
+    soapNote: {
+      subjective:"",
+      objective:"",
+      assessment:"",
+      plan:""
+    },
   });
 
   const filteredAppointments = appointments.filter((appt) => {
@@ -232,7 +238,12 @@ export default function Appointment() {
       time: "",
       type: "",
       status: "Scheduled",
-      note: "",
+      soapNote: {
+        subjective:"",
+        objective:"",
+        assessment:"",
+        plan:""
+      }
     });
     setShowEditModal(false);
   };
@@ -266,6 +277,16 @@ export default function Appointment() {
   //   }
   // };
 
+  const navEncounter = useNavigate();
+
+  const handleShowEncounter = (appt:Appointment)=>{
+    navEncounter("/Encounter",{
+      state:{
+        appointment: appt
+      }
+    }
+    )
+  }
   return (
     <div className={styles.container}>
       <div className={styles.header}>
@@ -333,6 +354,11 @@ export default function Appointment() {
               </td>
 
               <td className={styles.actions}>
+                <button
+                className={styles.startEncounterBtn}
+                hidden={appt.status !== "Scheduled"}
+                onClick={()=>handleShowEncounter(appt)}
+                >Start</button>
                 <button
                   className={styles.viewButton}
                   disabled={appt.status !== "Completed"}

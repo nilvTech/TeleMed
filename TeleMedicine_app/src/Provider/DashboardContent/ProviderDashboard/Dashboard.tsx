@@ -5,7 +5,7 @@ import Avatar from "@mui/material/Avatar";
 import { useNavigate } from "react-router-dom";
 import { Users, CheckCircle, Clock, Calendar } from "lucide-react";
 import CountUp from "../CountUp";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 //import Header from "./Header";
 //import SideBar from "./SideBar";
 
@@ -145,6 +145,7 @@ function Grid2() {
     },
   ];
 
+ 
   //const NavToVideoCall = useNavigate();
   const NavToEncounter = useNavigate();
   const handleonClick = (doc: any) => {
@@ -162,8 +163,8 @@ function Grid2() {
         appt:doc
       }
     })
-    
   };
+
   return (
     <>
       <div className={styles.formContainer1}>
@@ -187,6 +188,8 @@ function Grid2() {
 
               <button
                 className={styles.joinButton}
+                disabled={doc.Day !== "Today"}
+                hidden={doc.Day !== "Today"}
                 onClick={() => handleonClick(doc)}
               >
                 Start
