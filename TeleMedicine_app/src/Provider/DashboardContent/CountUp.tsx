@@ -5,7 +5,7 @@ interface CountUpProps {
   duration?: number;
 }
 
-const CountUp: React.FC<CountUpProps> = ({ end, duration = 1500 }) => {
+const CountUp: React.FC<CountUpProps> = ({ end, duration = 1000 }) => {
   const spanRef = useRef<HTMLSpanElement>(null);
 
   useEffect(() => {
@@ -30,7 +30,7 @@ const CountUp: React.FC<CountUpProps> = ({ end, duration = 1500 }) => {
 
       if (progress < 1) {
         window.requestAnimationFrame(animate);
-      } else{
+      } else {
         element.innerText = end.toString();
       }
     };

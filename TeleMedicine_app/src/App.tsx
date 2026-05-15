@@ -59,7 +59,7 @@ function App() {
         <Routes>
           <Route path="/" element={<AuthForm />} />
           <Route path="/ForgetPassword" element={<ForgetPass />} />
-
+    
           <Route element={<PatientLayout />}>
             <Route path="/Patient/Dasboard" element={<PatientDashboard />} />
           </Route>

@@ -570,10 +570,11 @@ select.input {
   flex-direction: column;
   gap: 10px;
   margin-top: 8px;
+  align-items: end;
 }
 
 .actionButtons button {
-  width: 100%;
+  width: 20%;
   justify-content: center;
 }
 
